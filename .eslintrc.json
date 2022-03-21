@@ -1,0 +1,29 @@
+{
+  "extends": [
+    "next/core-web-vitals",
+    "eslint:recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "next"
+  ],
+  "env": {
+    "browser": true,
+    "amd": true,
+    "node": true,
+    "es6": true
+  },
+  "rules": {
+    "prettier/prettier": [
+      "error",
+      {
+        "singleQuote": true,
+        "tabWidth": 2,
+        "printWidth": 200,
+        "trailingComma": "es5",
+        "endOfLine": "auto",
+        "bracketSpacing": true
+      }
+    ],
+    "semi": ["error", "always"]
+  }
+}
