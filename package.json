@@ -10,15 +10,12 @@
     "lint:fix": "eslint src/ --fix"
   },
   "dependencies": {
-<<<<<<< HEAD
     "firebase": "^9.6.10",
-=======
     "@chakra-ui/react": "^1.8.7",
     "@emotion/react": "^11.8.2",
     "@emotion/styled": "^11.8.1",
     "formik": "^2.2.9",
     "framer-motion": "^6.2.8",
->>>>>>> 8a2f89fda0ed9a03929f9b40ac22329e595b3079
     "next": "12.1.0",
     "react": "17.0.2",
     "react-dom": "17.0.2",
