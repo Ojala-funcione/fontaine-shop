@@ -21,7 +21,7 @@
     "ecmaVersion": "latest",
     "sourceType": "module"
   },
-  
+
   "plugins": ["react", "prettier"],
   "rules": {
     "prettier/prettier": [
@@ -29,26 +29,32 @@
       {
         "singleQuote": true,
         "tabWidth": 2,
-        "printWidth": 200,
+        "printWidth": 100,
         "trailingComma": "es5",
-        "endOfLine": "auto",
+        "endOfLine": "crlf",
         "bracketSpacing": true
       }
     ],
     "semi": ["error", "always"],
-    "react/jsx-filename-extension": [
-      1,
-      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
-    ],
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
     "arrow-body-style": ["error", "always"],
     "react/prop-types": 0,
     "react/jsx-props-no-spreading": 0,
+    "linebreak-style": ["error", "windows"],
+    "object-curly-newline": [
+      "error",
+      {
+        "ImportDeclaration": { "multiline": true, "minProperties": 5 },
+        "ExportDeclaration": { "multiline": true, "minProperties": 5 }
+      }
+    ],
     "react/function-component-definition": [
       1,
       {
         "namedComponents": "arrow-function",
         "unnamedComponents": "arrow-function"
       }
-    ]
+    ],
+    "import/no-unresolved": [0, {}]
   }
 }

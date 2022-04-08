@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
@@ -57,6 +58,12 @@ const Home: NextPage = () => {
       </footer>
     </div>
   );
-};
+=======
+import { Box } from '@chakra-ui/react';
+import type { NextPage } from 'next';
 
+const Home: NextPage = () => {
+  return <Box>hola</Box>;
+>>>>>>> a601d12467903b1047adaaa6ac6a5ecce3fd251c
+};
 export default Home;
