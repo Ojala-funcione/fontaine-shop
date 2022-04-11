@@ -1,12 +1,12 @@
 import { Box, Container, Text, useColorModeValue } from '@chakra-ui/react';
 import Logo from '@common/logo/logo';
-import LoginForm from '@components/forms/LoginFom';
 import { FC, useEffect } from 'react';
 import { useAuth } from '@context/useAuth';
 import { useRouter } from 'next/router';
+import RegisterForm from '@components/forms/RegisterForm';
 import Link from 'next/link';
 
-const Login: FC = () => {
+const Register: FC = () => {
   const router = useRouter();
   const auth = useAuth();
   useEffect(() => {
@@ -42,11 +42,11 @@ const Login: FC = () => {
           <Logo width="250" color={useColorModeValue('#222220', '#fafafa')} />
         </Box>
         <Box w="100%" p={8}>
-          <LoginForm />
+          <RegisterForm />
         </Box>
         <Text textAlign="center" fontSize="0.875rem">
-          ¿No tienes cuenta?
-          <Link href="/register" passHref>
+          ¿Ya tienes cuenta?
+          <Link href="/login" passHref>
             <Text
               as="span"
               pl="0.5rem"
@@ -55,7 +55,7 @@ const Login: FC = () => {
               cursor="pointer"
               _hover={{ color: '#168af7' }}
             >
-              Registrarse
+              Iniciar Sesion
             </Text>
           </Link>
         </Text>
@@ -64,4 +64,4 @@ const Login: FC = () => {
   );
 };
 
-export default Login;
+export default Register;

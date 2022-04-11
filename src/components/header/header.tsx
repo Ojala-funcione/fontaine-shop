@@ -25,7 +25,6 @@ const Header: React.FC = () => {
       px="2rem"
       py="1.25rem"
       bg="#fff"
-      // gap="2rem"
       zIndex={3}
       boxShadow="0 1px 2px rgba(0, 0, 0, 0.06)"
       transition="all 0.3s ease"
@@ -83,10 +82,10 @@ const Header: React.FC = () => {
           Home
         </NavLink>
         <NavLink exact href="/store">
-          Store
+          Tienda
         </NavLink>
         <NavLink exact href="/contact">
-          Contact
+          Contacto
         </NavLink>
         {auth.user ? (
           <MenuProfile />

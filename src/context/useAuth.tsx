@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, createContext, useContext } from 'react';
 import {
   createUserWithEmailAndPassword,
@@ -8,10 +7,24 @@ import {
   sendEmailVerification,
   updateProfile
 } from 'firebase/auth';
-import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore';
+import {
+  doc,
+  DocumentData,
+  getDoc,
+  setDoc,
+  updateDoc
+} from 'firebase/firestore';
 import { useToast } from '@chakra-ui/react';
 // eslint-disable-next-line import/extensions
 import { auth, db } from '../../firebase';
+
+export interface IAuthContext {
+  user?: any;
+  login?: any;
+  logout?: any;
+  signup?: any;
+  loading?: any;
+}
 
 const setToast = {
   duration: 5000,
@@ -20,7 +33,7 @@ const setToast = {
     marginBottom: '50px'
   }
 };
-const DEFAULT_VALUE = {};
+const DEFAULT_VALUE: IAuthContext = {};
 
 const AuthContext = createContext(DEFAULT_VALUE);
 
@@ -34,70 +47,82 @@ export const AuthProvider: React.FC = ({ children }) => {
   const [loading, setLoading] = useState(true);
   const toast = useToast();
 
-  // const signup = async ({ email, password, firstName, lastName }) => {
-  //   try {
-  //     const userCredentials = await createUserWithEmailAndPassword(auth, email, password);
+  interface Isignup {
+    email: string;
+    password: string;
+    firstName: string;
+    lastName: string;
+  }
 
-  //     //________Actualizar name en auth firebase_________
-  //     updateProfile(userCredentials.user, {
-  //       displayName: `${firstName} ${lastName}`,
-  //     });
+  const signup = async ({ email, password, firstName, lastName }: Isignup) => {
+    try {
+      const userCredentials = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
 
-  //     //________Email verification_________
+      // ________Actualizar name en auth firebase_________
+      updateProfile(userCredentials.user, {
+        displayName: `${firstName} ${lastName}`
+      });
 
-  //     const config = {
-  //       url: 'http://localhost:3000/',
-  //     };
-  //     sendEmailVerification(userCredentials.user, config)
-  //       .then((res) => {
-  //         toast({
-  //           title: 'Account Created.',
-  //           description: 'Verify your account. Check your email.',
-  //           status: 'success',
-  //           ...setToast,
-  //         });
-  //       })
-  //       .catch((error) => {
-  //         console.log(error);
-  //         toast({
-  //           title: 'error al enviar email de verificacion',
-  //           description: error.message,
-  //           status: 'error',
-  //           ...setToast,
-  //         });
-  //       });
+      // ________Email verification_________
 
-  //     //===========USER DB===========
+      const config = {
+        url: 'http://localhost:3000/'
+      };
+      sendEmailVerification(userCredentials.user, config)
+        .then(() => {
+          toast({
+            title: 'Account Created.',
+            description: 'Verify your account. Check your email.',
+            status: 'success',
+            ...setToast
+          });
+        })
+        .catch((error) => {
+          toast({
+            title: 'error al enviar email de verificacion',
+            description: error.message,
+            status: 'error',
+            ...setToast
+          });
+          throw new Error(error);
+        });
 
-  //     try {
-  //       const docRef = doc(db, 'users', userCredentials.user.uid);
-  //       await setDoc(docRef, {
-  //         firstName,
-  //         lastName,
-  //         email,
-  //         name: `${firstName} ${lastName}`,
-  //         uid: userCredentials.user.uid,
-  //         role: 'customer',
-  //         photoURL: userCredentials.user.photoURL,
-  //         address: 'no registrada',
-  //         isVerified: userCredentials.user.emailVerified,
-  //         phoneNumber: userCredentials.user.phoneNumber,
-  //         creationTime: userCredentials.user.metadata.creationTime,
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-  //   } catch (error) {
-  //     console.log('error', error);
-  //     toast({
-  //       title: 'Sign In Error.',
-  //       description: error.message,
-  //       status: 'error',
-  //       ...setToast,
-  //     });
-  //   }
-  //   // signOut(auth);
-  // };
+      //= ==========USER DB===========
+
+      try {
+        const docRef = doc(db, 'users', userCredentials.user.uid);
+        await setDoc(docRef, {
+          firstName,
+          lastName,
+          email,
+          name: `${firstName} ${lastName}`,
+          uid: userCredentials.user.uid,
+          role: 'customer',
+          photoURL: userCredentials.user.photoURL,
+          address: 'no registrada',
+          isVerified: userCredentials.user.emailVerified,
+          phoneNumber: userCredentials.user.phoneNumber,
+          creationTime: userCredentials.user.metadata.creationTime
+        });
+      } catch (error: any) {
+        throw new Error(error);
+      }
+    } catch (error: any) {
+      toast({
+        title: 'Sign In Error.',
+        description: error.message,
+        status: 'error',
+        ...setToast
+      });
+      throw new Error(error);
+    }
+    // signOut(auth);
+  };
+
   const login = ({ email, password }: { email: string; password: string }) => {
     return signInWithEmailAndPassword(auth, email, password);
   };
@@ -138,23 +163,15 @@ export const AuthProvider: React.FC = ({ children }) => {
       return unsubscribe();
     };
   }, []);
-
-  type authContextTypes = {
-    user: any;
-    login: any;
-    logout: any;
-    loading: any;
-  };
   // eslint-disable-next-line react/jsx-no-constructed-context-values
-  const values: authContextTypes = {
+  const values: IAuthContext = {
     user,
-    // signup,
+    signup,
     login,
     logout,
     loading
     // getCredentials,
     // refreshUser,
   };
-  // eslint-disable-next-line react/jsx-no-constructed-context-values
   return <AuthContext.Provider value={values}>{children}</AuthContext.Provider>;
 };

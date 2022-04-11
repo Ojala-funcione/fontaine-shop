@@ -13,21 +13,21 @@ import { useRouter } from 'next/router';
 
 const validationSchema = Yup.object().shape({
   firstName: Yup.string()
-    .required('First Name is Required')
-    .max(100, 'Max 100 Characters'),
+    .required('Nombre es Requerido')
+    .max(100, 'Max 100 Caracteres'),
   lastName: Yup.string()
-    .required('Last Name is Required')
-    .max(100, 'Max 100 Characters'),
+    .required('Apellido es Requerido')
+    .max(100, 'Max 100 Caracteres'),
   email: Yup.string()
-    .required('Email is Required')
+    .required('Email es Requerido')
     .email('Invalid Email')
-    .max(255, 'Max 255 Characters'),
+    .max(255, 'Max 255 Caracteres'),
   password: Yup.string()
-    .required('Password Required')
-    .min(8, 'Min 8 Characters')
-    .max(32, 'Max 32 Characters')
+    .required('Password es Requerida')
+    .min(8, 'Min 8 Caracteres')
+    .max(32, 'Max 32 Caracteres')
 });
-interface Values {
+interface IValues {
   email: string;
   password: string;
 }
@@ -37,7 +37,7 @@ const RegisterForm: FC = () => {
   // let from = location.state?.from?.pathname || "/";
   const toast = useToast();
 
-  const handleSubmit = async (values: Values) => {
+  const handleSubmit = async (values: IValues) => {
     try {
       await auth.signup(values);
       router.push('/');
@@ -60,7 +60,7 @@ const RegisterForm: FC = () => {
         password: ''
       }}
       validationSchema={validationSchema}
-      onSubmit={(values: Values) => {
+      onSubmit={(values: IValues) => {
         return handleSubmit(values);
       }}
     >
@@ -99,9 +99,6 @@ const RegisterForm: FC = () => {
             placeholder="********"
             autoComplete="current-password"
           />
-          <CustomButton type="reset" colorScheme="red" variant="outline">
-            Cancelar
-          </CustomButton>
           <CustomButton type="submit">Registrarse</CustomButton>
         </Box>
       </Form>
