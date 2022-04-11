@@ -10,7 +10,8 @@ import {
 } from 'firebase/auth';
 import { doc, DocumentData, getDoc, updateDoc } from 'firebase/firestore';
 import { useToast } from '@chakra-ui/react';
-import { auth, db } from 'firebaseConfig';
+// eslint-disable-next-line import/extensions
+import { auth, db } from '../../firebase';
 
 const setToast = {
   duration: 5000,
