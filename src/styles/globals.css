@@ -17,3 +17,13 @@ a {
   box-sizing: border-box;
   font-family: "Open Sans"
 }
+
+.error {
+  width: fit-content;
+  margin-top: 5px;
+  margin-left: auto;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.5;
+  color: #fc5c63;
+}

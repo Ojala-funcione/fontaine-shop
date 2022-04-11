@@ -1,8 +1,17 @@
 import React from 'react';
 
-const Accessories = ({ color = 'currentColor', width = '18px', height = '18px' }) => {
+const Accessories = ({
+  color = 'currentColor',
+  width = '18px',
+  height = '18px'
+}) => {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" width={width} height={height} viewBox="0 0 18 18">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width={width}
+      height={height}
+      viewBox="0 0 18 18"
+    >
       <g data-name="Group 15" fill={color}>
         <path
           data-name="Path 53"

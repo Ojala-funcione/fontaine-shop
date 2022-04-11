@@ -29,8 +29,7 @@
       {
         "singleQuote": true,
         "tabWidth": 2,
-        "printWidth": 100,
-        "trailingComma": "es5",
+        "trailingComma": "none",
         "endOfLine": "crlf",
         "bracketSpacing": true
       }
@@ -41,6 +40,8 @@
     "react/prop-types": 0,
     "react/jsx-props-no-spreading": 0,
     "linebreak-style": ["error", "windows"],
+    "comma-dangle": ["error", "never"],
+    "operator-linebreak": ["error", "after"],
     "object-curly-newline": [
       "error",
       {

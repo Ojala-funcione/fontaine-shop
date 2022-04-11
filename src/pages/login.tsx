@@ -1,23 +1,18 @@
-import { Box, Container, Text, useColorModeValue } from '@chakra-ui/react';
+import { Box, Container, useColorModeValue } from '@chakra-ui/react';
 import Logo from '@common/logo/logo';
 import LoginForm from '@components/forms/LoginFom';
-import { FC } from 'react';
-// import { useNavigate } from 'react-router-dom';
-// import { useAuth } from '../../auth/AuthProvider';
-// import Logo from '../../components/Header/Logo';
-
-// type Props = {
-//   children: React.ReactNode;
-// };
+import { FC, useEffect } from 'react';
+import { useAuth } from '@context/useAuth';
+import { useRouter } from 'next/router';
 
 const Login: FC = () => {
-  //   const navigate = useNavigate();
-  //   const auth = useAuth();
-  //   useEffect(() => {
-  //     if (auth.user) {
-  //       navigate('/');
-  //     }
-  //   }, [auth.user]);
+  const router = useRouter();
+  const auth = useAuth();
+  useEffect(() => {
+    if (auth.user) {
+      router.push('/');
+    }
+  }, [router, auth]);
   return (
     <Container
       maxW="100%"
@@ -35,18 +30,17 @@ const Login: FC = () => {
         borderRadius="3px"
         p={6}
       >
-        <Box d="flex" alignItems="center" flexDirection="column" w="100%">
-          <Box m={6}>
-            <Logo height="28px" color={useColorModeValue('#222220', '#fafafa')} />
-          </Box>
-
-          <Text fontSize="2xl" fontFamily="Work sans" display="block">
-            Login
-            {/* {subtitle} */}
-          </Text>
+        <Box
+          d="flex"
+          mt={6}
+          mb={4}
+          alignItems="center"
+          flexDirection="column"
+          w="100%"
+        >
+          <Logo width="250" color={useColorModeValue('#222220', '#fafafa')} />
         </Box>
         <Box w="100%" p={8}>
-          {/* {children} */}
           <LoginForm />
         </Box>
       </Container>

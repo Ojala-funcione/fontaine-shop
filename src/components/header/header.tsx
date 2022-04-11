@@ -4,48 +4,18 @@ import {
   IconButton,
   Input,
   InputGroup,
-  InputLeftElement,
-  Link as ChakraLink,
+  InputLeftElement
 } from '@chakra-ui/react';
 import Logo from '@common/logo/logo';
 import React from 'react';
 import { IoSearch } from 'react-icons/io5';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { useAuth } from '@context/useAuth';
+import MenuProfile from '@common/MenuProfile/MenuProfile';
+import NavLink from '@common/NavLink/NavLink';
 
-type NavLinkProps = {
-  href: string;
-  exact?: boolean;
-};
-export const NavLink: React.FC<NavLinkProps> = ({ href, exact, children, ...props }) => {
-  const { pathname } = useRouter();
-  const isActive = exact ? pathname === href : pathname.startsWith(href);
-
-  return (
-    <Link href={href} passHref>
-      <ChakraLink
-        color={isActive ? '#168af7' : '#1f2937'}
-        fontSize="1rem"
-        px="0.25rem"
-        fontWeight={500}
-        _hover={{ color: '#168af7' }}
-        _focus={{
-          outline: 'none',
-        }}
-        {...props}
-      >
-        {children}
-      </ChakraLink>
-    </Link>
-  );
-};
-
-NavLink.defaultProps = {
-  exact: false,
-};
-type Props = {};
-
-const Header: React.FC<Props> = () => {
+const Header: React.FC = () => {
+  const auth = useAuth();
   return (
     <Box
       display="flex"
@@ -63,7 +33,7 @@ const Header: React.FC<Props> = () => {
       <Box>
         <Logo />
       </Box>
-      <Box w="80%" px="40px">
+      <Box w="60%" px="40px">
         <InputGroup>
           <Input
             type="text"
@@ -74,24 +44,24 @@ const Header: React.FC<Props> = () => {
             fontSize="0.875rem"
             transition="all 0.3s ease"
             _placeholder={{
-              color: '#6b7280',
+              color: '#6b7280'
             }}
             _focus={{
               bg: '#fff',
-              outline: '1px solid #51a6f5',
+              outline: '1px solid #51a6f5'
             }}
           />
           <InputLeftElement h="100%">
             <IconButton
               _active={{
-                bg: 'transparent',
+                bg: 'transparent'
               }}
               _focus={{
-                outline: 'none',
+                outline: 'none'
               }}
               _hover={{
                 bg: 'transparent',
-                color: '#51a6f5',
+                color: '#51a6f5'
               }}
               fontSize="1.25rem"
               aria-label="Search Products"
@@ -103,7 +73,12 @@ const Header: React.FC<Props> = () => {
           </InputLeftElement>
         </InputGroup>
       </Box>
-      <Box display="flex" alignItems="center" justifyContent="space-between" gap="0.875rem">
+      <Box
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        gap="0.875rem"
+      >
         <NavLink exact href="/">
           Home
         </NavLink>
@@ -113,21 +88,24 @@ const Header: React.FC<Props> = () => {
         <NavLink exact href="/contact">
           Contact
         </NavLink>
-
-        <Link href="/login" passHref>
-          <Button
-            ml="1rem"
-            bg="#168af7"
-            color="#fff"
-            fontSize="0.875rem"
-            _hover={{ bg: '#51a6f5' }}
-            _focus={{
-              outline: 'none',
-            }}
-          >
-            Join
-          </Button>
-        </Link>
+        {auth.user ? (
+          <MenuProfile />
+        ) : (
+          <Link href="/login" passHref>
+            <Button
+              ml="1rem"
+              bg="#168af7"
+              color="#fff"
+              fontSize="0.875rem"
+              _hover={{ bg: '#51a6f5' }}
+              _focus={{
+                outline: 'none'
+              }}
+            >
+              Join
+            </Button>
+          </Link>
+        )}
       </Box>
     </Box>
   );

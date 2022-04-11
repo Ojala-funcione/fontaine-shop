@@ -65,7 +65,7 @@ const Logo: React.FC<LogoProps> = ({ width, color, height }) => {
 Logo.defaultProps = {
   width: '192px',
   color: '#222220',
-  height: 'auto',
+  height: 'auto'
 };
 
 export default Logo;

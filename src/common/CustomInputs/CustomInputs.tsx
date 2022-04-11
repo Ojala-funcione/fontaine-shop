@@ -7,9 +7,9 @@ import {
   InputRightElement,
   // Select,
   // Textarea,
-  useColorModeValue,
+  useColorModeValue
 } from '@chakra-ui/react';
-import { FieldHookConfig, useField } from 'formik';
+import { ErrorMessage, FieldHookConfig, useField } from 'formik';
 import { useState, FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
@@ -27,7 +27,10 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
   const [field, meta] = useField(props);
   return (
     <FormControl isInvalid={meta.touched && !!meta.error}>
-      <FormLabel id={`${props.id}-${props.name}-label`} htmlFor={`${props.id}-${props.name}-input`}>
+      <FormLabel
+        id={`${props.id}-${props.name}-label`}
+        htmlFor={`${props.id}-${props.name}-input`}
+      >
         {label}
       </FormLabel>
       <Input
@@ -38,25 +41,28 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
         border={useColorModeValue('none', '1px solid #eeeeee')}
         _placeholder={{
           color: useColorModeValue('#777777', '#aaaaaa'),
-          fontWeight: 600,
+          fontWeight: 600
         }}
         _focus={{
-          border: '2px solid #51a6f5',
+          border: '2px solid #51a6f5'
         }}
       />
+      <ErrorMessage name={props.name} component="div" className="error" />
     </FormControl>
   );
 };
 
-export const CustomInputPassword: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
-  label,
-  ...props
-}) => {
+export const CustomInputPassword: FC<
+  FieldHookConfig<string> & ICustomFieldProps
+> = ({ label, ...props }) => {
   const [show, setShow] = useState(false);
   const [field, meta] = useField(props);
   return (
     <FormControl isInvalid={meta.touched && !!meta.error}>
-      <FormLabel id={`${props.id}-${props.name}-label`} htmlFor={`${props.id}-${props.name}-input`}>
+      <FormLabel
+        id={`${props.id}-${props.name}-label`}
+        htmlFor={`${props.id}-${props.name}-input`}
+      >
         {label}
       </FormLabel>
       <InputGroup size="md">
@@ -74,7 +80,7 @@ export const CustomInputPassword: FC<FieldHookConfig<string> & ICustomFieldProps
         <InputRightElement width="4.5rem">
           <Button
             p={2}
-            fontSize="10px"
+            fontSize="20px"
             color={useColorModeValue('#161f6a', '#bababa')}
             bg="transparent"
             onClick={() => {
@@ -88,6 +94,7 @@ export const CustomInputPassword: FC<FieldHookConfig<string> & ICustomFieldProps
           </Button>
         </InputRightElement>
       </InputGroup>
+      <ErrorMessage name={props.name} component="div" className="error" />
     </FormControl>
   );
 };
@@ -128,7 +135,10 @@ export const CustomInputPassword: FC<FieldHookConfig<string> & ICustomFieldProps
 interface ICustomButtonProps {
   type: 'button' | 'submit' | 'reset' | undefined;
 }
-export const CustomButton: FC<ICustomButtonProps> = ({ children, ...props }) => {
+export const CustomButton: FC<ICustomButtonProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <Button
       colorScheme="blue"

@@ -1,17 +1,20 @@
 import React, { FC } from 'react';
 import { Formik, Form } from 'formik';
-import { CustomButton, CustomInput, CustomInputPassword } from '@common/CustomInputs/CustomInputs';
+import {
+  CustomButton,
+  CustomInput,
+  CustomInputPassword
+} from '@common/CustomInputs/CustomInputs';
 import * as Yup from 'yup';
+import { Box, useToast } from '@chakra-ui/react';
+import { useAuth } from '@context/useAuth';
 
-// import { FormControl, FormLabel } from "@chakra-ui/form-control";
-// import { useLocation, useNavigate } from "react-router-dom";
-// import { useAuth } from "../../auth/AuthProvider";
-// import { useToast } from "@chakra-ui/react";
+import { useRouter } from 'next/router';
 
 const loginValidationSchema = () => {
   return Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is Required!'),
-    password: Yup.string().required('Password is Required!'),
+    password: Yup.string().required('Password is Required!')
   });
 };
 interface Values {
@@ -19,34 +22,30 @@ interface Values {
   password: string;
 }
 const LoginForm: FC = () => {
-  // let navigate = useNavigate();
-  // let location = useLocation();
-  // let auth = useAuth();
+  const router = useRouter();
+  const auth = useAuth();
   // let from = location.state?.from?.pathname || "/";
-  // const toast = useToast();
+  const toast = useToast();
 
   const handleSubmit = async (values: Values) => {
-    console.log(values);
-    //   try {
-    //     await auth.login(values);
-    //     navigate(from, { replace: true });
-    //   } catch (e) {
-    //     toast({
-    //       // title: 'Login Error.',
-    //       description: e.message,
-    //       status: "error",
-    //       duration: 9000,
-    //       isClosable: true,
-    //     });
-    //     console.error(e.message);
-    //   }
+    try {
+      await auth.login(values);
+      router.push('/');
+    } catch (e: any) {
+      toast({
+        description: e.message,
+        status: 'error',
+        duration: 9000,
+        isClosable: true
+      });
+      throw new Error(e.message);
+    }
   };
-  // return <div>hola</div>;
   return (
     <Formik
       initialValues={{
         email: '',
-        password: '',
+        password: ''
       }}
       validationSchema={loginValidationSchema}
       onSubmit={(values: Values) => {
@@ -54,46 +53,26 @@ const LoginForm: FC = () => {
       }}
     >
       <Form>
-        <CustomInput
-          id="email"
-          label="Email"
-          type="email"
-          name="email"
-          placeholder="Ex: example@fontaine.com"
-          autoComplete="username"
-        />
-        {/* <FormControl isRequired marginBottom={6}>
-          <FormLabel htmlFor="email">Email</FormLabel>
-          <Field
-          id="email"
-          type="email"
-          name="email"
-          placeholder="Ex: example@fontaine.com"
-          component={CustomInput}
-          autoComplete="username"
+        <Box display="flex" flexDirection="column" gap="1rem">
+          <CustomInput
+            id="email"
+            label="Email"
+            type="email"
+            name="email"
+            placeholder="Ex: example@fontaine.com"
+            autoComplete="username"
           />
-        </FormControl> */}
-        <CustomInputPassword
-          id="password"
-          label="Password"
-          type="password"
-          name="password"
-          placeholder="********"
-          autoComplete="current-password"
-        />
-        {/* <FormControl isRequired marginBottom={6}>
-          <FormLabel htmlFor="password">Password</FormLabel>
-          <Field
+
+          <CustomInputPassword
             id="password"
+            label="Password"
             type="password"
             name="password"
-            component={CustomInputPassword}
             placeholder="********"
             autoComplete="current-password"
           />
-        </FormControl> */}
-
-        <CustomButton type="submit">Login</CustomButton>
+          <CustomButton type="submit">Iniciar Sesion</CustomButton>
+        </Box>
       </Form>
     </Formik>
   );
