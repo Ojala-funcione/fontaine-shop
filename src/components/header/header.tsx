@@ -88,7 +88,7 @@ const Header: React.FC = () => {
         <NavLink exact href="/contact">
           Contacto
         </NavLink>
-        <DarkModeSwitch />
+        <DarkModeSwitch display={undefined} />
         {auth.user ? (
           <MenuProfile />
         ) : (
