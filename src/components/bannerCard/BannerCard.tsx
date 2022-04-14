@@ -40,7 +40,9 @@ const BannerCard = () => {
               h="165px"
               bgSize="cover"
               borderRadius={10}
-              boxShadow="lg"
+              border="2px ridge"
+              borderColor="#ffffff4d"
+              boxShadow="0px 2px 7px 0px rgb(0 0 0 / 67%)"
               style={{
                 backgroundImage: `url(${cardInfo.bg})`
               }}

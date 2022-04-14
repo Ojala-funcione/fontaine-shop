@@ -84,11 +84,7 @@ const TestimonialCard = (props: TestimonialCardProps) => {
 
 const ClientFeedBack = () => {
   return (
-    <Box
-      bg={useColorModeValue('#F2F8FD', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-      marginBottom="5rem"
-    >
+    <Box color={useColorModeValue('gray.700', 'gray.200')} marginBottom="5rem">
       <Container maxW="6xl">
         <Flex
           textAlign="center"
