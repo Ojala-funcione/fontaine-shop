@@ -28,8 +28,8 @@ const banner = [
 
 const BannerCard = () => {
   return (
-    <Container maxW="6xl" alignContent="center">
-      <SimpleGrid columns={[1, 1, 3]} px={2} spacing={8}>
+    <Container maxW="6xl">
+      <SimpleGrid columns={[1, 1, 3]} justifyItems="center" spacing={8}>
         {banner.map((cardInfo, index) => {
           return (
             <Box
