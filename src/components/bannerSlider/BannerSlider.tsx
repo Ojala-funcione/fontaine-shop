@@ -28,17 +28,18 @@ const slides = [
 
 const BannerSlider = () => {
   const arrowStyles = {
+    display: 'flex',
+    alignItems: 'center',
     cursor: 'pointer',
     pos: 'absolute',
-    top: '50%',
+    py: '15%',
+    px: '10px',
     w: 'auto',
-    mt: '-22px',
-    p: '16px',
+    h: 'full',
     color: 'white',
     fontWeight: 'bold',
     fontSize: '18px',
     transition: '0.6s ease',
-    borderRadius: '0 3px 3px 0',
     userSelect: 'none',
     _hover: {
       opacity: 0.8,

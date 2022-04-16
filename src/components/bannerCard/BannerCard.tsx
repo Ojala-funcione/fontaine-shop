@@ -30,10 +30,10 @@ const BannerCard = () => {
   return (
     <Container maxW="6xl">
       <SimpleGrid columns={[1, 1, 3]} justifyItems="center" spacing={8}>
-        {banner.map((cardInfo, index) => {
+        {banner.map((cardInfo) => {
           return (
             <Box
-              key={index}
+              key={cardInfo.title}
               minW="250px"
               maxW="500px"
               w="100%"
