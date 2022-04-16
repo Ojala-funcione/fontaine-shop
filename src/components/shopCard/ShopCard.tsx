@@ -1,17 +1,39 @@
 import {
   Box,
-  Container,
   Heading,
-  SimpleGrid,
   Text,
   Stack,
   Image,
   useColorModeValue,
-  Flex
+  Flex,
+  Button
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
-const ShopCard = (props) => {
+interface shopCardProps {
+  slides: Array<{ img: string }>;
+  isDiscount: boolean;
+  discountInPercent: string;
+  isNew: boolean;
+  title: string;
+  subTitle: string;
+  price: string;
+  discountPrice: string;
+  category: string;
+}
+
+const ShopCard = (props: shopCardProps) => {
+  const {
+    slides,
+    isDiscount,
+    discountInPercent,
+    isNew,
+    title,
+    subTitle,
+    price,
+    discountPrice
+  } = props;
+
   const arrowStyles = {
     cursor: 'pointer',
     pos: 'absolute',
@@ -33,7 +55,7 @@ const ShopCard = (props) => {
 
   const [currentSlide, setCurrentSlide] = useState(0);
 
-  const slidesCount = props?.slides?.length;
+  const slidesCount = slides?.length;
 
   const prevSlide = () => {
     setCurrentSlide((s) => {
@@ -64,47 +86,73 @@ const ShopCard = (props) => {
         background: 'transparent'
       }}
     >
-      {props.isDiscount && (
-        <Box
-          as="span"
-          fontWeight={500}
-          color="white"
-          fontSize="sm"
-          bg="red.500"
-          m={2}
-          px={2}
-          py={1}
-          position="absolute"
-          rounded="md"
-        >
-          {props.discountInPercent}
-        </Box>
-      )}
-      <Box p={5} as="header">
+      <Stack p={2} isInline alignItems="center" justifyContent="center">
+        {isDiscount && (
+          <Box
+            as="span"
+            fontWeight={500}
+            color="white"
+            fontSize="sm"
+            bg="red.500"
+            px={2}
+            py={1}
+            rounded="md"
+          >
+            {discountInPercent}
+          </Box>
+        )}
+        {isDiscount && (
+          <Box
+            as="span"
+            fontWeight={500}
+            color="white"
+            fontSize="sm"
+            bg="red.500"
+            px={2}
+            py={1}
+            rounded="md"
+          >
+            {isDiscount && 'En OFERTA!'}
+          </Box>
+        )}
+        {isNew && (
+          <Box
+            as="span"
+            fontWeight={500}
+            color="white"
+            fontSize="sm"
+            bg="green.500"
+            px={2}
+            py={1}
+            rounded="md"
+          >
+            {isNew && 'NUEVO!'}
+          </Box>
+        )}
+      </Stack>
+      <Box px={2} paddingBottom={2} as="header">
         <Heading
-          mt={5}
           color={useColorModeValue('black', 'white')}
-          lineHeight={1.1}
           fontWeight={600}
           fontSize={{ base: 'large', sm: '2xl', lg: '3xl' }}
         >
-          {props.title}
+          {title}
         </Heading>
         <Text
           color={useColorModeValue('black', 'white')}
           fontWeight={500}
           fontSize="large"
         >
-          {props.subtitle}
+          {subTitle}
         </Text>
       </Box>
       <Box w="100%" h="40%" px={2}>
         <Flex w="100%" h="100%" overflow="hidden" pos="relative">
           <Flex h="100%" w="100%" {...carouselStyle}>
-            {props?.slides?.map((slide, sid) => {
+            {slides?.map((slide, sid) => {
               return (
                 <Box
-                  key={`slide-${sid}`}
+                  key={slide.img}
                   boxSize="100%"
                   h="100%"
                   w="100%"
@@ -119,7 +167,7 @@ const ShopCard = (props) => {
                     pos="absolute"
                     top="0"
                   >
-                    {sid + 1}/{slidesCount}
+                    {`${sid + 1}/${slidesCount}`}
                   </Text>
                   <Image
                     marginInline="auto"
@@ -154,56 +202,34 @@ const ShopCard = (props) => {
         spacing={2}
         p={2}
       >
-        {props.isDiscount ? (
+        {isDiscount ? (
           <Stack direction="row" align="center">
             <Text fontWeight={800} fontSize="xl" color="red.500">
-              {props.discountPrice}
+              {discountPrice}
             </Text>
             <Text textDecoration="line-through" color="gray.600">
-              {props.price}
+              {price}
             </Text>
           </Stack>
         ) : (
           <Text fontWeight={800} fontSize="xl">
-            {props.price}
+            {price}
           </Text>
         )}
       </Stack>
-      <Stack
-        isInline
-        alignItems="center"
-        justifyContent="space-between"
-        spacing={2}
-        p={2}
-      >
-        {props.isNew && (
-          <Box
-            as="span"
-            fontWeight={500}
-            color="white"
-            fontSize="sm"
-            bg="red.500"
-            px={2}
-            py={1}
-            rounded="md"
-          >
-            Nuevo
-          </Box>
-        )}
-        {props.isOnSale && (
-          <Box
-            as="span"
-            fontWeight={500}
-            color="white"
-            fontSize="sm"
-            bg="red.500"
-            px={2}
-            py={1}
-            rounded="md"
-          >
-            {props.isOnSale && 'En OFERTA!'}
-          </Box>
-        )}
+      <Stack isInline align="center" justify="center" p={2}>
+        <Button
+          bg={useColorModeValue('gray.800', 'green.500')}
+          variant="solid"
+          size="sm"
+          px={6}
+          color="white"
+          _hover={{
+            bg: 'green.600'
+          }}
+        >
+          Comprar
+        </Button>
       </Stack>
     </Box>
   );

@@ -5,7 +5,6 @@ import {
   Tabs,
   TabPanels,
   TabPanel,
-  Grid,
   SimpleGrid
 } from '@chakra-ui/react';
 import ShopCard from '@components/shopCard/ShopCard';
@@ -214,7 +213,6 @@ const shopCardInfo = [
     id: 1,
     title: 'Café',
     subtitle: 'Café de todos los días',
-    bg: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/78997061151791-a34400b2afe1e0b5f415884730389855-1024-1024.jpg',
     price: '$10.00',
     slides: [
       {
@@ -237,7 +235,7 @@ const shopCardInfo = [
     discountPrice: '$9.00',
     isDiscount: true,
     category: 'Café',
-    isNew: true,
+    isNew: false,
     isSale: true,
     isFeatured: true,
     isBestSeller: true,
@@ -276,7 +274,7 @@ const shopCardInfo = [
 
 const HomeTabs = () => {
   return (
-    <Container maxW="6xl" py={20}>
+    <Container maxW="6xl" py={10}>
       <Tabs size="md" variant="enclosed">
         <TabList>
           <Tab>Nuevos Productos</Tab>
@@ -290,8 +288,7 @@ const HomeTabs = () => {
                   <ShopCard
                     key={product.id}
                     title={product.title}
-                    subtitle={product.subtitle}
-                    bg={product.bg}
+                    subTitle={product.subtitle}
                     price={product.price}
                     slides={product.slides}
                     discountInPercent={product.discountInPercent}
@@ -299,10 +296,6 @@ const HomeTabs = () => {
                     isDiscount={product.isDiscount}
                     category={product.category}
                     isNew={product.isNew}
-                    isSale={product.isSale}
-                    isFeatured={product.isFeatured}
-                    isBestSeller={product.isBestSeller}
-                    isOnSale={product.isOnSale}
                   />
                 );
               })}
@@ -315,8 +308,7 @@ const HomeTabs = () => {
                   <ShopCard
                     key={product.id}
                     title={product.title}
-                    subtitle={product.subtitle}
-                    bg={product.bg}
+                    subTitle={product.subtitle}
                     price={product.price}
                     slides={product.slides}
                     discountInPercent={product.discountInPercent}
@@ -324,10 +316,6 @@ const HomeTabs = () => {
                     isDiscount={product.isDiscount}
                     category={product.category}
                     isNew={product.isNew}
-                    isSale={product.isSale}
-                    isFeatured={product.isFeatured}
-                    isBestSeller={product.isBestSeller}
-                    isOnSale={product.isOnSale}
                   />
                 );
               })}
