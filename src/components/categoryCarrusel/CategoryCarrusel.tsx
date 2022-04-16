@@ -134,7 +134,7 @@ const settings = {
 const CategoryCarrusel = () => {
   const [slider, setSlider] = useState<Slider | null>(null);
   return (
-    <Container maxW="6xl" p={0}>
+    <Container maxW="6xl" pl={0} pr={4}>
       <Box position="relative" width="100%">
         <link
           rel="stylesheet"
@@ -150,16 +150,19 @@ const CategoryCarrusel = () => {
         <IconButton
           w="2px"
           h="100%"
-          borderRadius={0}
+          borderRadius="10px 0px 0px 10px"
           aria-label="left-arrow"
           position="absolute"
           backgroundColor="transparent"
-          left="20px"
+          left="21px"
           top="50%"
           transform="translate(0%, -50%)"
           zIndex={2}
           onClick={() => {
             return slider?.slickPrev();
+          }}
+          _hover={{
+            bg: 'transparent'
           }}
         >
           <MdArrowLeft />
@@ -176,6 +179,10 @@ const CategoryCarrusel = () => {
           transform="translate(0%, -50%)"
           backgroundColor="#00000066"
           zIndex={2}
+          _hover={{
+            opacity: '0.8',
+            bg: 'black'
+          }}
           onClick={() => {
             return slider?.slickNext();
           }}
