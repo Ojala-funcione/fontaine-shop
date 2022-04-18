@@ -14,6 +14,7 @@ import { useAuth } from '@context/useAuth';
 import MenuProfile from '@common/MenuProfile/MenuProfile';
 import NavLink from '@common/NavLink/NavLink';
 import { useRouter } from 'next/router';
+import DarkModeSwitch from '@components/DarkModeSwitch/DarkModeSwitch';
 
 const Header: React.FC = () => {
   const auth = useAuth();
@@ -95,6 +96,7 @@ const Header: React.FC = () => {
         <NavLink exact href="/contact">
           Contacto
         </NavLink>
+        <DarkModeSwitch display={undefined} />
         {auth.user ? (
           <MenuProfile />
         ) : (

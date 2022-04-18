@@ -1,4 +1,4 @@
-import { IconButton } from '@chakra-ui/react';
+import { IconButton, useColorModeValue } from '@chakra-ui/react';
 import React, { useEffect, useState, FC } from 'react';
 import { RiArrowUpSLine } from 'react-icons/ri';
 
@@ -25,11 +25,12 @@ const ScrollToTopButton: FC = () => {
     };
 
     window.addEventListener('scroll', toggleVisibility);
-
     return () => {
       return window.removeEventListener('scroll', toggleVisibility);
     };
   }, []);
+
+  const colorbutton = useColorModeValue('#fff', '#000');
 
   return isVisible ? (
     <IconButton
@@ -39,7 +40,7 @@ const ScrollToTopButton: FC = () => {
       position="fixed"
       right="20px"
       bottom="20px"
-      bg="#fff"
+      bg={colorbutton}
       zIndex={10}
       boxShadow="0px 0px 30px rgba(0, 0, 0, 0.35)"
       fontSize="32px"
