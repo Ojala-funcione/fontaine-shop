@@ -15,7 +15,7 @@ import {
   updateDoc
 } from 'firebase/firestore';
 import { useToast } from '@chakra-ui/react';
-// eslint-disable-next-line import/extensions
+import { IUser } from 'Redux/Interfaces';
 import { auth, db } from '../../firebase';
 
 export interface IAuthContext {
@@ -43,7 +43,9 @@ export const useAuth = () => {
   return context;
 };
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<DocumentData | null | undefined>(null);
+  const [user, setUser] = useState<DocumentData | null | undefined | IUser>(
+    null
+  );
   const [loading, setLoading] = useState(true);
   const toast = useToast();
 
@@ -123,13 +125,10 @@ export const AuthProvider: React.FC = ({ children }) => {
     // signOut(auth);
   };
 
-  const login = ({ email, password }: { email: string; password: string }) => {
-    return signInWithEmailAndPassword(auth, email, password);
-  };
+  const login = ({ email, password }: { email: string; password: string }) =>
+    signInWithEmailAndPassword(auth, email, password);
 
-  const logout = () => {
-    return signOut(auth);
-  };
+  const logout = () => signOut(auth);
 
   // const refreshUser = async () => {
   //   const docRef = doc(db, 'users', user.uid);
@@ -142,7 +141,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        // console.log(user, currentUser);
+        console.log(user, currentUser);
         const docRef = doc(db, 'users', currentUser.uid);
         const docSnap = await getDoc(docRef);
         const dbUser = docSnap.data();
@@ -152,16 +151,13 @@ export const AuthProvider: React.FC = ({ children }) => {
         ) {
           await updateDoc(docRef, { isVerified: true });
         }
-
         setUser(dbUser);
       } else {
         setUser(currentUser);
       }
       setLoading(false);
     });
-    return () => {
-      return unsubscribe();
-    };
+    return () => unsubscribe();
   }, []);
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const values: IAuthContext = {

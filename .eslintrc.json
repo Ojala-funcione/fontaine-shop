@@ -36,7 +36,8 @@
     ],
     "semi": ["error", "always"],
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
-    "arrow-body-style": ["error", "always"],
+    "arrow-body-style": ["error", "as-needed"],
+    "implicit-arrow-linebreak": 0,
     "react/prop-types": 0,
     "react/jsx-props-no-spreading": 0,
     "linebreak-style": ["error", "windows"],
@@ -56,6 +57,16 @@
         "unnamedComponents": "arrow-function"
       }
     ],
-    "import/no-unresolved": [0, {}]
+    "import/no-unresolved": [0, {}],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+   ]
   }
 }

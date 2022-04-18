@@ -6,7 +6,8 @@
       "@assets/*":["assets/*"],
       "@common/*":["common/*"],
       "@components/*":["components/*"],
-      "@context/*":["context/*"]
+      "@context/*":["context/*"],
+      "@Redux/*":["Redux/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
