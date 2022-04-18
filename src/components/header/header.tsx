@@ -19,7 +19,6 @@ import DarkModeSwitch from '@components/DarkModeSwitch/DarkModeSwitch';
 const Header: React.FC = () => {
   const auth = useAuth();
   const router = useRouter();
-  console.log('router', router);
   return (
     <Box
       display="flex"
@@ -96,7 +95,7 @@ const Header: React.FC = () => {
         <NavLink exact href="/contact">
           Contacto
         </NavLink>
-        <DarkModeSwitch display={undefined} />
+        <DarkModeSwitch display="block" />
         {auth.user ? (
           <MenuProfile />
         ) : (

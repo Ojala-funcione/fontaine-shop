@@ -1,9 +1,12 @@
+/* eslint-disable no-unused-vars */
 import {
   Box,
   IconButton,
   Stack,
   Text,
   useBreakpointValue,
+  Link as ChakraLink,
+  useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
 import Logo from '@common/logo/logo';
@@ -16,6 +19,7 @@ import { NavLink2 } from '@common/NavLink/NavLink';
 import { useRouter } from 'next/router';
 import { MdClose, MdMenu, MdOutlineLogin } from 'react-icons/md';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
+import DarkModeSwitch from '@components/DarkModeSwitch/DarkModeSwitch';
 
 const Links = [
   { href: '/', name: 'Home' },
@@ -25,15 +29,18 @@ const Links = [
 
 const Header2: React.FC = () => {
   const logoWidth = useBreakpointValue({ base: '150px', sm: '170px' });
+  const logoColor = useColorModeValue('#222220', '#ffffff');
   const auth = useAuth();
   const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box
       px={{ base: '0.5rem', sm: '1rem', md: '2rem' }}
-      bg="#fff"
       zIndex={3}
-      boxShadow="0 1px 2px rgba(0, 0, 0, 0.06)"
+      boxShadow={useColorModeValue(
+        '0 1px 2px rgba(0, 0, 0, 0.06)',
+        '0 1px 2px rgba(0, 0, 0, 0.46)'
+      )}
       transition="all 0.3s ease"
     >
       <Box
@@ -75,7 +82,11 @@ const Header2: React.FC = () => {
           alignItems="center"
           justifyContent={{ base: 'center', lg: 'start' }}
         >
-          <Logo width={logoWidth} />
+          <Link href="/" passHref>
+            <ChakraLink _focus={{ outline: 'none' }}>
+              <Logo width={logoWidth} color={logoColor} />
+            </ChakraLink>
+          </Link>
         </Box>
         <Box
           h="100%"
@@ -96,7 +107,7 @@ const Header2: React.FC = () => {
           justifyContent="end"
           w={{ base: 'fit-content', sm: '25%', md: '33%' }}
         >
-          {router.pathname.includes('/store') ? (
+          {/* {router.pathname.includes('/store') ? (
             <IconButton
               aria-label="searchbar"
               minW={{ base: '30px', md: '40px' }}
@@ -112,7 +123,8 @@ const Header2: React.FC = () => {
             </IconButton>
           ) : (
             <> </>
-          )}
+          )} */}
+          <DarkModeSwitch />
           <IconButton
             minW={{ base: '30px', md: '40px' }}
             aria-label="cart"

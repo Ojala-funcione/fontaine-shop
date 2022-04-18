@@ -1,43 +1,34 @@
-import { useColorMode, Switch, Box } from '@chakra-ui/react';
-import { Moon, Sun } from 'phosphor-react';
+import { useColorMode, Box, IconButton } from '@chakra-ui/react';
+import { BsMoonStarsFill } from 'react-icons/bs';
+import { FaSun } from 'react-icons/fa';
 
-const DarkModeSwitch = ({ display }) => {
+const DarkModeSwitch = ({ display }: { display?: string }) => {
   const { colorMode, toggleColorMode } = useColorMode();
-  const isDark = colorMode === 'dark';
   return (
     <Box display={display}>
-      <Switch
-        position="relative"
-        size="lg"
-        colorScheme="black"
-        isChecked={isDark}
-        onChange={toggleColorMode}
+      <IconButton
+        aria-label="darkmode"
+        minW={{ base: '30px', md: '40px' }}
+        bg="transparent"
+        fontSize="1.2rem"
+        _active={{ bg: 'transparent' }}
+        _hover={{ color: '#3182ce' }}
         _focus={{
           outline: 'none'
         }}
-        _active={{
-          outline: 'none'
-        }}
-      >
-        <Box
-          display={colorMode === 'light' ? 'none' : ''}
-          position="absolute"
-          top="15%"
-          left="5%"
-        >
-          <Sun size={20} color="#e9c46a" weight="fill" />
-        </Box>
-        <Box
-          display={colorMode === 'dark' ? 'none' : ''}
-          position="absolute"
-          top="15%"
-          right="15%"
-        >
-          <Moon size={20} color="#292E1E" weight="fill" />
-        </Box>
-      </Switch>
+        onClick={toggleColorMode}
+        icon={
+          colorMode === 'light' ? (
+            <BsMoonStarsFill color="#292E1E" />
+          ) : (
+            <FaSun color="#e9c46a" />
+          )
+        }
+      />
     </Box>
   );
 };
-
+DarkModeSwitch.defaultProps = {
+  display: 'block'
+};
 export default DarkModeSwitch;
