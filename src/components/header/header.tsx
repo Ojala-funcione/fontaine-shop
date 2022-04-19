@@ -13,10 +13,12 @@ import Link from 'next/link';
 import { useAuth } from '@context/useAuth';
 import MenuProfile from '@common/MenuProfile/MenuProfile';
 import NavLink from '@common/NavLink/NavLink';
+import { useRouter } from 'next/router';
 import DarkModeSwitch from '@components/DarkModeSwitch/DarkModeSwitch';
 
 const Header: React.FC = () => {
   const auth = useAuth();
+  const router = useRouter();
   return (
     <Box
       display="flex"
@@ -33,7 +35,12 @@ const Header: React.FC = () => {
       <Box>
         <Logo />
       </Box>
-      <Box w="60%" px="40px">
+      {/* Searchbar */}
+      <Box
+        w="60%"
+        px="40px"
+        display={router.pathname !== '/store' ? 'none' : 'block'}
+      >
         <InputGroup>
           <Input
             type="text"
@@ -88,7 +95,7 @@ const Header: React.FC = () => {
         <NavLink exact href="/contact">
           Contacto
         </NavLink>
-        <DarkModeSwitch display={undefined} />
+        <DarkModeSwitch display="block" />
         {auth.user ? (
           <MenuProfile />
         ) : (

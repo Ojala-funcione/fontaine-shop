@@ -41,6 +41,11 @@ const MenuProfile: React.FC = () => {
         bg="transparent"
         _focus={{ outline: 'none' }}
         color="#b4b4b4"
+        minW="30px"
+        minH="30px"
+        _hover={{ bg: 'transparent' }}
+        _active={{ bg: 'transparent' }}
+        ml="5px"
       >
         <Box
           border="2px solid #aaa8"
@@ -48,7 +53,7 @@ const MenuProfile: React.FC = () => {
           overflow="hidden"
           bg={useColorModeValue('white', 'gray.800')}
         >
-          <Gravatar email={auth.user?.email} size={40} />
+          <Gravatar email={auth.user?.email} size={30} />
         </Box>
       </MenuButton>
       <MenuList
