@@ -169,7 +169,6 @@ const CategoryCarrusel = () => {
         </IconButton>
         {/* Right Icon */}
         <IconButton
-          w="2px"
           h="100%"
           borderRadius={0}
           aria-label="right-arrow"
@@ -177,7 +176,7 @@ const CategoryCarrusel = () => {
           right="0px"
           top="50%"
           transform="translate(0%, -50%)"
-          backgroundColor="#00000066"
+          backgroundColor="transparent"
           zIndex={2}
           _hover={{
             opacity: '0.8',
