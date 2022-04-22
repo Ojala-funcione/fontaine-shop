@@ -52,14 +52,10 @@ const BannerSlider = () => {
   const slidesCount = slides.length;
 
   const prevSlide = () => {
-    setCurrentSlide((s) => {
-      return s === 0 ? slidesCount - 1 : s - 1;
-    });
+    setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
   };
   const nextSlide = () => {
-    setCurrentSlide((s) => {
-      return s === slidesCount - 1 ? 0 : s + 1;
-    });
+    setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
   };
 
   const carouselStyle = {
@@ -70,19 +66,17 @@ const BannerSlider = () => {
     <Container py={10} maxW="6xl">
       <Flex w="full" overflow="hidden" pos="relative">
         <Flex h="400px" w="full" {...carouselStyle}>
-          {slides.map((slide) => {
-            return (
-              <Box key={slide.img} boxSize="full" shadow="md" flex="none">
-                <Image
-                  objectFit="cover"
-                  src={slide.img}
-                  alt="carousel image"
-                  boxSize="full"
-                  backgroundSize="cover"
-                />
-              </Box>
-            );
-          })}
+          {slides.map((slide) => (
+            <Box key={slide.img} boxSize="full" shadow="md" flex="none">
+              <Image
+                objectFit="cover"
+                src={slide.img}
+                alt="carousel image"
+                boxSize="full"
+                backgroundSize="cover"
+              />
+            </Box>
+          ))}
         </Flex>
         <Text {...arrowStyles} left="0" onClick={prevSlide}>
           &#10094;
