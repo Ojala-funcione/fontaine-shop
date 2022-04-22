@@ -25,14 +25,7 @@ const SearchBar = () => {
   return (
     <InputGroup size="md">
       <Input
-        // {...props}
-        // bg={useColorModeValue('#EEEEEE', 'transparent')}
-        // bg={useColorModeValue('#EEEEEE', '#2d3748')}
-        // borderRadius={0}
-        // border={useColorModeValue('none', '1px solid #51a6f5')}
-        // border="2px solid"
         borderRadius="50px"
-        // borderColor="#51a6f5"
         border="none"
         bg={useColorModeValue('#fafafa77', '#1a1a1a77')}
         _placeholder={{

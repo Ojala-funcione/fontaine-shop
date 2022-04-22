@@ -4,7 +4,11 @@ import Header from '@components/header/header';
 import React from 'react';
 
 const Layout: React.FC = ({ children }) => (
-  <Box minHeight="100vh" bg={useColorModeValue('white', 'gray.800')}>
+  <Box
+    // height="fit-content"
+    // minHeight="100vh"
+    bg={useColorModeValue('white', 'gray.800')}
+  >
     <Header />
     {children}
     <Footer />

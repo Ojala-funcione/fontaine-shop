@@ -13,85 +13,81 @@ import {
 import { FacebookLogo, InstagramLogo, WhatsappLogo } from 'phosphor-react';
 import LogoRedondo from '@common/logo/FontaineRedondo';
 
-const ListHeader = ({ children }: { children: ReactNode }) => {
-  return (
-    <Text
-      fontWeight="500"
-      fontSize="lg"
-      color={useColorModeValue('black', 'white')}
-      mb={2}
-    >
-      {children}
-    </Text>
-  );
-};
+const ListHeader = ({ children }: { children: ReactNode }) => (
+  <Text
+    fontWeight="500"
+    fontSize="lg"
+    color={useColorModeValue('black', 'white')}
+    mb={2}
+  >
+    {children}
+  </Text>
+);
 
-const Footer = () => {
-  return (
-    <Box
-      bg={useColorModeValue('gray.50', 'gray.900')}
-      color={useColorModeValue('gray.700', 'gray.200')}
-    >
-      <Container as={Stack} maxW="6xl" paddingTop={10} paddingBottom={5}>
-        <SimpleGrid
-          templateColumns={{ sm: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
-          spacing={8}
-        >
-          <Stack spacing={10} align="center">
-            <Box>
-              <LogoRedondo
-                height="150"
-                color={useColorModeValue('black', 'white')}
-              />
-            </Box>
-            <SimpleGrid columns={3} spacing="1.25rem">
-              <Stack>
-                <InstagramLogo size={50} weight="fill" />
-              </Stack>
-              <Stack>
-                <FacebookLogo size={50} weight="fill" />
-              </Stack>
-              <Stack>
-                <WhatsappLogo size={50} weight="fill" />
-              </Stack>
-            </SimpleGrid>
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>Acceso Rapido</ListHeader>
-            <Link href="/">Home</Link>
-            <Link href="login">Login / Register</Link>
-            <Link href="store">Tienda</Link>
-            <Link href="contact">Contacto</Link>
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>Links Importantes</ListHeader>
-            <Link href="/">Politica de Privacidad</Link>
-            <Link href="/">Terminos y Condiciones</Link>
-            <Link href="/">Detalle de Envios</Link>
-          </Stack>
-          <Stack align="flex-start">
-            <ListHeader>Descripción</ListHeader>
-            <Text>
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
-              eveniet perferendis magni! Nesciunt porro numquam veniam minima
-              sunt cumque.
-            </Text>
-          </Stack>
-        </SimpleGrid>
-      </Container>
-      <Divider />
-      <Container as={Stack} maxW="6xl" py={5}>
-        <SimpleGrid columns={[2, null, 2]}>
-          <Stack>
-            <Text>Copyright 2022 Making It Happen</Text>
-          </Stack>
+const Footer = () => (
+  <Box
+    bg={useColorModeValue('gray.50', 'gray.900')}
+    color={useColorModeValue('gray.700', 'gray.200')}
+  >
+    <Container as={Stack} maxW="6xl" paddingTop={10} paddingBottom={5}>
+      <SimpleGrid
+        templateColumns={{ sm: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
+        spacing={8}
+      >
+        <Stack spacing={10} align="center">
+          <Box>
+            <LogoRedondo
+              height="150"
+              color={useColorModeValue('black', 'white')}
+            />
+          </Box>
+          <SimpleGrid columns={3} spacing="1.25rem">
+            <Stack>
+              <InstagramLogo size={50} weight="fill" />
+            </Stack>
+            <Stack>
+              <FacebookLogo size={50} weight="fill" />
+            </Stack>
+            <Stack>
+              <WhatsappLogo size={50} weight="fill" />
+            </Stack>
+          </SimpleGrid>
+        </Stack>
+        <Stack align="flex-start">
+          <ListHeader>Acceso Rapido</ListHeader>
+          <Link href="/">Home</Link>
+          <Link href="login">Login / Register</Link>
+          <Link href="store">Tienda</Link>
+          <Link href="contact">Contacto</Link>
+        </Stack>
+        <Stack align="flex-start">
+          <ListHeader>Links Importantes</ListHeader>
+          <Link href="/">Politica de Privacidad</Link>
+          <Link href="/">Terminos y Condiciones</Link>
+          <Link href="/">Detalle de Envios</Link>
+        </Stack>
+        <Stack align="flex-start">
+          <ListHeader>Descripción</ListHeader>
+          <Text>
+            Lorem ipsum, dolor sit amet consectetur adipisicing elit. Corporis
+            eveniet perferendis magni! Nesciunt porro numquam veniam minima sunt
+            cumque.
+          </Text>
+        </Stack>
+      </SimpleGrid>
+    </Container>
+    <Divider />
+    <Container as={Stack} maxW="6xl" py={5}>
+      <SimpleGrid columns={[2, null, 2]}>
+        <Stack>
+          <Text>Copyright 2022 Making It Happen</Text>
+        </Stack>
 
-          <Stack>
-            <Text alignSelf="end">Powered by Making It Happen</Text>
-          </Stack>
-        </SimpleGrid>
-      </Container>
-    </Box>
-  );
-};
+        <Stack>
+          <Text alignSelf="end">Powered by Making It Happen</Text>
+        </Stack>
+      </SimpleGrid>
+    </Container>
+  </Box>
+);
 export default Footer;
