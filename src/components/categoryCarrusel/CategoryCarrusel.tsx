@@ -158,9 +158,7 @@ const CategoryCarrusel = () => {
           top="50%"
           transform="translate(0%, -50%)"
           zIndex={2}
-          onClick={() => {
-            return slider?.slickPrev();
-          }}
+          onClick={() => slider?.slickPrev()}
           _hover={{
             bg: 'transparent'
           }}
@@ -182,28 +180,19 @@ const CategoryCarrusel = () => {
             opacity: '0.8',
             bg: 'black'
           }}
-          onClick={() => {
-            return slider?.slickNext();
-          }}
+          onClick={() => slider?.slickNext()}
         >
           <MdArrowRight />
         </IconButton>
-        <Slider
-          {...settings}
-          ref={(slider) => {
-            return setSlider(slider);
-          }}
-        >
-          {categories.map((category) => {
-            return (
-              <CategoryCard
-                key={category.category}
-                category={category?.category}
-                image={category?.bg}
-                subcategory={category?.subcategory}
-              />
-            );
-          })}
+        <Slider {...settings} ref={(slider) => setSlider(slider)}>
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.category}
+              category={category?.category}
+              image={category?.bg}
+              subcategory={category?.subcategory}
+            />
+          ))}
         </Slider>
       </Box>
     </Container>

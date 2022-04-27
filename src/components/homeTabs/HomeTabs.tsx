@@ -272,59 +272,53 @@ const shopCardInfo = [
   }
 ];
 
-const HomeTabs = () => {
-  return (
-    <Container maxW="6xl" py={10}>
-      <Tabs size="md" variant="enclosed">
-        <TabList>
-          <Tab>Nuevos Productos</Tab>
-          <Tab>Ofertas</Tab>
-        </TabList>
-        <TabPanels>
-          <TabPanel m={0} p={0} py={4}>
-            <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>
-              {shopCardInfo.map((product) => {
-                return (
-                  <ShopCard
-                    key={product.id}
-                    title={product.title}
-                    subTitle={product.subtitle}
-                    price={product.price}
-                    slides={product.slides}
-                    discountInPercent={product.discountInPercent}
-                    discountPrice={product.discountPrice}
-                    isDiscount={product.isDiscount}
-                    category={product.category}
-                    isNew={product.isNew}
-                  />
-                );
-              })}
-            </SimpleGrid>
-          </TabPanel>
-          <TabPanel m={0} p={0} py={4}>
-            <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>
-              {shopCardInfo.map((product) => {
-                return (
-                  <ShopCard
-                    key={product.id}
-                    title={product.title}
-                    subTitle={product.subtitle}
-                    price={product.price}
-                    slides={product.slides}
-                    discountInPercent={product.discountInPercent}
-                    discountPrice={product.discountPrice}
-                    isDiscount={product.isDiscount}
-                    category={product.category}
-                    isNew={product.isNew}
-                  />
-                );
-              })}
-            </SimpleGrid>
-          </TabPanel>
-        </TabPanels>
-      </Tabs>
-    </Container>
-  );
-};
+const HomeTabs = () => (
+  <Container maxW="6xl" py={10}>
+    <Tabs size="md" variant="enclosed">
+      <TabList>
+        <Tab>Nuevos Productos</Tab>
+        <Tab>Ofertas</Tab>
+      </TabList>
+      <TabPanels>
+        <TabPanel m={0} p={0} py={4}>
+          <SimpleGrid columns={[2, 2, 3, 4]} spacing={8}>
+            {shopCardInfo.map((product) => (
+              <ShopCard
+                key={product.id}
+                title={product.title}
+                subTitle={product.subtitle}
+                price={product.price}
+                slides={product.slides}
+                discountInPercent={product.discountInPercent}
+                discountPrice={product.discountPrice}
+                isDiscount={product.isDiscount}
+                category={product.category}
+                isNew={product.isNew}
+              />
+            ))}
+          </SimpleGrid>
+        </TabPanel>
+        <TabPanel m={0} p={0} py={4}>
+          <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>
+            {shopCardInfo.map((product) => (
+              <ShopCard
+                key={product.id}
+                title={product.title}
+                subTitle={product.subtitle}
+                price={product.price}
+                slides={product.slides}
+                discountInPercent={product.discountInPercent}
+                discountPrice={product.discountPrice}
+                isDiscount={product.isDiscount}
+                category={product.category}
+                isNew={product.isNew}
+              />
+            ))}
+          </SimpleGrid>
+        </TabPanel>
+      </TabPanels>
+    </Tabs>
+  </Container>
+);
 
 export default HomeTabs;
