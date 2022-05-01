@@ -16,30 +16,42 @@ export const getAllProducts = () => async (dispatch: any) => {
     const querySnapshot = await getDocs(q);
     const allProducts: IProduct[] = querySnapshot.docs.map((document) => {
       const {
+        isOffer,
+        isNew,
+        isCombo,
+        isFeatured,
         name,
-        stock,
-        minStock,
         brand,
-        category,
         description,
-        image,
+        category,
+        stock,
+        sku,
+        minStock,
         price,
         salePrice,
-        dicountInPercent,
+        discountInPercent,
+        image,
+        gallery,
         variants
       }: any = { ...document.data() };
       return {
-        id: document.id,
+        productId: document.id,
+        isOffer,
+        isNew,
+        isCombo,
+        isFeatured,
         name,
         stock,
         minStock,
+        sku,
         brand,
         category,
         description,
-        image,
         price,
-        dicountInPercent,
         salePrice,
+        discountInPercent,
+        image,
+        gallery,
         variants
       };
     });

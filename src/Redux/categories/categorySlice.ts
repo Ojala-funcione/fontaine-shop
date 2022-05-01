@@ -3,11 +3,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { ICategory } from 'Redux/Interfaces';
 
 interface ICategoryState {
-  categories: ICategory[];
+  categoryList: ICategory[];
 }
 
 const initialState: ICategoryState = {
-  categories: []
+  categoryList: []
 };
 export const categorySlice = createSlice({
   name: 'category',
@@ -15,7 +15,7 @@ export const categorySlice = createSlice({
   reducers: {
     // Esto es una action
     setCategoryList: (state, action: PayloadAction<ICategory[]>) => {
-      state.categories = action.payload;
+      state.categoryList = action.payload;
     }
   }
 });

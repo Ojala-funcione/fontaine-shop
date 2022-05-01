@@ -3,26 +3,26 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IProduct } from 'Redux/Interfaces';
 
 interface IProductState {
-  products: IProduct[];
+  allProducts: IProduct[];
   search: IProduct[];
   productById: IProduct | null;
 }
 
 const initialState: IProductState = {
-  products: [],
+  allProducts: [],
   search: [],
   productById: null
 };
 export const productSlice = createSlice({
-  name: 'products',
+  name: 'allProducts',
   initialState,
   reducers: {
     // Esto es una action
     setProductList: (state, action: PayloadAction<IProduct[]>) => {
-      state.products = action.payload;
+      state.allProducts = action.payload;
     },
     searchProducts: (state, action: PayloadAction<string>) => {
-      state.search = state.products.filter((product: IProduct) =>
+      state.search = state.allProducts.filter((product: IProduct) =>
         // eslint-disable-next-line prettier/prettier
         product.name.toLowerCase().includes(action.payload.toLowerCase()));
     },

@@ -58,14 +58,10 @@ const ShopCard = (props: shopCardProps) => {
   const slidesCount = slides?.length;
 
   const prevSlide = () => {
-    setCurrentSlide((s) => {
-      return s === 0 ? slidesCount - 1 : s - 1;
-    });
+    setCurrentSlide((s) => (s === 0 ? slidesCount - 1 : s - 1));
   };
   const nextSlide = () => {
-    setCurrentSlide((s) => {
-      return s === slidesCount - 1 ? 0 : s + 1;
-    });
+    setCurrentSlide((s) => (s === slidesCount - 1 ? 0 : s + 1));
   };
 
   const carouselStyle = {
@@ -149,41 +145,39 @@ const ShopCard = (props: shopCardProps) => {
       <Box w="100%" h="40%" px={2}>
         <Flex w="100%" h="100%" overflow="hidden" pos="relative">
           <Flex h="100%" w="100%" {...carouselStyle}>
-            {slides?.map((slide, sid) => {
-              return (
-                <Box
-                  key={slide.img}
-                  boxSize="100%"
-                  h="100%"
-                  w="100%"
-                  shadow="md"
-                  flex="none"
-                  overflow="hidden"
+            {slides?.map((slide, sid) => (
+              <Box
+                key={slide.img}
+                boxSize="100%"
+                h="100%"
+                w="100%"
+                shadow="md"
+                flex="none"
+                overflow="hidden"
+              >
+                <Text
+                  color="white"
+                  fontSize="xs"
+                  p="8px 12px"
+                  pos="absolute"
+                  top="0"
                 >
-                  <Text
-                    color="white"
-                    fontSize="xs"
-                    p="8px 12px"
-                    pos="absolute"
-                    top="0"
-                  >
-                    {`${sid + 1}/${slidesCount}`}
-                  </Text>
-                  <Image
-                    marginInline="auto"
-                    src={slide.img}
-                    alt="carousel image"
-                    backgroundSize="cover"
-                    h="100%"
-                  />
-                </Box>
-              );
-            })}
+                  {`${sid + 1}/${slidesCount}`}
+                </Text>
+                <Image
+                  marginInline="auto"
+                  src={slide.img}
+                  alt="carousel image"
+                  backgroundSize="cover"
+                  h="100%"
+                />
+              </Box>
+            ))}
           </Flex>
-          <Text {...arrowStyles} left="0" onClick={prevSlide}>
+          <Text sx={{ ...arrowStyles }} left="0" onClick={prevSlide}>
             &#10094;
           </Text>
-          <Text {...arrowStyles} right="0" onClick={nextSlide}>
+          <Text sx={{ ...arrowStyles }} right="0" onClick={nextSlide}>
             &#10095;
           </Text>
         </Flex>

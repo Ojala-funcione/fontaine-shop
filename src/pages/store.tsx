@@ -1,63 +1,31 @@
-/* eslint-disable @next/next/no-img-element */
-/* eslint-disable no-undef */
 import React from 'react';
-import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
-import SearchBar from '@common/SearchBar/SearchBar';
-// import bgImgSearch from '@assets/img/spa-dark-background.jpg';
-// import bgImgSearch from '@assets/img/spa-dark-background.jpg';
-// import Image from 'next/image';
+import HeroShop from '@components/ShopComponents/HeroShop/HeroShop';
+import ProductsContainer from '@components/ShopComponents/ProductsContainer/ProductsContainer';
+import FilterSidebar from '@components/ShopComponents/FilterSidebar/FilterSidebar';
+import { useAppSelector } from '@Redux/hooks';
+// import { IProduct } from '@Redux/Interfaces';
 
-const Store = () => (
-  <>
-    <ScrollToTopButton />
-    <Box minH="100vh">
-      <Box
-        h="370px"
-        bgImage="https://firebasestorage.googleapis.com/v0/b/fontaine-dev.appspot.com/o/spa-dark-background.jpg?alt=media&token=c31b242e-57e4-42ad-aadc-9897c6170265"
-        bgSize="cover"
-        bgPosition="center"
-      >
-        <Box
-          bg={useColorModeValue('#FFFFFF55', '#00000055')}
-          h="100%"
-          w="100%"
-          // bg={useColorModeValue('#eaeaea', '#0f0f0f')}
-          display="flex"
-          flexDirection="column"
-          justifyContent="center"
-          alignItems="center"
-        >
-          {/* <Image src={bgImgSearch} alt="a" /> */}
-          <Heading
-            pb="3rem"
-            textTransform="capitalize"
-            textAlign="center"
-            size="2xl"
-            fontFamily="Open Sans"
-            w="95%"
-          >
-            Encuentra aquí lo que estas buscando!
-          </Heading>
-          <Box w={{ base: '95%', sm: '80%', lg: '60%' }}>
-            <SearchBar />
-          </Box>
-        </Box>
+const Store = () => {
+  const products = useAppSelector((state) => state.products.allProducts);
+  console.log('store', products);
+  return (
+    <>
+      <ScrollToTopButton />
+      <Box minH="100vh">
+        <HeroShop />
         <Box
           display="flex"
-          flexDirection="row"
-          gap="1rem"
-          // minH="100%"
-          bg="#01731456"
+          flexDirection={{ base: 'column', xl: 'row' }}
+          // bg="#01731456"
         >
-          <Box bg="#aaa" w="450px" h="100vh">
-            sidebar
-          </Box>
+          <FilterSidebar />
+          <ProductsContainer products={products} />
         </Box>
-        <Box bg="red">hols</Box>
       </Box>
-    </Box>
-  </>
-);
+    </>
+  );
+};
 
 export default Store;

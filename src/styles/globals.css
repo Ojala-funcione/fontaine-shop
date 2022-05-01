@@ -27,3 +27,19 @@ a {
   line-height: 1.5;
   color: #fc5c63;
 }
+
+
+.css-xxkadm:focus{
+  outline: none !important;
+  box-shadow: none !important
+}
+.css-xxkadm[data-checked][data-hover] {
+  outline: none !important;
+  box-shadow: none !important
+
+}
+.css-xxkadm[data-focus] {
+  outline: none !important;
+  box-shadow: none !important
+
+}

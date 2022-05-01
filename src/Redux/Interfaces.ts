@@ -1,15 +1,21 @@
 export interface IProduct {
-  id: string;
+  productId: string;
+  isOffer: boolean;
+  isNew: boolean;
+  isCombo: boolean;
+  isFeatured: boolean;
   name: string;
+  brand: number;
+  description: string;
+  category: string;
+  price: number;
+  salePrice: number;
+  discountInPercent: number;
   stock: number;
   minStock: number;
-  brand: number;
-  category: string;
-  description: string;
-  image: any;
-  price: number;
-  dicountInPercent: number;
-  salePrice: number;
+  sku: string | null;
+  image: string;
+  gallery: Array<string>;
   variants: any;
 }
 export interface ICategory {

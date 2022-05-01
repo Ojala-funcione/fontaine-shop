@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+// /* eslint-disable no-unused-vars */
 import {
   Box,
   IconButton,
@@ -11,12 +11,12 @@ import {
 } from '@chakra-ui/react';
 import Logo from '@common/logo/logo';
 import React from 'react';
-import { IoSearch } from 'react-icons/io5';
+// import { IoSearch } from 'react-icons/io5';
 import Link from 'next/link';
 import { useAuth } from '@context/useAuth';
 import MenuProfile from '@common/MenuProfile/MenuProfile';
 import { NavLink2 } from '@common/NavLink/NavLink';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import { MdClose, MdMenu, MdOutlineLogin } from 'react-icons/md';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
 import DarkModeSwitch from '@components/DarkModeSwitch/DarkModeSwitch';
@@ -31,7 +31,7 @@ const Header: React.FC = () => {
   const logoWidth = useBreakpointValue({ base: '150px', sm: '170px' });
   const logoColor = useColorModeValue('#222220', '#ffffff');
   const auth = useAuth();
-  const router = useRouter();
+  // const router = useRouter();
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <Box

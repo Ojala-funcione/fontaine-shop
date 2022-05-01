@@ -10,13 +10,13 @@ import { FC } from 'react';
 interface DrawerProps {
   Component: any;
   isOpen: boolean;
-  onClose: () => void;
+  onClose: () => any;
   closeButton: boolean;
 }
 
 const CustomDrawer: FC<DrawerProps> = ({
   children,
-  Component,
+  // Component,
   isOpen,
   onClose,
   closeButton = true,
@@ -47,7 +47,8 @@ const CustomDrawer: FC<DrawerProps> = ({
         />
       )}
       <DrawerBody>
-        {Component && <Component onClose={onClose} />}
+        {/* {Component && <Component onClose={onClose} />} */}
+        {/* {Component && <Component />} */}
         {children}
       </DrawerBody>
     </DrawerContent>
