@@ -8,8 +8,8 @@ import { useAppSelector } from '@Redux/hooks';
 // import { IProduct } from '@Redux/Interfaces';
 
 const Store = () => {
-  const products = useAppSelector((state) => state.products.allProducts);
-  console.log('store', products);
+  const products = useAppSelector((state) => state.products.listedProducts);
+  // console.log('store', products);
   return (
     <>
       <ScrollToTopButton />

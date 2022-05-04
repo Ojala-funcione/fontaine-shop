@@ -6,14 +6,19 @@ import {
   InputRightElement,
   useColorModeValue
 } from '@chakra-ui/react';
+import { useAppDispatch } from '@Redux/hooks';
+import { searchProducts } from '@Redux/products/productSlice';
 import { useState } from 'react';
 import { HiBackspace } from 'react-icons/hi';
-import { IoSearch } from 'react-icons/io5';
+// import { IoSearch } from 'react-icons/io5';
 
 const SearchBar = () => {
   const [search, setSearch] = useState('');
+  const dispatch = useAppDispatch();
   const handleChange = (e: any) => {
     e.preventDefault();
+    dispatch(searchProducts(e.target.value));
+    // console.log(e.target.value);
     setSearch(e.target.value);
     // searchFunction(e.target.value);
   };
