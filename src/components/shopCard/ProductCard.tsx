@@ -8,68 +8,106 @@ import {
   Image,
   useColorModeValue,
   Flex,
-  Button,
-  Tag,
   HStack,
   IconButton
 } from '@chakra-ui/react';
+import TagCard from '@common/Tags/TagCard';
+import { useAppDispatch, useAppSelector } from '@Redux/hooks';
 import { IProduct } from '@Redux/Interfaces';
-import { FC, useState } from 'react';
+import {
+  addProductCart,
+  removeOneProductFromCart
+} from '@Redux/products/productSlice';
+import { FC } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 
-interface ITagProps {
-  color?: string;
-  bg: string;
-  top?: string | undefined;
-  left?: string | undefined;
-  right?: string | undefined;
-  bottom?: string | undefined;
-  position?: 'absolute' | 'relative' | undefined;
+interface ISlider {
+  slides: string[];
 }
-const TagCard: FC<ITagProps> = ({
-  children,
-  color,
-  bg,
-  right,
-  left,
-  top,
-  bottom,
-  position
-}) => (
-  <Tag
-    color={color}
-    bg={bg}
-    position={position}
-    top={top}
-    left={left}
-    bottom={bottom}
-    right={right}
-    // size="xs"
-    borderRadius="5px"
-    w="fit-content"
-    textTransform="uppercase"
-    // bg="#EAB308"
-    // position="absolute"
-    // top="5px"
-    // right="5px"
-    zIndex="2"
-    fontSize={{ base: '0.6rem', sm: '0.875rem' }}
-    fontWeight={600}
-    minHeight="1rem"
-    p={{ base: '3px 4px', sm: '4px 10px' }}
-  >
-    {children}
-  </Tag>
+// const carouselStyle = {
+//   transition: 'all .5s',
+//   ml: `-${currentSlide * 100}%`
+// };
+// const arrowStyles = {
+//   cursor: 'pointer',
+//   pos: 'absolute',
+//   top: '50%',
+//   w: 'auto',
+//   mt: '-22px',
+//   p: '16px',
+//   color: 'white',
+//   fontWeight: 'bold',
+//   fontSize: '18px',
+//   transition: '0.6s ease',
+//   borderRadius: '0 3px 3px 0',
+//   userSelect: 'none',
+//   _hover: {
+//     opacity: 0.8,
+//     bg: 'black'
+//   }
+// };
+const MiniSlider: FC<ISlider> = ({ slides }) => (
+  <Box w="100%" h="40%" px={2}>
+    <Flex w="100%" h="100%" overflow="hidden" pos="relative">
+      <Flex
+        h="100%"
+        w="100%"
+        // {...carouselStyle}
+      >
+        {slides?.map((url: string, index: number) => (
+          <Box
+            // eslint-disable-next-line react/no-array-index-key
+            key={url + index}
+            boxSize="100%"
+            h="100%"
+            w="100%"
+            shadow="md"
+            flex="none"
+            overflow="hidden"
+          >
+            <Text
+              color="white"
+              fontSize="xs"
+              p="8px 12px"
+              pos="absolute"
+              top="0"
+            >
+              {/* {`${sid + 1}/${slidesCount}`} */}
+            </Text>
+            {/* <Image
+              marginInline="auto"
+              src={image}
+              alt="carousel image"
+              backgroundSize="cover"
+              // h="100%"
+              objectFit="cover"
+              h="100%"
+              w="100%"
+            /> */}
+            <Image
+              marginInline="auto"
+              src={url}
+              alt="carousel image"
+              backgroundSize="cover"
+              h="100%"
+            />
+          </Box>
+        ))}
+      </Flex>
+      {/* <Box sx={{ ...arrowStyles }} left="0" onClick={prevSlide}>
+            &#10094;
+          </Box>
+          <Box sx={{ ...arrowStyles }} right="0" onClick={nextSlide}>
+            &#10095;
+          </Box> */}
+    </Flex>
+  </Box>
 );
-TagCard.defaultProps = {
-  color: '#fafafa',
-  top: undefined,
-  left: undefined,
-  right: undefined,
-  bottom: undefined,
-  position: 'relative'
-};
-const ProductCard = (props: IProduct) => {
+
+interface IProps {
+  product: IProduct;
+}
+const ProductCard: FC<IProps> = ({ product }) => {
   const {
     gallery,
     isOffer,
@@ -81,8 +119,15 @@ const ProductCard = (props: IProduct) => {
     image,
     price,
     salePrice,
-    category
-  } = props;
+    category,
+    productId
+  } = product;
+
+  const dispatch = useAppDispatch();
+  // const quantityCart = useAppSelector((state) => state.products.quantityCart);
+  const cart = useAppSelector((state) => state.products.cartProducts);
+  const isInCart = cart.find((item) => item.product.productId === productId);
+  // console.log('card', quantityCart);
   return (
     <Box
       w="100%"
@@ -137,6 +182,7 @@ const ProductCard = (props: IProduct) => {
           {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>}
           {/* {isCombo && <TagCard bg="#000">Combo</TagCard>} */}
         </Box>
+        {/* <MiniSlider slides={gallery}></MiniSlider> */}
         <Image
           marginInline="auto"
           src={image}
@@ -200,48 +246,79 @@ const ProductCard = (props: IProduct) => {
                 </Text>
               )}
             </HStack>
-            {/* <IconButton
-              h="36px"
-              w="36px"
-              minW="36px"
-              bg="transparent"
-              border="solid 1px #e1e1e1"
-              aria-label="add-product"
-              icon={<HiPlus />}
-            /> */}
-            <Box display="flex" bg="#266bf9" borderRadius="5px">
+            {isInCart ? (
+              <Box display="flex" bg="#266bf9" borderRadius="5px">
+                <IconButton
+                  borderRadius="5px 0 0 5px"
+                  h="36px"
+                  w="30px"
+                  minW="30px"
+                  bg="transparent"
+                  aria-label="remove-product"
+                  icon={<HiMinus fontSize="1.15rem" />}
+                  color="#fff"
+                  fontWeight={600}
+                  _focus={{
+                    outline: 'none'
+                  }}
+                  _hover={{
+                    bg: '#0005'
+                  }}
+                  _active={{
+                    bg: '#0005'
+                  }}
+                  onClick={() => dispatch(removeOneProductFromCart(product))}
+                />
+                <Text
+                  h="36px"
+                  w="36px"
+                  lineHeight="36px"
+                  textAlign="center"
+                  verticalAlign="center"
+                  bg="transparent"
+                  fontSize="1rem"
+                  color="#fff"
+                  fontWeight={600}
+                >
+                  {isInCart.quantity}
+                </Text>
+                <IconButton
+                  aria-label="add-product"
+                  borderRadius="0 5px 5px 0"
+                  h="36px"
+                  w="30px"
+                  minW="30px"
+                  bg="transparent"
+                  color="#fff"
+                  fontWeight={600}
+                  icon={<HiPlus fontSize="1.15rem" />}
+                  _focus={{
+                    outline: 'none'
+                  }}
+                  _hover={{
+                    bg: '#0005'
+                  }}
+                  _active={{
+                    bg: '#0005'
+                  }}
+                  onClick={() => dispatch(addProductCart(product))}
+                />
+              </Box>
+            ) : (
               <IconButton
-                h="36px"
-                w="30px"
-                minW="30px"
-                bg="transparent"
-                aria-label="quit-product"
-                icon={<HiMinus fontSize="1.15rem" />}
-                color="#fff"
-                fontWeight={600}
-              />
-              <Button
                 h="36px"
                 w="36px"
                 minW="36px"
                 bg="transparent"
-                fontSize="1rem"
-                color="#fff"
-                fontWeight={600}
-              >
-                5
-              </Button>
-              <IconButton
+                border="solid 1px #e1e1e1"
                 aria-label="add-product"
-                h="36px"
-                w="30px"
-                minW="30px"
-                bg="transparent"
-                color="#fff"
-                fontWeight={600}
-                icon={<HiPlus fontSize="1.15rem" />}
+                icon={<HiPlus />}
+                _focus={{
+                  outline: 'none'
+                }}
+                onClick={() => dispatch(addProductCart(product))}
               />
-            </Box>
+            )}
           </HStack>
         </Box>
       </Box>

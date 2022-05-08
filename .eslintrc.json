@@ -67,6 +67,7 @@
         "ts": "never",
         "tsx": "never"
       }
-   ]
+   ],
+   "no-confusing-arrow": 0
   }
 }

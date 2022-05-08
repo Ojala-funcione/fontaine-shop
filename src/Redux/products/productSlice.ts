@@ -1,7 +1,11 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable operator-linebreak */
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-param-reassign */
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import {
+  createSlice,
+  PayloadAction
+  // current
+} from '@reduxjs/toolkit';
 import { IProduct } from 'Redux/Interfaces';
 
 interface ICartProduct {
@@ -48,26 +52,46 @@ export const productSlice = createSlice({
         (item) => item.product.productId === action.payload.productId
       );
       state.cartProducts = isInCart
-        ? [...state.cartProducts, { product: action.payload, quantity: 1 }]
+        ? state.cartProducts.map((item) =>
+          item.product.productId === action.payload.productId
+            ? { ...item, quantity: item.quantity + 1 }
+            : item)
         : [...state.cartProducts, { product: action.payload, quantity: 1 }];
     },
-    removeOneProductFromCart: (state, action: PayloadAction<IProduct[]>) => {
+
+    removeOneProductFromCart: (state, action: PayloadAction<IProduct>) => {
+      const isInCart = state.cartProducts.find(
+        (item) => item.product.productId === action.payload.productId
+      );
       state.quantityCart -= 1;
-      state.listedProducts = action.payload;
+      if (isInCart) {
+        state.cartProducts = isInCart.quantity > 1
+          ? state.cartProducts.map((item) =>
+            item.product.productId === action.payload.productId
+              ? { ...item, quantity: item.quantity - 1 }
+              : item)
+          : state.cartProducts = state.cartProducts.filter(
+            (item) => item.product.productId !== action.payload.productId
+          );
+      }
     },
-    removeAllProductFromCart: (state, action: PayloadAction<IProduct[]>) => {
-      state.quantityCart -= 1;
-      state.listedProducts = action.payload;
+    removeProductFromCart: (state, action: PayloadAction<IProduct>) => {
+      const isInCart = state.cartProducts.find(
+        (item) => item.product.productId === action.payload.productId
+      );
+      state.quantityCart -= isInCart?.quantity || 0;
+      state.cartProducts = state.cartProducts.filter(
+        (item) => item.product.productId !== action.payload.productId
+      );
     },
-    clearCart: (state, action: PayloadAction<IProduct[]>) => {
-      state.quantityCart -= 1;
-      state.listedProducts = action.payload;
+    clearCart: (state) => {
+      state.quantityCart = 0;
+      state.cartProducts = [];
     },
     searchProducts: (state, action: PayloadAction<string>) => {
       state.isSeasrching = action.payload.length > 0;
-      console.log(action.payload);
+      // console.log(action.payload);
       state.searchedProducts = state.allProducts.filter((product: IProduct) =>
-        // eslint-disable-next-line prettier/prettier
         product.name.toLowerCase().includes(action.payload.toLowerCase()));
       state.listedProducts = [...state.searchedProducts];
     },
@@ -81,6 +105,13 @@ export const productSlice = createSlice({
   }
 });
 
-export const { setProductList, searchProducts } = productSlice.actions;
+export const {
+  setProductList,
+  searchProducts,
+  addProductCart,
+  removeOneProductFromCart,
+  removeProductFromCart,
+  clearCart
+} = productSlice.actions;
 
 export default productSlice;

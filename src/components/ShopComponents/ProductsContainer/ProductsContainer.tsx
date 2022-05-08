@@ -7,7 +7,7 @@ const ProductsContainer = ({ products }: { products: IProduct[] }) => (
   <Box
     h="100%"
     w="100%"
-    p={{ base: '0rem 0', sm: '10px', md: '20px' }}
+    p={{ base: '0rem 0', sm: '1.5rem 10px', md: '2.5rem 20px' }}
     // bg="#aaa"
     display="flex"
     justifyContent="center"
@@ -34,24 +34,25 @@ const ProductsContainer = ({ products }: { products: IProduct[] }) => (
       {products?.map((product) => (
         <ProductCard
           key={product.productId}
-          name={product.name}
-          price={product.price}
-          image={product.image}
-          gallery={product.gallery}
-          discountInPercent={product.discountInPercent}
-          salePrice={product.salePrice}
-          isOffer={product.isOffer}
-          category={product.category}
-          isNew={product.isNew}
-          productId={product.productId}
-          isCombo={product.isCombo}
-          isFeatured={product.isFeatured}
-          brand={product.brand}
-          description={product.description}
-          stock={product.stock}
-          minStock={product.minStock}
-          sku={product.sku}
-          variants={product.variants}
+          product={product}
+          // name={product.name}
+          // price={product.price}
+          // image={product.image}
+          // gallery={product.gallery}
+          // discountInPercent={product.discountInPercent}
+          // salePrice={product.salePrice}
+          // isOffer={product.isOffer}
+          // category={product.category}
+          // isNew={product.isNew}
+          // productId={product.productId}
+          // isCombo={product.isCombo}
+          // isFeatured={product.isFeatured}
+          // brand={product.brand}
+          // description={product.description}
+          // stock={product.stock}
+          // minStock={product.minStock}
+          // sku={product.sku}
+          // variants={product.variants}
         />
       ))}
     </SimpleGrid>

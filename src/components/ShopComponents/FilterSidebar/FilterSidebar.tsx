@@ -25,7 +25,7 @@ import { useAppSelector } from '@Redux/hooks';
 
 const CategoryFilter = () => {
   const categories = useAppSelector((state) => state.categories.categoryList);
-  console.log(categories);
+  // console.log(categories);
 
   return (
     <Box display="flex" flexDirection="column" gap="0.5rem">
