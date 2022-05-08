@@ -8,18 +8,20 @@ import {
 import { FC } from 'react';
 
 interface DrawerProps {
-  Component: any;
+  Component?: any;
   isOpen: boolean;
   onClose: () => any;
-  closeButton: boolean;
+  closeButton?: boolean;
+  size?: string;
 }
 
 const CustomDrawer: FC<DrawerProps> = ({
   children,
-  // Component,
+  Component,
   isOpen,
   onClose,
   closeButton = true,
+  size,
   ...props
 }) => (
   <Drawer
@@ -27,7 +29,7 @@ const CustomDrawer: FC<DrawerProps> = ({
     placement="right"
     onClose={onClose}
     // scrollBehavior="inside"
-    size="lg"
+    size={size}
     {...props}
   >
     <DrawerOverlay />
@@ -48,10 +50,15 @@ const CustomDrawer: FC<DrawerProps> = ({
       )}
       <DrawerBody>
         {/* {Component && <Component onClose={onClose} />} */}
-        {/* {Component && <Component />} */}
+        {Component && <Component />}
         {children}
       </DrawerBody>
     </DrawerContent>
   </Drawer>
 );
+CustomDrawer.defaultProps = {
+  size: 'lg',
+  Component: false,
+  closeButton: true
+};
 export default CustomDrawer;

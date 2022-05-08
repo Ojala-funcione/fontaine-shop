@@ -150,7 +150,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
       justifyContent="start"
       position="relative"
     >
-      {isOffer && (
+      {/* {isOffer && (
         <TagCard
           // bg="#EAB308"
           bg="#009f7f"
@@ -161,7 +161,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
         >
           {`- ${discountInPercent} %`}
         </TagCard>
-      )}
+      )} */}
       <Box
         width={{ base: '140px', sm: '100%' }}
         maxH="242px"
@@ -179,7 +179,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
           zIndex={1}
         >
           {/* {isFeatured && <TagCard bg="#000">Destacado</TagCard>} */}
-          {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>}
+          {/* {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>} */}
           {/* {isCombo && <TagCard bg="#000">Combo</TagCard>} */}
         </Box>
         {/* <MiniSlider slides={gallery}></MiniSlider> */}
@@ -187,8 +187,6 @@ const ProductCard: FC<IProps> = ({ product }) => {
           marginInline="auto"
           src={image}
           alt="carousel image"
-          backgroundSize="cover"
-          // h="100%"
           objectFit="cover"
           h="100%"
           w="100%"
@@ -232,7 +230,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                 fontWeight={500}
                 fontSize="1rem"
               >
-                {`$ ${Math.ceil(salePrice * 100) / 100}`}
+                {`$ ${salePrice.toFixed(2)}`}
               </Text>
               {isOffer && (
                 <Text
@@ -242,7 +240,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                   fontWeight={500}
                   fontSize="0.75rem"
                 >
-                  {`$ ${Math.ceil(price * 100) / 100}`}
+                  {`$ ${price.toFixed(2)}`}
                 </Text>
               )}
             </HStack>

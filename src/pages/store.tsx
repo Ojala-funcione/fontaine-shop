@@ -1,12 +1,22 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { Box, useDisclosure } from '@chakra-ui/react';
+import {
+  Box,
+  Drawer,
+  DrawerBody,
+  DrawerCloseButton,
+  DrawerContent,
+  DrawerOverlay,
+  useDisclosure
+} from '@chakra-ui/react';
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
 import HeroShop from '@components/ShopComponents/HeroShop/HeroShop';
 import ProductsContainer from '@components/ShopComponents/ProductsContainer/ProductsContainer';
 import FilterSidebar from '@components/ShopComponents/FilterSidebar/FilterSidebar';
 import { useAppSelector } from '@Redux/hooks';
 import CartFloatButton from '@components/Cart/CartFloatButton';
+import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
+import CartProductList from '@components/Cart/CartProductList';
 // import { IProduct } from '@Redux/Interfaces';
 
 const Store = () => {
@@ -18,8 +28,15 @@ const Store = () => {
   return (
     <>
       <ScrollToTopButton />
-      <CartFloatButton />
-
+      <CartFloatButton onOpen={onOpen} />
+      <CustomDrawer
+        size="sm"
+        isOpen={isOpen}
+        onClose={onClose}
+        // Component={<FilterSidebar />}
+      >
+        <CartProductList />
+      </CustomDrawer>
       <Box minH="100vh">
         <HeroShop />
         <Box

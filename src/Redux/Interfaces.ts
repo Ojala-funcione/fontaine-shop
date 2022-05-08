@@ -18,6 +18,10 @@ export interface IProduct {
   gallery: Array<string>;
   variants: any;
 }
+export interface ICartProduct {
+  product: IProduct;
+  quantity: number;
+}
 export interface ICategory {
   id: string;
   name: string;

@@ -6,18 +6,15 @@ import {
   PayloadAction
   // current
 } from '@reduxjs/toolkit';
-import { IProduct } from 'Redux/Interfaces';
+import { ICartProduct, IProduct } from 'Redux/Interfaces';
 
-interface ICartProduct {
-  product: IProduct;
-  quantity: number;
-}
 interface IProductState {
   allProducts: IProduct[];
   filteredProducts: IProduct[];
   listedProducts: IProduct[];
   searchedProducts: IProduct[];
   cartProducts: ICartProduct[];
+  amountCart: number;
   quantityCart: number;
   isSeasrching: boolean;
   filterActive: boolean;
@@ -28,6 +25,7 @@ interface IProductState {
 const initialState: IProductState = {
   cartProducts: [],
   quantityCart: 0,
+  amountCart: 0,
   allProducts: [],
   isSeasrching: false,
   filterActive: false,
@@ -48,6 +46,7 @@ export const productSlice = createSlice({
     },
     addProductCart: (state, action: PayloadAction<IProduct>) => {
       state.quantityCart += 1;
+      state.amountCart += action.payload.salePrice;
       const isInCart = state.cartProducts.find(
         (item) => item.product.productId === action.payload.productId
       );
@@ -64,6 +63,7 @@ export const productSlice = createSlice({
         (item) => item.product.productId === action.payload.productId
       );
       state.quantityCart -= 1;
+      state.amountCart -= action.payload.salePrice;
       if (isInCart) {
         state.cartProducts = isInCart.quantity > 1
           ? state.cartProducts.map((item) =>
@@ -80,12 +80,14 @@ export const productSlice = createSlice({
         (item) => item.product.productId === action.payload.productId
       );
       state.quantityCart -= isInCart?.quantity || 0;
+      state.amountCart -= isInCart.quantity * isInCart.product.salePrice;
       state.cartProducts = state.cartProducts.filter(
         (item) => item.product.productId !== action.payload.productId
       );
     },
     clearCart: (state) => {
       state.quantityCart = 0;
+      state.amountCart = 0;
       state.cartProducts = [];
     },
     searchProducts: (state, action: PayloadAction<string>) => {
