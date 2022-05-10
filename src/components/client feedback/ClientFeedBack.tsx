@@ -82,53 +82,46 @@ const TestimonialCard = (props: TestimonialCardProps) => {
   );
 };
 
-const ClientFeedBack = () => {
-  return (
-    <Box color={useColorModeValue('gray.700', 'gray.200')} marginBottom="5rem">
-      <Container maxW="6xl">
-        <Flex
-          textAlign="center"
-          pt={10}
-          justifyContent="center"
-          direction="column"
-          width="full"
-        >
-          <Box width={{ base: 'full', sm: 'lg', lg: '4xl' }} margin="auto">
-            <chakra.h1
-              py={5}
-              fontSize={48}
-              fontFamily="Work Sans"
-              fontWeight="bold"
-              color={useColorModeValue('gray.700', 'gray.50')}
-            >
-              Clientes Satisfechos
-            </chakra.h1>
-            <chakra.h2
-              fontSize={25}
-              margin="auto"
-              width="100%"
-              fontFamily="Inter"
-              fontWeight="medium"
-              color={useColorModeValue('gray.500', 'gray.400')}
-            >
-              En Fontaine nos esforzamos para que tengas la mejor experiencia en
-              tus compras
-            </chakra.h2>
-          </Box>
-          <SimpleGrid
-            columns={{ base: 1, xl: 2 }}
-            spacing="20"
-            mt={16}
-            mx="auto"
+const ClientFeedBack = () => (
+  <Box color={useColorModeValue('gray.700', 'gray.200')} marginBottom="5rem">
+    <Container maxW="1600px">
+      <Flex
+        textAlign="center"
+        pt={10}
+        justifyContent="center"
+        direction="column"
+        width="full"
+      >
+        <Box width={{ base: 'full', sm: 'lg', lg: '4xl' }} margin="auto">
+          <chakra.h1
+            py={5}
+            fontSize={48}
+            fontFamily="Work Sans"
+            fontWeight="bold"
+            color={useColorModeValue('gray.700', 'gray.50')}
           >
-            {testimonials.map((cardInfo) => {
-              return <TestimonialCard {...cardInfo} key={cardInfo.name} />;
-            })}
-          </SimpleGrid>
-        </Flex>
-      </Container>
-    </Box>
-  );
-};
+            Clientes Satisfechos
+          </chakra.h1>
+          <chakra.h2
+            fontSize={25}
+            margin="auto"
+            width="100%"
+            fontFamily="Inter"
+            fontWeight="medium"
+            color={useColorModeValue('gray.500', 'gray.400')}
+          >
+            En Fontaine nos esforzamos para que tengas la mejor experiencia en
+            tus compras
+          </chakra.h2>
+        </Box>
+        <SimpleGrid columns={{ base: 1, xl: 2 }} spacing="20" mt={16} mx="auto">
+          {testimonials.map((cardInfo) => (
+            <TestimonialCard {...cardInfo} key={cardInfo.name} />
+          ))}
+        </SimpleGrid>
+      </Flex>
+    </Container>
+  </Box>
+);
 
 export default ClientFeedBack;

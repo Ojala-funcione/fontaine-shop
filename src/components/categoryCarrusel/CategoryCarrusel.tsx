@@ -134,7 +134,7 @@ const settings = {
 const CategoryCarrusel = () => {
   const [slider, setSlider] = useState<Slider | null>(null);
   return (
-    <Container maxW="6xl" pl={0} pr={4}>
+    <Container maxW="1800px" pl={0} py={10} pr={4}>
       <Box position="relative" width="100%">
         <link
           rel="stylesheet"
