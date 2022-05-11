@@ -20,6 +20,7 @@ export interface IProduct {
 }
 export interface ICartProduct {
   product: IProduct;
+  amount: number;
   quantity: number;
 }
 export interface ICategory {

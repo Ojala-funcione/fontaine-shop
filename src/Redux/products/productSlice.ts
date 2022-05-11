@@ -53,9 +53,16 @@ export const productSlice = createSlice({
       state.cartProducts = isInCart
         ? state.cartProducts.map((item) =>
           item.product.productId === action.payload.productId
-            ? { ...item, quantity: item.quantity + 1 }
+            ? {
+              ...item,
+              quantity: item.quantity + 1,
+              amount: item.amount + item.product.salePrice
+            }
             : item)
-        : [...state.cartProducts, { product: action.payload, quantity: 1 }];
+        : [
+          ...state.cartProducts,
+          { product: action.payload, quantity: 1, amount: action.payload.salePrice }
+        ];
     },
 
     removeOneProductFromCart: (state, action: PayloadAction<IProduct>) => {
@@ -65,14 +72,19 @@ export const productSlice = createSlice({
       state.quantityCart -= 1;
       state.amountCart -= action.payload.salePrice;
       if (isInCart) {
-        state.cartProducts = isInCart.quantity > 1
-          ? state.cartProducts.map((item) =>
-            item.product.productId === action.payload.productId
-              ? { ...item, quantity: item.quantity - 1 }
-              : item)
-          : state.cartProducts = state.cartProducts.filter(
-            (item) => item.product.productId !== action.payload.productId
-          );
+        state.cartProducts =
+          isInCart.quantity > 1
+            ? state.cartProducts.map((item) =>
+              item.product.productId === action.payload.productId
+                ? {
+                  ...item,
+                  quantity: item.quantity - 1,
+                  amount: item.amount - item.product.salePrice
+                }
+                : item)
+            : (state.cartProducts = state.cartProducts.filter(
+              (item) => item.product.productId !== action.payload.productId
+            ));
       }
     },
     removeProductFromCart: (state, action: PayloadAction<IProduct>) => {
@@ -80,7 +92,7 @@ export const productSlice = createSlice({
         (item) => item.product.productId === action.payload.productId
       );
       state.quantityCart -= isInCart?.quantity || 0;
-      state.amountCart -= isInCart.quantity * isInCart.product.salePrice;
+      state.amountCart -= isInCart ? isInCart.quantity * isInCart.product.salePrice : 0;
       state.cartProducts = state.cartProducts.filter(
         (item) => item.product.productId !== action.payload.productId
       );
