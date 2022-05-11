@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Box,
   Heading,
@@ -6,7 +7,8 @@ import {
   Image,
   useColorModeValue,
   Flex,
-  Button
+  Button,
+  Container
 } from '@chakra-ui/react';
 import { useState } from 'react';
 
@@ -71,9 +73,9 @@ const ShopCard = (props: shopCardProps) => {
 
   return (
     <Box
-      maxW="270px"
-      w="270px"
-      h="400px"
+      maxW="210px"
+      w="full"
+      h="300px"
       borderRadius={10}
       border="2px ridge"
       borderColor="#ffffff4d"
@@ -82,13 +84,19 @@ const ShopCard = (props: shopCardProps) => {
         background: 'transparent'
       }}
     >
-      <Stack p={2} isInline alignItems="center" justifyContent="center">
+      {/*   <Container
+        display="flex"
+        w="full"
+        p={2}
+        alignItems="center"
+        justifyContent="center"
+      >
         {isDiscount && (
           <Box
             as="span"
             fontWeight={500}
             color="white"
-            fontSize="sm"
+            fontSize={{ base: 'xx-small', sm: 'md', lg: 'lg' }}
             bg="red.500"
             px={2}
             py={1}
@@ -102,13 +110,14 @@ const ShopCard = (props: shopCardProps) => {
             as="span"
             fontWeight={500}
             color="white"
-            fontSize="sm"
+            fontSize={{ base: 'xx-small', sm: 'md', lg: 'lg' }}
             bg="red.500"
+            mx={2}
             px={2}
             py={1}
             rounded="md"
           >
-            {isDiscount && 'En OFERTA!'}
+            {isDiscount && 'OFERTA!'}
           </Box>
         )}
         {isNew && (
@@ -116,7 +125,7 @@ const ShopCard = (props: shopCardProps) => {
             as="span"
             fontWeight={500}
             color="white"
-            fontSize="sm"
+            fontSize={{ base: 'xx-small', sm: 'md', lg: 'lg' }}
             bg="green.500"
             px={2}
             py={1}
@@ -125,32 +134,16 @@ const ShopCard = (props: shopCardProps) => {
             {isNew && 'NUEVO!'}
           </Box>
         )}
-      </Stack>
-      <Box px={2} paddingBottom={2} as="header">
-        <Heading
-          color={useColorModeValue('black', 'white')}
-          fontWeight={600}
-          fontSize={{ base: 'large', sm: '2xl', lg: '3xl' }}
-        >
-          {title}
-        </Heading>
-        <Text
-          color={useColorModeValue('black', 'white')}
-          fontWeight={500}
-          fontSize="large"
-        >
-          {subTitle}
-        </Text>
-      </Box>
-      <Box w="100%" h="40%" px={2}>
-        <Flex w="100%" h="100%" overflow="hidden" pos="relative">
-          <Flex h="100%" w="100%" {...carouselStyle}>
+      </Container> */}
+      <Box w="full" h="40%" mt={5} px={2}>
+        <Flex w="full" h="100%" overflow="hidden" pos="relative">
+          <Flex h="100%" w="full" {...carouselStyle}>
             {slides?.map((slide, sid) => (
               <Box
                 key={slide.img}
                 boxSize="100%"
                 h="100%"
-                w="100%"
+                w="full"
                 shadow="md"
                 flex="none"
                 overflow="hidden"
@@ -188,6 +181,22 @@ const ShopCard = (props: shopCardProps) => {
                   src={cardInfo.image[0]}
                   alt="product"
                 /> */}
+      </Box>
+      <Box px={2} paddingBottom={2} as="header">
+        <Heading
+          color={useColorModeValue('black', 'white')}
+          fontWeight={600}
+          fontSize={{ base: 'md', sm: 'md', lg: 'lg' }}
+        >
+          {title}
+        </Heading>
+        <Text
+          color={useColorModeValue('black', 'white')}
+          fontWeight={500}
+          fontSize={{ base: 'small', sm: 'md', lg: 'lg' }}
+        >
+          {subTitle}
+        </Text>
       </Box>
       <Stack
         isInline

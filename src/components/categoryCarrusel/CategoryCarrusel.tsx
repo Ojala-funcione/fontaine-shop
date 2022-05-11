@@ -134,7 +134,7 @@ const settings = {
 const CategoryCarrusel = () => {
   const [slider, setSlider] = useState<Slider | null>(null);
   return (
-    <Container maxW="6xl" p={0}>
+    <Container maxW="1800px" pl={0} py={10} pr={4}>
       <Box position="relative" width="100%">
         <link
           rel="stylesheet"
@@ -150,23 +150,23 @@ const CategoryCarrusel = () => {
         <IconButton
           w="2px"
           h="100%"
-          borderRadius={0}
+          borderRadius="10px 0px 0px 10px"
           aria-label="left-arrow"
           position="absolute"
           backgroundColor="transparent"
-          left="20px"
+          left="21px"
           top="50%"
           transform="translate(0%, -50%)"
           zIndex={2}
-          onClick={() => {
-            return slider?.slickPrev();
+          onClick={() => slider?.slickPrev()}
+          _hover={{
+            bg: 'transparent'
           }}
         >
           <MdArrowLeft />
         </IconButton>
         {/* Right Icon */}
         <IconButton
-          w="2px"
           h="100%"
           borderRadius={0}
           aria-label="right-arrow"
@@ -174,30 +174,25 @@ const CategoryCarrusel = () => {
           right="0px"
           top="50%"
           transform="translate(0%, -50%)"
-          backgroundColor="#00000066"
+          backgroundColor="transparent"
           zIndex={2}
-          onClick={() => {
-            return slider?.slickNext();
+          _hover={{
+            opacity: '0.8',
+            bg: 'black'
           }}
+          onClick={() => slider?.slickNext()}
         >
           <MdArrowRight />
         </IconButton>
-        <Slider
-          {...settings}
-          ref={(slider) => {
-            return setSlider(slider);
-          }}
-        >
-          {categories.map((category) => {
-            return (
-              <CategoryCard
-                key={category.category}
-                category={category?.category}
-                image={category?.bg}
-                subcategory={category?.subcategory}
-              />
-            );
-          })}
+        <Slider {...settings} ref={(slider) => setSlider(slider)}>
+          {categories.map((category) => (
+            <CategoryCard
+              key={category.category}
+              category={category?.category}
+              image={category?.bg}
+              subcategory={category?.subcategory}
+            />
+          ))}
         </Slider>
       </Box>
     </Container>

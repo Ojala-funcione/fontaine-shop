@@ -12,6 +12,7 @@ import {
 } from '@chakra-ui/react';
 import { FacebookLogo, InstagramLogo, WhatsappLogo } from 'phosphor-react';
 import LogoRedondo from '@common/logo/FontaineRedondo';
+import { NavLink2 } from '@common/NavLink/NavLink';
 
 const ListHeader = ({ children }: { children: ReactNode }) => (
   <Text
@@ -29,7 +30,7 @@ const Footer = () => (
     bg={useColorModeValue('gray.50', 'gray.900')}
     color={useColorModeValue('gray.700', 'gray.200')}
   >
-    <Container as={Stack} maxW="6xl" paddingTop={10} paddingBottom={5}>
+    <Container as={Stack} maxW="1500px" paddingTop={10} paddingBottom={5}>
       <SimpleGrid
         templateColumns={{ sm: '1fr 1fr', md: '1fr 1fr 1fr 1fr' }}
         spacing={8}
@@ -55,10 +56,18 @@ const Footer = () => (
         </Stack>
         <Stack align="flex-start">
           <ListHeader>Acceso Rapido</ListHeader>
-          <Link href="/">Home</Link>
-          <Link href="login">Login / Register</Link>
-          <Link href="store">Tienda</Link>
-          <Link href="contact">Contacto</Link>
+          <NavLink2 exact href="/">
+            Home
+          </NavLink2>
+          <NavLink2 exact href="/login">
+            Login / Register
+          </NavLink2>
+          <NavLink2 exact href="/store">
+            Tienda
+          </NavLink2>
+          <NavLink2 exact href="/contact">
+            Contacto
+          </NavLink2>
         </Stack>
         <Stack align="flex-start">
           <ListHeader>Links Importantes</ListHeader>
@@ -77,7 +86,7 @@ const Footer = () => (
       </SimpleGrid>
     </Container>
     <Divider />
-    <Container as={Stack} maxW="6xl" py={5}>
+    <Container as={Stack} maxW="1300px" py={5}>
       <SimpleGrid columns={[2, null, 2]}>
         <Stack>
           <Text>Copyright 2022 Making It Happen</Text>

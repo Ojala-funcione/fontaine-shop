@@ -1,11 +1,7 @@
 import React, { useState } from 'react';
+// eslint-disable-next-line prettier/prettier
 import {
-  Text,
-  Box,
-  Flex,
-  useColorModeValue,
-  Image,
-  Container
+  Text, Box, Flex, Image, Container
 } from '@chakra-ui/react';
 
 const slides = [
@@ -63,9 +59,9 @@ const BannerSlider = () => {
     ml: `-${currentSlide * 100}%`
   };
   return (
-    <Container py={10} maxW="6xl">
+    <Container py={5} maxW="1400px">
       <Flex w="full" overflow="hidden" pos="relative">
-        <Flex h="400px" w="full" {...carouselStyle}>
+        <Flex h="60vh" w="full" {...carouselStyle}>
           {slides.map((slide) => (
             <Box key={slide.img} boxSize="full" shadow="md" flex="none">
               <Image

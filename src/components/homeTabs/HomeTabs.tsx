@@ -45,7 +45,7 @@ const shopCardInfo = [
     isOnSale: true
   },
   {
-    id: 1,
+    id: 2,
     title: 'Café',
     subtitle: 'Café de todos los días',
     bg: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/78997061151791-a34400b2afe1e0b5f415884730389855-1024-1024.jpg',
@@ -78,7 +78,7 @@ const shopCardInfo = [
     isOnSale: true
   },
   {
-    id: 1,
+    id: 3,
     title: 'Café',
     subtitle: 'Café de todos los días',
     bg: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/78997061151791-a34400b2afe1e0b5f415884730389855-1024-1024.jpg',
@@ -111,7 +111,7 @@ const shopCardInfo = [
     isOnSale: true
   },
   {
-    id: 1,
+    id: 4,
     title: 'Café',
     subtitle: 'Café de todos los días',
     bg: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/78997061151791-a34400b2afe1e0b5f415884730389855-1024-1024.jpg',
@@ -144,7 +144,7 @@ const shopCardInfo = [
     isOnSale: true
   },
   {
-    id: 1,
+    id: 5,
     title: 'Café',
     subtitle: 'Café de todos los días',
     bg: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/78997061151791-a34400b2afe1e0b5f415884730389855-1024-1024.jpg',
@@ -177,7 +177,7 @@ const shopCardInfo = [
     isOnSale: true
   },
   {
-    id: 1,
+    id: 6,
     title: 'Café',
     subtitle: 'Café de todos los días',
     bg: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/78997061151791-a34400b2afe1e0b5f415884730389855-1024-1024.jpg',
@@ -210,7 +210,7 @@ const shopCardInfo = [
     isOnSale: true
   },
   {
-    id: 1,
+    id: 7,
     title: 'Café',
     subtitle: 'Café de todos los días',
     price: '$10.00',
@@ -242,7 +242,65 @@ const shopCardInfo = [
     isOnSale: true
   },
   {
-    id: 1,
+    id: 8,
+    title: 'Café',
+    subtitle: 'Café de todos los días',
+    slides: [
+      {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_IzEzicE5Bl9ldos_5zlIwVWJ6UAckY6vVA&usqp=CAU'
+      },
+      {
+        img: 'http://d3ugyf2ht6aenh.cloudfront.net/stores/001/308/133/products/kit-nantyr1-1760e8738014a7e68916031381745392-640-0.jpg'
+      },
+      {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS06dbkEwY2RpEDGabYNAr6vkDJtBwSVa_wOg&usqp=CAU'
+      },
+      {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEdQMyiugGrjR7qkht5XDvXooZRjnfQvNQVA&usqp=CAU'
+      },
+      {
+        img: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/7899706127226-11-87827174d63e8af71915884846271588-640-0.jpg'
+      }
+    ],
+    price: '$10.00',
+    discountInPercent: '10%',
+    discountPrice: '$9.00',
+    isDiscount: false,
+    category: 'Café',
+    isNew: true,
+    isOnSale: true
+  },
+  {
+    id: 9,
+    title: 'Café',
+    subtitle: 'Café de todos los días',
+    slides: [
+      {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ_IzEzicE5Bl9ldos_5zlIwVWJ6UAckY6vVA&usqp=CAU'
+      },
+      {
+        img: 'http://d3ugyf2ht6aenh.cloudfront.net/stores/001/308/133/products/kit-nantyr1-1760e8738014a7e68916031381745392-640-0.jpg'
+      },
+      {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS06dbkEwY2RpEDGabYNAr6vkDJtBwSVa_wOg&usqp=CAU'
+      },
+      {
+        img: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSEdQMyiugGrjR7qkht5XDvXooZRjnfQvNQVA&usqp=CAU'
+      },
+      {
+        img: 'https://d3ugyf2ht6aenh.cloudfront.net/stores/001/154/451/products/7899706127226-11-87827174d63e8af71915884846271588-640-0.jpg'
+      }
+    ],
+    price: '$10.00',
+    discountInPercent: '10%',
+    discountPrice: '$9.00',
+    isDiscount: false,
+    category: 'Café',
+    isNew: true,
+    isOnSale: true
+  },
+  {
+    id: 10,
     title: 'Café',
     subtitle: 'Café de todos los días',
     slides: [
@@ -273,15 +331,15 @@ const shopCardInfo = [
 ];
 
 const HomeTabs = () => (
-  <Container maxW="6xl" py={10}>
-    <Tabs size="md" variant="enclosed">
+  <Container maxW="1400px" py={10}>
+    <Tabs size="md" p={0} variant="enclosed">
       <TabList>
         <Tab>Nuevos Productos</Tab>
         <Tab>Ofertas</Tab>
       </TabList>
       <TabPanels>
         <TabPanel m={0} p={0} py={4}>
-          <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>
+          <SimpleGrid columns={[2, 2, 3, 5]} justifyItems="center" spacing={8}>
             {shopCardInfo.map((product) => (
               <ShopCard
                 key={product.id}
@@ -299,7 +357,7 @@ const HomeTabs = () => (
           </SimpleGrid>
         </TabPanel>
         <TabPanel m={0} p={0} py={4}>
-          <SimpleGrid columns={[1, 2, 3, 4]} spacing={8}>
+          <SimpleGrid columns={[1, 2, 3, 5]} justifyItems="center" spacing={8}>
             {shopCardInfo.map((product) => (
               <ShopCard
                 key={product.id}
