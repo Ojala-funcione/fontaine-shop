@@ -114,8 +114,8 @@ const DashboardSidebar: React.FC = () => (
     minH="100%"
     display="flex"
     bg={useColorModeValue('white', 'gray.900')}
+    boxShadow={useColorModeValue('1px 0 3px #0003', '1px 0 2px #fff1')}
     flexDirection="column"
-    // boxShadow={useColorModeValue('1px 0 3px #0003', '1px 0 2px #fff1')}
   >
     <Box
       width="100%"

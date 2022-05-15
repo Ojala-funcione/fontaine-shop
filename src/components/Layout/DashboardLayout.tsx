@@ -32,7 +32,7 @@ const DashboardLayout: React.FC = ({ children }) => {
       flexDirection="column"
     >
       <DashboardHeader onOpenSidebar={onOpen} />
-      <Box w="100%" h="100%" display="flex" flex="1" bg="green">
+      <Box w="100%" h="100%" display="flex" flex="1">
         <Box minH="100%" display={{ base: 'none', lg: 'block' }}>
           <DashboardSidebar />
         </Box>
@@ -51,6 +51,7 @@ const DashboardLayout: React.FC = ({ children }) => {
           p={{ base: '20px 10px', md: '20px' }}
           overflow="hidden"
           overflowY="auto"
+          // bg="crimson"
         >
           {children}
         </Box>
