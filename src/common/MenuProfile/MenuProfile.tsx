@@ -10,7 +10,8 @@ import {
   MenuList,
   Stack,
   Text,
-  useColorModeValue
+  useColorModeValue,
+  Link as ChakraLink
   // useDisclosure,
 } from '@chakra-ui/react';
 import React from 'react';
@@ -19,6 +20,7 @@ import { MdOutlineLogout } from 'react-icons/md';
 import { useRouter } from 'next/router';
 import { useAuth } from '@context/useAuth';
 import Gravatar from 'react-gravatar';
+import Link from 'next/link';
 
 const MenuProfile: React.FC = () => {
   const auth = useAuth();
@@ -98,6 +100,16 @@ const MenuProfile: React.FC = () => {
             _focus={{ bg: 'transparent' }}
           >
             Cerrar Sesión
+          </MenuItem>
+          <MenuItem
+            // icon={<MdOutlineLogout fontSize="1.2rem" />}
+            // onClick={handleLogout}
+            _hover={useColorModeValue({ bg: '#fafafa' }, { bg: '#292e37' })}
+            _focus={{ bg: 'transparent' }}
+          >
+            <Link href="/adminDashboard" passHref>
+              <ChakraLink>AdminDashboard</ChakraLink>
+            </Link>
           </MenuItem>
         </MenuGroup>
       </MenuList>

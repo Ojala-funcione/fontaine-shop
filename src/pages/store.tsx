@@ -1,14 +1,6 @@
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import {
-  Box,
-  Drawer,
-  DrawerBody,
-  DrawerCloseButton,
-  DrawerContent,
-  DrawerOverlay,
-  useDisclosure
-} from '@chakra-ui/react';
+import { Box, useDisclosure } from '@chakra-ui/react';
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
 import HeroShop from '@components/ShopComponents/HeroShop/HeroShop';
 import ProductsContainer from '@components/ShopComponents/ProductsContainer/ProductsContainer';
@@ -17,6 +9,7 @@ import { useAppSelector } from '@Redux/hooks';
 import CartFloatButton from '@components/Cart/CartFloatButton';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
 import CartProductList from '@components/Cart/CartProductList';
+import ShopLayout from '@components/Layout/ShopLayout';
 // import { IProduct } from '@Redux/Interfaces';
 
 const Store = () => {
@@ -52,5 +45,5 @@ const Store = () => {
     </>
   );
 };
-
+Store.Layout = ShopLayout;
 export default Store;

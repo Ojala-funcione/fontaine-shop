@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Box, useColorModeValue } from '@chakra-ui/react';
 import Footer from '@components/footer/footer';
 import Header from '@components/header/header';
@@ -7,25 +8,27 @@ import { getAllProducts } from '@Redux/products/asyncActions';
 import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
-const Layout: React.FC = ({ children }) => {
+const DefaultLayout: React.FC = ({ children }) => {
   const dispatch = useAppDispatch();
-  const { pathname } = useRouter();
-  const isDashboard = pathname.startsWith('/adminDashboard');
-  useEffect(() => {
-    dispatch(getAllProducts());
-    dispatch(getAllCategories());
-  }, [dispatch]);
+  // const { pathname } = useRouter();
+  // // const isDashboard = pathname.startsWith('/adminDashboard');
+  // useEffect(() => {
+  //   dispatch(getAllProducts());
+  //   dispatch(getAllCategories());
+  // }, [dispatch]);
   return (
     <Box
-      // height="fit-content"
+      display="flex"
+      flexDirection="column"
       minHeight="100vh"
       bg={useColorModeValue('white', 'gray.800')}
     >
       <Header />
-      {children}
-      <Footer display={isDashboard ? 'none' : ''} />
+      <Box flex="1">{children}</Box>
+      <Footer />
+      {/* <Footer display={isDashboard ? 'none' : ''} /> */}
     </Box>
   );
 };
 
-export default Layout;
+export default DefaultLayout;

@@ -7,8 +7,8 @@ type SidebarCategoryProps = {
   type: string;
 };
 
-const SidebarCategory: React.FC<SidebarCategoryProps> = () => {
-  return <Box>sidebar</Box>;
-};
+const SidebarCategory: React.FC<SidebarCategoryProps> = () => (
+  <Box>sidebar</Box>
+);
 
 export default SidebarCategory;

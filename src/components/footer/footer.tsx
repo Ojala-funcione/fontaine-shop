@@ -1,4 +1,4 @@
-import { ReactNode } from 'react';
+import { FC, ReactNode } from 'react';
 
 import {
   Box,
@@ -24,9 +24,12 @@ const ListHeader = ({ children }: { children: ReactNode }) => (
     {children}
   </Text>
 );
-
-const Footer = () => (
+interface IFooterProps {
+  // display: string;
+}
+const Footer: FC<IFooterProps> = () => (
   <Box
+    // display={display}
     bg={useColorModeValue('gray.50', 'gray.900')}
     color={useColorModeValue('gray.700', 'gray.200')}
   >

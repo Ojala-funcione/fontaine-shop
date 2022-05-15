@@ -37,6 +37,7 @@ const Header: React.FC = () => {
     <Box
       px={{ base: '0.5rem', sm: '1rem', md: '2rem' }}
       zIndex={3}
+      bg={useColorModeValue('white', 'gray.900')}
       boxShadow={useColorModeValue(
         '0 1px 2px rgba(0, 0, 0, 0.06)',
         '0 1px 2px rgba(0, 0, 0, 0.46)'

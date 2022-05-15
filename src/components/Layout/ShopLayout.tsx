@@ -4,13 +4,13 @@ import Header from '@components/header/header';
 import getAllCategories from '@Redux/categories/asyncActions';
 import { useAppDispatch } from '@Redux/hooks';
 import { getAllProducts } from '@Redux/products/asyncActions';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
-const Layout: React.FC = ({ children }) => {
+const ShopLayout: React.FC = ({ children }) => {
   const dispatch = useAppDispatch();
-  const { pathname } = useRouter();
-  const isDashboard = pathname.startsWith('/adminDashboard');
+  // const { pathname } = useRouter();
+  // const isDashboard = pathname.startsWith('/adminDashboard');
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getAllCategories());
@@ -18,14 +18,17 @@ const Layout: React.FC = ({ children }) => {
   return (
     <Box
       // height="fit-content"
+      display="flex"
+      flexDirection="column"
       minHeight="100vh"
       bg={useColorModeValue('white', 'gray.800')}
     >
       <Header />
-      {children}
-      <Footer display={isDashboard ? 'none' : ''} />
+      <Box flex="1">{children}</Box>
+      <Footer />
+      {/* <Footer display={isDashboard ? 'none' : ''} /> */}
     </Box>
   );
 };
 
-export default Layout;
+export default ShopLayout;
