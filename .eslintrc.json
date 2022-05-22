@@ -42,7 +42,7 @@
     "react/jsx-props-no-spreading": 0,
     "linebreak-style": ["error", "windows"],
     "comma-dangle": ["error", "never"],
-    "operator-linebreak": ["error", "after"],
+    "operator-linebreak": 0,
     "object-curly-newline": [
       "error",
       {

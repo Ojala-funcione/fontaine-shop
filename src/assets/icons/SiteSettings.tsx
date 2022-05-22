@@ -1,15 +1,11 @@
 import React, { FC } from 'react';
 
 interface IProps {
-  width: string;
-  height: string;
-  color: string;
+  width?: string;
+  height?: string;
+  color?: string;
 }
-const SiteSettings: FC<IProps> = ({
-  color = 'currentColor',
-  width = '56px',
-  height = '56px'
-}) => (
+const SiteSettings: FC<IProps> = ({ color, width, height }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width={width}
@@ -190,4 +186,9 @@ const SiteSettings: FC<IProps> = ({
     </g>
   </svg>
 );
+SiteSettings.defaultProps = {
+  width: '56',
+  height: '56',
+  color: 'currentColor'
+};
 export default SiteSettings;

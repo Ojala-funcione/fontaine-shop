@@ -1,146 +1,73 @@
-/* eslint-disable no-unused-vars */
-// import { Link } from "react-router-dom";
-import OrderIcon from '@assets/icons/OrderIcon';
 import {
   Box,
   Heading,
   Text,
   useColorModeValue,
-  useDisclosure,
-  Link as ChakraLink
+  useDisclosure
 } from '@chakra-ui/react';
+import ModalForm from '@common/modal/ModalForm';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import Link from 'next/link';
 import { FC } from 'react';
-// import { CustomModal } from '../Forms/CustomModal/CustomModal';
-interface IProps {
-  // Icon: ReactJSXElement;
+import { useRouter } from 'next/router';
+
+interface FormModalProps {
+  onClose: () => void;
+}
+export interface ICardData {
+  Icon: ReactJSXElement;
   title: string;
   subtitle: string;
-  // linkTo: string;
-  // form: ReactJSXElement;
+  linkTo?: string;
+  form?: FC<FormModalProps>;
 }
-const SettingsCard: FC<IProps> = ({ title, subtitle }) => {
-  console.log(title);
+
+const SettingsCard = ({ data }: { data: ICardData }) => {
+  const { Icon, title, subtitle, linkTo, form } = data;
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const pColor = useColorModeValue('#4a8cca', '#4a8cca');
-  // let shadow = useColorModeValue("1px 1px 3px 2px #0003", "1px 1px 3px 2px #4a8cca30")
-  const shadow = useColorModeValue(
-    '1px 1px 3px 2px #0003',
-    '0px 0px 2px 1px #fff1'
-  );
-  const bgColor = useColorModeValue('#fff', '#171923');
-  const textColor = useColorModeValue('#666d92', '#bebebe');
-  // if (linkTo) {
-  //   return (
-  //     <Link href={linkTo} passHref>
-  //       <ChakraLink>
-  //         <Box
-  //           display="flex"
-  //           bg={bgColor}
-  //           boxShadow={shadow}
-  //           cursor="pointer"
-  //           padding="35px 20px"
-  //           height="100%"
-  //           width="100%"
-  //         >
-  //           <Box
-  //             display="flex"
-  //             width="100px"
-  //             justifyContent="center"
-  //             alignItems="center"
-  //             color={pColor}
-  //             m="10px"
-  //           >
-  //             <Icon width="3.5rem" height="3.5rem" />
-  //           </Box>
-  //           <Box display="flex" flexDirection="column" lineHeight="1.5">
-  //             <Heading
-  //               m="0 0 5px"
-  //               fontSize="1.5rem"
-  //               color={pColor}
-  //               fontWeight="600"
-  //             >
-  //               {title}
-  //             </Heading>
-  //             <Text fontSize="0.875rem" color={textColor}>
-  //               {subtitle}
-  //             </Text>
-  //           </Box>
-  //         </Box>
-  //       </ChakraLink>
-  //     </Link>
-  //   );
-  // }
-  // _____________________________
-  // if (form) {
-  //   return (
-  //     <Box
-  //       display="flex"
-  //       bg={bgColor}
-  //       boxShadow={shadow}
-  //       cursor="pointer"
-  //       padding="35px 20px"
-  //       height="100%"
-  //       width="100%"
-  //       onClick={onOpen}
-  //     >
-  //       <Box
-  //         display="flex"
-  //         width="100px"
-  //         justifyContent="center"
-  //         alignItems="center"
-  //         color={pColor}
-  //         m="10px"
-  //       >
-  //         <Icon width="3.5rem" height="3.5rem" />
-  //       </Box>
-  //       <Box display="flex" flexDirection="column" lineHeight="1.5">
-  //         <Heading
-  //           m="0 0 5px"
-  //           fontSize="1.5rem"
-  //           color={pColor}
-  //           fontWeight="600"
-  //         >
-  //           {title}
-  //         </Heading>
-  //         <Text fontSize="0.875rem" color={textColor}>
-  //           {subtitle}
-  //         </Text>
-  //       </Box>
-  //       <CustomModal Component={form} isOpen={isOpen} onClose={onClose} />
-  //     </Box>
-  //   );
-  // }
-  // _____________________________
+  const router = useRouter();
   return (
     <Box
       display="flex"
-      bg={bgColor}
-      boxShadow={shadow}
+      bg={useColorModeValue('#fff', '#171923')}
+      boxShadow={useColorModeValue(
+        '1px 1px 3px 2px #0003',
+        '0px 0px 2px 1px #fff1'
+      )}
       cursor="pointer"
       padding="35px 20px"
       height="100%"
       width="100%"
+      onClick={
+        form ? () => onOpen() : () => router.push(`settings${linkTo || ''}`)
+      }
     >
       <Box
         display="flex"
         width="100px"
         justifyContent="center"
         alignItems="center"
-        color={pColor}
-        m="10px"
+        color={useColorModeValue('#4a8cca', '#4a8cca')}
+        // m="10px"
       >
-        <OrderIcon width="3.5rem" height="3.5rem" />
+        {Icon}
       </Box>
       <Box display="flex" flexDirection="column" lineHeight="1.5">
-        <Heading m="0 0 5px" fontSize="1.5rem" color={pColor} fontWeight="600">
+        <Heading
+          m="0 0 5px"
+          fontSize="1.5rem"
+          color={useColorModeValue('#4a8cca', '#4a8cca')}
+          fontWeight="600"
+        >
           {title}
         </Heading>
-        <Text fontSize="0.875rem" color={textColor}>
+        <Text
+          fontSize="0.875rem"
+          color={useColorModeValue('#666d92', '#bebebe')}
+        >
           {subtitle}
         </Text>
       </Box>
+      {form && <ModalForm Form={form} isOpen={isOpen} onClose={onClose} />}
     </Box>
   );
 };

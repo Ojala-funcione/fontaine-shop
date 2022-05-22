@@ -11,12 +11,11 @@ import { useAuth } from '@context/useAuth';
 
 import { useRouter } from 'next/router';
 
-const loginValidationSchema = () => {
-  return Yup.object().shape({
+const loginValidationSchema = () =>
+  Yup.object().shape({
     email: Yup.string().email('Invalid email').required('Email is Required!'),
     password: Yup.string().required('Password is Required!')
   });
-};
 interface Values {
   email: string;
   password: string;
@@ -48,9 +47,7 @@ const LoginForm: FC = () => {
         password: ''
       }}
       validationSchema={loginValidationSchema}
-      onSubmit={(values: Values) => {
-        return handleSubmit(values);
-      }}
+      onSubmit={(values: Values) => handleSubmit(values)}
     >
       <Form>
         <Box display="flex" flexDirection="column" gap="1rem">

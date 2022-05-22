@@ -5,8 +5,8 @@ import {
   Input,
   InputGroup,
   InputRightElement,
-  // Select,
-  // Textarea,
+  Select,
+  Textarea,
   useColorModeValue
 } from '@chakra-ui/react';
 import { ErrorMessage, FieldHookConfig, useField } from 'formik';
@@ -16,17 +16,22 @@ import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 interface ICustomFieldProps {
   label: string;
   name: string;
+  isRequired?: boolean;
   // type: string;
   // id: string;
   // autoComplete: string;
 }
 export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
   label,
+  isRequired,
   ...props
 }) => {
   const [field, meta] = useField(props);
   return (
-    <FormControl isInvalid={meta.touched && !!meta.error}>
+    <FormControl
+      isRequired={isRequired}
+      isInvalid={meta.touched && !!meta.error}
+    >
       <FormLabel
         id={`${props.id}-${props.name}-label`}
         htmlFor={`${props.id}-${props.name}-input`}
@@ -35,6 +40,7 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
       </FormLabel>
       <Input
         {...field}
+        placeholder={props.placeholder}
         id={`${props.id}-${props.name}-input`}
         bg={useColorModeValue('#EEEEEE', '#2d3748')}
         borderRadius={0}
@@ -54,11 +60,14 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
 
 export const CustomInputPassword: FC<
   FieldHookConfig<string> & ICustomFieldProps
-> = ({ label, ...props }) => {
+> = ({ label, isRequired, ...props }) => {
   const [show, setShow] = useState(false);
   const [field, meta] = useField(props);
   return (
-    <FormControl isInvalid={meta.touched && !!meta.error}>
+    <FormControl
+      isRequired={isRequired}
+      isInvalid={meta.touched && !!meta.error}
+    >
       <FormLabel
         id={`${props.id}-${props.name}-label`}
         htmlFor={`${props.id}-${props.name}-input`}
@@ -68,6 +77,7 @@ export const CustomInputPassword: FC<
       <InputGroup size="md">
         <Input
           {...field}
+          placeholder={props.placeholder}
           id={`${props.id}-${props.name}-input`}
           border={useColorModeValue('none', '1px solid #eeeeee')}
           bg={useColorModeValue('#EEEEEE', '#2d3748')}
@@ -83,9 +93,7 @@ export const CustomInputPassword: FC<
             fontSize="20px"
             color={useColorModeValue('#161f6a', '#bababa')}
             bg="transparent"
-            onClick={() => {
-              return setShow(!show);
-            }}
+            onClick={() => setShow(!show)}
             _focus={{ outline: 'none' }}
             _hover={{ bg: 'transparent', color: '#777' }}
             _active={{ bg: 'transparent', color: '#777' }}
@@ -98,57 +106,93 @@ export const CustomInputPassword: FC<
     </FormControl>
   );
 };
-// export const CustomTextarea: FC = ({ field, form: { touched, errors }, ...props }) => {
-//   return (
-//     <Textarea
-//       {...field}
-//       {...props}
-//       border={useColorModeValue('none', '1px solid #eeeeee')}
-//       bg={useColorModeValue('#EEEEEE', '#2d3748')}
-//       borderRadius={0}
-//       _placeholder={{
-//         color: useColorModeValue('#777777', '#aaaaaa'),
-//         fontWeight: 600,
-//       }}
-//       _focus={{ border: '2px solid #51a6f5' }}
-//     />
-//   );
-// };
+export const CustomTextarea: FC<
+  FieldHookConfig<string> & ICustomFieldProps
+> = ({ label, isRequired, ...props }) => {
+  const [field, meta] = useField(props);
+  return (
+    <FormControl
+      isRequired={isRequired}
+      isInvalid={meta.touched && !!meta.error}
+    >
+      <FormLabel
+        id={`${props.id}-${props.name}-label`}
+        htmlFor={`${props.id}-${props.name}-input`}
+      >
+        {label}
+      </FormLabel>
+      <Textarea
+        {...field}
+        placeholder={props.placeholder}
+        id={`${props.id}-${props.name}-input`}
+        bg={useColorModeValue('#EEEEEE', '#2d3748')}
+        borderRadius={0}
+        border={useColorModeValue('none', '1px solid #eeeeee')}
+        _placeholder={{
+          color: useColorModeValue('#777777', '#aaaaaa'),
+          fontWeight: 600
+        }}
+        _focus={{
+          border: '2px solid #51a6f5'
+        }}
+      />
+      <ErrorMessage name={props.name} component="div" className="error" />
+    </FormControl>
+  );
+};
+export const CustomSelect: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
+  label,
+  children,
+  isRequired,
+  ...props
+}) => {
+  const [field, meta] = useField(props);
+  return (
+    <FormControl
+      isRequired={isRequired}
+      isInvalid={meta.touched && !!meta.error}
+    >
+      <FormLabel
+        id={`${props.id}-${props.name}-label`}
+        htmlFor={`${props.id}-${props.name}-input`}
+      >
+        {label}
+      </FormLabel>
+      <Select
+        {...field}
+        placeholder={props.placeholder}
+        id={`${props.id}-${props.name}-input`}
+        bg={useColorModeValue('#EEEEEE', '#2d3748')}
+        borderRadius={0}
+        border={useColorModeValue('none', '1px solid #eeeeee')}
+        color={useColorModeValue('#161f6a', '#bababa')}
+        fontWeight={700}
+        _focus={{
+          border: '2px solid #51a6f5'
+        }}
+      >
+        {children}
+      </Select>
+      <ErrorMessage name={props.name} component="div" className="error" />
+    </FormControl>
+  );
+};
 
-// export const CustomSelect: FC = ({ field, form, children, ...props }) => {
-//   return (
-//     <Select
-//       {...field}
-//       {...props}
-//       border={useColorModeValue('none', '1px solid #eeeeee')}
-//       bg={useColorModeValue('#EEEEEE', '#2d3748')}
-//       color={useColorModeValue('#161f6a', '#bababa')}
-//       fontWeight={700}
-//       _focus={{ border: '2px solid #51a6f5' }}
-//       borderRadius={0}
-//       // border="none"
-//     >
-//       {children}
-//     </Select>
-//   );
-// };
 interface ICustomButtonProps {
   type: 'button' | 'submit' | 'reset' | undefined;
 }
 export const CustomButton: FC<ICustomButtonProps> = ({
   children,
   ...props
-}) => {
-  return (
-    <Button
-      colorScheme="blue"
-      borderRadius={3}
-      width="100%"
-      style={{ marginTop: 15 }}
-      _focus={{ outline: 'none' }}
-      {...props}
-    >
-      {children}
-    </Button>
-  );
-};
+}) => (
+  <Button
+    colorScheme="blue"
+    borderRadius={3}
+    width="100%"
+    style={{ marginTop: 15 }}
+    _focus={{ outline: 'none' }}
+    {...props}
+  >
+    {children}
+  </Button>
+);

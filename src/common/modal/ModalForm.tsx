@@ -5,22 +5,27 @@ import {
   ModalBody,
   ModalCloseButton
 } from '@chakra-ui/react';
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+// import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { FC } from 'react';
 
+interface FormModalProps {
+  onClose: () => void;
+}
 interface ModalProps {
-  Component: ReactJSXElement;
+  Form: FC<FormModalProps>;
+  // Form: FC;
+  // Form: ReactJSXElement;
   isOpen: boolean;
   onClose: () => void;
-  closeButton: boolean;
+  closeButton?: boolean;
 }
 
-const CustomModal: FC<ModalProps> = ({
+const ModalForm: FC<ModalProps> = ({
   children,
-  Component,
+  Form,
   isOpen,
   onClose,
-  closeButton = true,
+  closeButton,
   ...props
 }) => (
   <Modal
@@ -47,10 +52,14 @@ const CustomModal: FC<ModalProps> = ({
         />
       )}
       <ModalBody>
-        {Component && <Component onClose={onClose} />}
-        {children}
+        <Form onClose={onClose} />
+        {/* <Form onClose={onClose} /> */}
+        {/* {children} */}
       </ModalBody>
     </ModalContent>
   </Modal>
 );
-export default CustomModal;
+ModalForm.defaultProps = {
+  closeButton: true
+};
+export default ModalForm;

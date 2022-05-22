@@ -21,6 +21,9 @@ body::-webkit-scrollbar-thumb {
   border-radius: 20px;
   border: 2px solid rgb(116, 116, 116);
 }
+::-webkit-scrollbar {
+  width: 0px;
+}
 
 a {
   color: inherit;

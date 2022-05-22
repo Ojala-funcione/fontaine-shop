@@ -46,7 +46,7 @@ const sidebarMenus = [
   },
   {
     name: 'Cupones',
-    path: '/siteSettings',
+    path: '/coupons',
     icon: <CouponIcon />
   },
   {
