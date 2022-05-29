@@ -2,7 +2,13 @@
 import { Box, Button, Heading, HStack, Text } from '@chakra-ui/react';
 import { HiOutlineTrash } from 'react-icons/hi';
 
-const DeleleItemMessage = ({ onClose, onClickDelete }) => (
+const DeleleItemMessage = ({
+  onClose,
+  onClickDelete
+}: {
+  onClose: () => void;
+  onClickDelete: () => void;
+}) => (
   <Box
     display="flex"
     gap="0.75rem"
@@ -14,7 +20,7 @@ const DeleleItemMessage = ({ onClose, onClickDelete }) => (
     h="100%"
   >
     <Box color="#4a8cca" mt={2}>
-      <HiOutlineTrash height="2.5rem" width="2.5rem" />
+      <HiOutlineTrash fontSize="2.5rem" />
     </Box>
     <Heading size="md">Delete</Heading>
     <Text fontSize="1rem">¿Está seguro que desea eliminar?</Text>

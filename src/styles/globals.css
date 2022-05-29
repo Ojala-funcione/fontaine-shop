@@ -139,3 +139,17 @@ a {
   background-color: #11121a;
   border-radius: 50px 0 0 50px;
 }
+
+
+/* //_________animaciones__________ */
+
+@keyframes animation{
+  0% {
+    transform: translateX(0px);
+      opacity: 0.8;
+  }
+  80% {
+      transform: translateX(-50px);
+      opacity: 0;
+  }
+}

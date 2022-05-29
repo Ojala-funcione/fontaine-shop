@@ -4,8 +4,18 @@ import CustomModal from '@common/CustomModal/CustomModal';
 import DeleleItemMessage from '@components/DeleleItemMessage';
 import { HiOutlineTrash, HiEye } from 'react-icons/hi';
 import { FiEdit } from 'react-icons/fi';
+import { FC } from 'react';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 
-export const IconButtonBase = ({ icon, ...props }) => (
+interface IIconButtonBase {
+  icon: ReactJSXElement;
+  onClick: any;
+}
+export const IconButtonBase: FC<IIconButtonBase> = ({
+  onClick,
+  icon,
+  ...props
+}) => (
   <Button
     _focus={{
       outline: 'none',
@@ -24,13 +34,17 @@ export const IconButtonBase = ({ icon, ...props }) => (
     p={0}
     m={0}
     bg="transparent"
+    onClick={onClick}
     {...props}
   >
     {icon}
   </Button>
 );
-
-export const TableButtonDelete = ({ onClick, itemId }) => {
+interface ITBD {
+  onClick: any;
+  itemId: any;
+}
+export const TableButtonDelete: FC<ITBD> = ({ onClick, itemId }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -38,7 +52,7 @@ export const TableButtonDelete = ({ onClick, itemId }) => {
         onClick={onOpen}
         _hover={{ color: '#ff3636' }}
         color={useColorModeValue('#ed143daa', '#ed143ddd')}
-        icon={<HiOutlineTrash height="1.3rem" />}
+        icon={<HiOutlineTrash fontSize="1.3rem" />}
       />
       <CustomModal
         size="xs"
@@ -55,7 +69,14 @@ export const TableButtonDelete = ({ onClick, itemId }) => {
     </>
   );
 };
-export const TableButtonEdit = ({ Component, itemId, size }) => {
+interface ITBV {
+  // onClick: any;
+  itemId: any;
+  Component: any;
+  size: any;
+}
+
+export const TableButtonEdit: FC<ITBV> = ({ Component, itemId, size }) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -64,7 +85,7 @@ export const TableButtonEdit = ({ Component, itemId, size }) => {
         _hover={{ color: '#168af7' }}
         // _hover={{ color: "#2495ff" }}
         color="#51a6f5"
-        icon={<FiEdit height="1.3rem" />}
+        icon={<FiEdit fontSize="1.3rem" />}
       />
       <CustomDrawer isOpen={isOpen} onClose={onClose} size={size || 'xl'}>
         <Component
@@ -76,7 +97,13 @@ export const TableButtonEdit = ({ Component, itemId, size }) => {
     </>
   );
 };
-export const TableButtonView = ({ onClick, itemId, Component, size }) => {
+
+export const TableButtonView: FC<ITBV> = ({
+  // onClick,
+  itemId,
+  Component,
+  size
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
@@ -85,7 +112,7 @@ export const TableButtonView = ({ onClick, itemId, Component, size }) => {
         _hover={{ color: '#168af7' }}
         color="#51a6f5"
         height="1.3rem"
-        icon={<HiEye height="1.3rem" />}
+        icon={<HiEye fontSize="1.3rem" />}
       />
       <CustomModal
         size={size || '2xl'}

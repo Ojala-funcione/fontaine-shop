@@ -9,10 +9,12 @@ import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 import { FC } from 'react';
 
 interface ModalProps {
-  Component: ReactJSXElement;
+  Component?: ReactJSXElement | undefined;
   isOpen: boolean;
+  isCentered?: boolean;
   onClose: () => void;
-  closeButton: boolean;
+  closeButton?: boolean;
+  size?: string;
 }
 
 const CustomModal: FC<ModalProps> = ({
@@ -20,13 +22,16 @@ const CustomModal: FC<ModalProps> = ({
   Component,
   isOpen,
   onClose,
+  isCentered,
   closeButton = true,
+  size,
   ...props
 }) => (
   <Modal
     isOpen={isOpen}
     onClose={onClose}
-    size="2xl"
+    size={size}
+    isCentered={isCentered}
     scrollBehavior="inside"
     {...props}
   >
@@ -47,10 +52,16 @@ const CustomModal: FC<ModalProps> = ({
         />
       )}
       <ModalBody>
-        {Component && <Component onClose={onClose} />}
+        {Component && Component}
         {children}
       </ModalBody>
     </ModalContent>
   </Modal>
 );
+CustomModal.defaultProps = {
+  size: '2xl',
+  isCentered: false,
+  closeButton: true,
+  Component: undefined
+};
 export default CustomModal;

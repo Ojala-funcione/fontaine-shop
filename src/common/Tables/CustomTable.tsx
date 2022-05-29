@@ -22,7 +22,7 @@ import {
   useBlockLayout,
   useFlexLayout
 } from 'react-table';
-import { useMemo } from 'react';
+import { FC, useMemo } from 'react';
 
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 import {
@@ -31,8 +31,13 @@ import {
   HiOutlineChevronDoubleRight,
   HiOutlineChevronRight
 } from 'react-icons/hi';
+import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
 
-const HeaderIcon = ({ icon }) => (
+interface IHeaderIconProps {
+  icon: ReactJSXElement;
+}
+
+const HeaderIcon: FC<IHeaderIconProps> = ({ icon }) => (
   <Text
     as="span"
     _hover={{
@@ -48,7 +53,7 @@ const HeaderIcon = ({ icon }) => (
   </Text>
 );
 
-const ThCustom = ({ children, ...props }) => (
+const ThCustom: FC = ({ children, ...props }) => (
   <Th
     minW="fit-content"
     h="fit-content"
@@ -82,7 +87,7 @@ const ThCustom = ({ children, ...props }) => (
     </Box>
   </Th>
 );
-const TdCustom = ({ children, ...props }) => (
+const TdCustom: FC = ({ children, ...props }) => (
   <Td
     borderColor={useColorModeValue('#dee2e6', '#dee2e6')}
     minW="fit-content"
@@ -98,7 +103,7 @@ const TdCustom = ({ children, ...props }) => (
     {children}
   </Td>
 );
-const PaginationButton = ({ children, ...props }) => (
+const PaginationButton: FC = ({ children, ...props }) => (
   <IconButton
     aria-label=""
     p="0.2rem"
@@ -121,7 +126,24 @@ const PaginationButton = ({ children, ...props }) => (
   </IconButton>
 );
 
-const CustomTable = ({ data = [], columnsConfig, ...props }) => {
+interface ColumnConfig {
+  Header: string;
+  accessor: string;
+  Cell?: () => ReactJSXElement;
+  minWidth?: number;
+  maxWidth?: number;
+  sort?: boolean;
+}
+interface ITableProps {
+  columnsConfig: ColumnConfig[];
+  data: any[];
+}
+const CustomTable: FC<ITableProps> = ({
+  data = [],
+  columnsConfig,
+  ...props
+}) => {
+  const bgRowHoverColor = useColorModeValue('#e9ecef66', 'gray.700');
   const columns = useMemo(() => [...columnsConfig], [columnsConfig]);
   const tableInstance = useTable(
     { columns, data, initialState: { pageIndex: 0, pageSize: 10 } },
@@ -130,7 +152,6 @@ const CustomTable = ({ data = [], columnsConfig, ...props }) => {
     usePagination,
     useFlexLayout
   );
-  const bgRowHoverColor = useColorModeValue('#e9ecef66', 'gray.700');
   const {
     getTableProps,
     getTableBodyProps,
@@ -247,14 +268,14 @@ const CustomTable = ({ data = [], columnsConfig, ...props }) => {
           disabled={!canPreviousPage}
           display={!canPreviousPage && 'none'}
         >
-          <HiOutlineChevronDoubleLeft size={16} weight="bold" />
+          <HiOutlineChevronDoubleLeft fontSize="1rem" />
         </PaginationButton>
         <PaginationButton
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
           display={!canPreviousPage && 'none'}
         >
-          <HiOutlineChevronLeft size={16} weight="bold" />
+          <HiOutlineChevronLeft fontSize="1rem" />
         </PaginationButton>
         <Text as="span" fontWeight={600} px="0.5rem">
           {`${pageIndex + 1} de ${pageOptions.length}`}
@@ -264,18 +285,17 @@ const CustomTable = ({ data = [], columnsConfig, ...props }) => {
           disabled={!canNextPage}
           display={!canNextPage && 'none'}
         >
-          <HiOutlineChevronRight size={16} weight="bold" />
+          <HiOutlineChevronRight fontSize="1rem" />
         </PaginationButton>
         <PaginationButton
           onClick={() => gotoPage(pageCount - 1)}
           disabled={!canNextPage}
           display={!canNextPage && 'none'}
         >
-          <HiOutlineChevronDoubleRight size={16} weight="bold" />
+          <HiOutlineChevronDoubleRight fontSize="1rem" />
         </PaginationButton>
       </Box>
     </Box>
   );
 };
-
 export default CustomTable;
