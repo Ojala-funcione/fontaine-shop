@@ -11,7 +11,6 @@ const Dot = ({ style }: { style: any }) => (
     borderRadius="50%"
     margin="0 2px 0 2px"
     animation="animation 1.5s linear infinite"
-    animationDelay=".1s"
     style={style}
   />
 );
