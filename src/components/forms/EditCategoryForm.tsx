@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 // import { useDb } from '../../db/DbProvider';
 
-const EditCategoryForm = ({ itemId }) => {
+const EditCategoryForm = ({ itemId }: { itemId: string }) => {
   //   const {
   //     getOneCategory,
   //     updateCategory,
@@ -11,7 +11,7 @@ const EditCategoryForm = ({ itemId }) => {
   //   } = useDb();
   const [category, setCategory] = useState();
 
-  console.log(category, 'soy category');
+  // console.log(category, 'soy category');
 
   //   useEffect(() => {
   //     async function getData(itemId) {

@@ -12,10 +12,10 @@ const DefaultLayout: React.FC = ({ children }) => {
   const dispatch = useAppDispatch();
   // const { pathname } = useRouter();
   // // const isDashboard = pathname.startsWith('/adminDashboard');
-  // useEffect(() => {
-  //   dispatch(getAllProducts());
-  //   dispatch(getAllCategories());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllProducts());
+    dispatch(getAllCategories());
+  }, [dispatch]);
   return (
     <Box
       display="flex"

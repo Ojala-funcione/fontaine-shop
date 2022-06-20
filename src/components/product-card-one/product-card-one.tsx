@@ -23,8 +23,6 @@ type ProductCardProps = {
   // deviceType?: any;
 };
 
-const ProductCard: React.FC<ProductCardProps> = () => {
-  return <Box>product card</Box>;
-};
+const ProductCard: React.FC<ProductCardProps> = () => <Box>product card</Box>;
 
 export default ProductCard;

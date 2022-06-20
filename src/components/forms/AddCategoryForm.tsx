@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 // eslint-disable-next-line object-curly-newline
-import { Box, FormControl, Heading, Stack } from '@chakra-ui/react';
+import { Box, Button, FormControl, Heading, Stack } from '@chakra-ui/react';
 import { Formik, Form, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
 import {
@@ -36,7 +36,7 @@ const AddCategoryForm = ({ onClose }: { onClose: () => void }) => {
     { name: 'cat3', id: 's3' }
   ];
   const handleSubmit = async (values: any) => {
-    console.log('Submit', values);
+    // console.log('Submit', values);
   };
   return (
     <Box bg="transparent" p="20px">
@@ -66,7 +66,7 @@ const AddCategoryForm = ({ onClose }: { onClose: () => void }) => {
             >
               {categories.length &&
                 categories?.map((cat) => (
-                  <option name={cat.name} value={cat.name} key={cat.id}>
+                  <option id={cat.id} value={cat.name} key={cat.id}>
                     {cat.name}
                   </option>
                 ))}
@@ -81,6 +81,7 @@ const AddCategoryForm = ({ onClose }: { onClose: () => void }) => {
           </Stack>
           {/* _____________________ */}
           <Stack mt={4} spacing={2} direction="row" align="space-between">
+            <Button> a </Button>
             <CustomButton
               type="reset"
               variant="outline"

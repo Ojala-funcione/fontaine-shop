@@ -74,10 +74,10 @@ const BannerSlider = () => {
             </Box>
           ))}
         </Flex>
-        <Text {...arrowStyles} left="0" onClick={prevSlide}>
+        <Text sx={{ ...arrowStyles }} left="0" onClick={prevSlide}>
           &#10094;
         </Text>
-        <Text {...arrowStyles} right="0" onClick={nextSlide}>
+        <Text sx={{ ...arrowStyles }} right="0" onClick={nextSlide}>
           &#10095;
         </Text>
       </Flex>

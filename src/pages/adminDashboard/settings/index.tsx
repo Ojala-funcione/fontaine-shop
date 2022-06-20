@@ -1,4 +1,5 @@
-import React from 'react';
+/* eslint-disable no-unused-vars */
+import React, { ReactElement } from 'react';
 import { Box } from '@chakra-ui/react';
 import DashboardLayout from '@components/Layout/DashboardLayout';
 import SettingsCard, { ICardData } from '@components/Cards/SettingsCard';
@@ -11,6 +12,7 @@ import Members from '@assets/icons/Members';
 import AddCategoryForm from '@components/forms/AddCategoryForm';
 import StaffMemberForm from '@components/forms/StaffMemberForm';
 import AddProductForm from '@components/forms/AddProductForm';
+import { NextPageWithLayout } from 'pages/_app';
 
 const cards: ICardData[] = [
   {
@@ -50,7 +52,7 @@ const cards: ICardData[] = [
   }
 ];
 
-const Settings = () => (
+const Settings: NextPageWithLayout = () => (
   <Box
     display="grid"
     gridTemplateColumns={{ base: 'auto', md: '1fr 1fr' }}
@@ -71,5 +73,7 @@ const Settings = () => (
     ))}
   </Box>
 );
-Settings.Layout = DashboardLayout;
+Settings.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
 export default Settings;

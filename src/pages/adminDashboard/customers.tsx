@@ -1,19 +1,21 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 import DashboardLayout from '@components/Layout/DashboardLayout';
-import { CellActions, CellAvatar } from '@common/Tables/CustomTable/TableCell';
+// import { CellActions, CellAvatar } from '@common/Tables/CustomTable/TableCell';
 // eslint-disable-next-line prettier/prettier
 import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
 import { useAppDispatch, useAppSelector } from '@Redux/hooks';
-import CustomTable from '@common/Tables/CustomTable';
+// import CustomTable from '@common/Tables/CustomTable';
 import InLineLoader from '@common/InlineLoader/InlineLoader';
+import { NextPageWithLayout } from 'pages/_app';
 
-const Customers = () => {
+const Customers: NextPageWithLayout = () => {
   const columns = [
     {
       Header: 'Avatar',
-      Cell: ({ row }: { row: any }) => <CellAvatar data={row.original.email} />,
+      // Cell: ({ row }: { row: any }) => <CellAvatar data={row.original.email} />,
       minWidth: 80,
       maxWidth: 100
     },
@@ -38,15 +40,15 @@ const Customers = () => {
     {
       Header: 'Acciones',
       accessor: 'id',
-      Cell: ({ value }: { value: any }) => (
-        <CellActions
-          //   view={{
-          //     Component: CustomerDetail,
-          //     size: '2xl',
-          //   }}
-          data={value}
-        />
-      ),
+      // Cell: ({ value }: { value: any }) => (
+      //   <CellActions
+      //     //   view={{
+      //     //     Component: CustomerDetail,
+      //     //     size: '2xl',
+      //     //   }}
+      //     data={value}
+      //   />
+      // ),
       minWidth: 80,
       maxWidth: 120
     }
@@ -62,12 +64,15 @@ const Customers = () => {
     <SectionDashboard>
       <SectionDashboardHeader title="Categorias" />
       {customers.length ? (
-        <CustomTable data={customers} columnsConfig={columns} />
+        // <CustomTable data={customers} columnsConfig={columns} />
+        <InLineLoader />
       ) : (
         <InLineLoader />
       )}
     </SectionDashboard>
   );
 };
-Customers.Layout = DashboardLayout;
+Customers.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
 export default Customers;

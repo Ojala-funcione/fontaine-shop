@@ -17,12 +17,12 @@ import React, { useEffect } from 'react';
 import { IoArrowBack } from 'react-icons/io5';
 
 const DashboardLayout: React.FC = ({ children }) => {
-  // const dispatch = useAppDispatch();
+  const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  // useEffect(() => {
-  //   dispatch(getAllProducts());
-  //   dispatch(getAllCategories());
-  // }, [dispatch]);
+  useEffect(() => {
+    dispatch(getAllProducts());
+    dispatch(getAllCategories());
+  }, [dispatch]);
   return (
     <Box
       // bg={useColorModeValue('gray.100', 'gray.800')}

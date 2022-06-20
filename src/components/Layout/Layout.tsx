@@ -4,13 +4,13 @@ import Header from '@components/header/header';
 import getAllCategories from '@Redux/categories/asyncActions';
 import { useAppDispatch } from '@Redux/hooks';
 import { getAllProducts } from '@Redux/products/asyncActions';
-import { useRouter } from 'next/router';
+// import { useRouter } from 'next/router';
 import React, { useEffect } from 'react';
 
 const Layout: React.FC = ({ children }) => {
   const dispatch = useAppDispatch();
-  const { pathname } = useRouter();
-  const isDashboard = pathname.startsWith('/adminDashboard');
+  // const { pathname } = useRouter();
+  // const isDashboard = pathname.startsWith('/adminDashboard');
   useEffect(() => {
     dispatch(getAllProducts());
     dispatch(getAllCategories());
@@ -23,7 +23,8 @@ const Layout: React.FC = ({ children }) => {
     >
       <Header />
       {children}
-      <Footer display={isDashboard ? 'none' : ''} />
+      {/* <Footer display={isDashboard ? 'none' : ''} /> */}
+      <Footer />
     </Box>
   );
 };

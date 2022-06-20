@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useEffect, useState, useCallback, FC } from 'react';
 import { useDropzone } from 'react-dropzone';
 import { useField } from 'formik';
@@ -15,7 +16,7 @@ import { FaCloudUploadAlt } from 'react-icons/fa';
 
 interface IThumbProps {
   file: any;
-  onDelete: () => void;
+  onDelete: (name: string) => void;
 }
 
 const ThumbUpload: FC<IThumbProps> = ({ file, onDelete }) => (
@@ -55,7 +56,7 @@ interface IUploaderProps {
 }
 const Uploader: FC<IUploaderProps> = ({ name, maxFiles = 2 }) => {
   const [_, __, helpers] = useField(name);
-  const [files, setFiles] = useState([]);
+  const [files, setFiles] = useState<any[]>([]);
   const toast = useToast();
   // #2d3748
   const onDrop = useCallback(
@@ -75,7 +76,7 @@ const Uploader: FC<IUploaderProps> = ({ name, maxFiles = 2 }) => {
           isClosable: true
         });
       } else {
-        const mappedAccepted = acceptedFiles.map((file) => ({
+        const mappedAccepted = acceptedFiles.map((file: any) => ({
           file,
           errors: [],
           preview: URL.createObjectURL(file)
@@ -86,14 +87,15 @@ const Uploader: FC<IUploaderProps> = ({ name, maxFiles = 2 }) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     [files]
   );
+
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: 'image/*',
+    accept: { image: ['image/*'] },
     maxFiles,
     // maxSize: 500 * 1024,
     multiple: false
   });
-  const onDelete = (fileName) => {
+  const onDelete = (fileName: string) => {
     const filteredFiles = files.filter((file) => file.file.name !== fileName);
     setFiles(filteredFiles);
   };
@@ -102,6 +104,7 @@ const Uploader: FC<IUploaderProps> = ({ name, maxFiles = 2 }) => {
     // Make sure to revoke the data uris to avoid memory leaks
     files.forEach((file) => URL.revokeObjectURL(file.preview));
     helpers.setValue(files.map((file) => file.file));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [files]);
 
   return (
@@ -123,7 +126,7 @@ const Uploader: FC<IUploaderProps> = ({ name, maxFiles = 2 }) => {
         // className="uploader__container"
         {...getRootProps()}
       >
-        <Input {...getInputProps()} name={name} />
+        <input {...getInputProps()} name={name} />
         <FaCloudUploadAlt fontSize="2.5rem" color="#e2e8f0" />
         <Text
           as="span"

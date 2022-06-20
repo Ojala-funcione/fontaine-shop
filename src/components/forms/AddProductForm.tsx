@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Box,
   FormControl,
@@ -58,8 +59,8 @@ const AddProductForm = ({ onClose }: { onClose: () => void }) => {
   // } = useDb();
   // const navigate = useNavigate();
 
-  const handleSubmit = async (values) => {
-    const gallery = [];
+  const handleSubmit = async (values: any) => {
+    const gallery: any[] = [];
     try {
       // for (const item of values.gallery) {
       //   const url = await onUpload('products/', item);
@@ -81,9 +82,9 @@ const AddProductForm = ({ onClose }: { onClose: () => void }) => {
       //   : GenericToastError('Error Al Crear.', 'Intenta nuevamente mas tarde');
       // onClose && onClose();
       // navigate('/products');
-      console.log(values);
+      // console.log(values);
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       // GenericToastError('Error Al Crear.', 'Intenta nuevamente mas tarde');
     }
   };

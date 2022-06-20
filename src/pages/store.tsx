@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import React from 'react';
+import React, { ReactElement } from 'react';
 import { Box, useDisclosure } from '@chakra-ui/react';
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
 import HeroShop from '@components/ShopComponents/HeroShop/HeroShop';
@@ -10,14 +10,15 @@ import CartFloatButton from '@components/Cart/CartFloatButton';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
 import CartProductList from '@components/Cart/CartProductList';
 import ShopLayout from '@components/Layout/ShopLayout';
+import { NextPageWithLayout } from './_app';
 // import { IProduct } from '@Redux/Interfaces';
 
-const Store = () => {
+const Store: NextPageWithLayout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const products = useAppSelector((state) => state.products.listedProducts);
   // const cart = useAppSelector((state) => state.products.cartProducts);
   // const quantityCart = useAppSelector((state) => state.products.quantityCart);
-  // // console.log('cart', quantityCart, cart);
+  // console.log('products', products);
   return (
     <>
       <ScrollToTopButton />
@@ -45,5 +46,7 @@ const Store = () => {
     </>
   );
 };
-Store.Layout = ShopLayout;
+Store.getLayout = function getLayout(page: ReactElement) {
+  return <ShopLayout>{page}</ShopLayout>;
+};
 export default Store;

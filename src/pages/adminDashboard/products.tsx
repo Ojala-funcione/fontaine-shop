@@ -1,30 +1,32 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import DashboardLayout from '@components/Layout/DashboardLayout';
 import { useAppDispatch, useAppSelector } from '@Redux/hooks';
 import { getAllProducts } from '@Redux/products/asyncActions';
 // eslint-disable-next-line prettier/prettier
 import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
 import InLineLoader from '@common/InlineLoader/InlineLoader';
-import CustomTable from '@common/Tables/CustomTable';
-import { CellActions, CellImage } from '@common/Tables/CustomTable/TableCell';
+// import CustomTable from '@common/Tables/CustomTable';
+// import { CellActions, CellImage } from '@common/Tables/CustomTable/TableCell';
 import EditProductForm from '@components/forms/EditProductForm';
 import { Text } from '@chakra-ui/react';
+import { NextPageWithLayout } from 'pages/_app';
 
-const Products = () => {
+const Products: NextPageWithLayout = () => {
   const handleDelete = async (id: string, onClose: () => void) => {
     try {
-      console.log('borrado');
+      // console.log('borrado');
       onClose();
     } catch (error) {
-      console.error(error);
+      // console.error(error);
     }
   };
   const columns = [
     {
       Header: 'Imagen',
       accessor: 'image',
-      Cell: ({ value }: { value: any }) => <CellImage data={value} />,
+      // Cell: ({ value }: { value: any }) => <CellImage data={value} />,
       minWidth: 80,
       maxWidth: 100
     },
@@ -88,20 +90,20 @@ const Products = () => {
     {
       Header: 'Acciones',
       accessor: 'id',
-      Cell: ({ value }: { value: any }) => (
-        <CellActions
-          edit={{
-            Component: EditProductForm,
-            size: 'lg'
-          }}
-          onClickDelete={handleDelete}
-          //   view={{
-          //     Component: ProductDetail,
-          //     size: '6xl',
-          //   }}
-          data={value}
-        />
-      ),
+      // Cell: ({ value }: { value: any }) => (
+      //   <CellActions
+      //     edit={{
+      //       Component: EditProductForm,
+      //       size: 'lg'
+      //     }}
+      //     onClickDelete={handleDelete}
+      //     //   view={{
+      //     //     Component: ProductDetail,
+      //     //     size: '6xl',
+      //     //   }}
+      //     data={value}
+      //   />
+      // ),
       minWidth: 100,
       maxWidth: 150
     }
@@ -116,12 +118,15 @@ const Products = () => {
     <SectionDashboard>
       <SectionDashboardHeader title="Productos" />
       {products.length ? (
-        <CustomTable data={products} columnsConfig={columns} />
+        // <CustomTable data={products} columnsConfig={columns} />
+        <InLineLoader />
       ) : (
         <InLineLoader />
       )}
     </SectionDashboard>
   );
 };
-Products.Layout = DashboardLayout;
+Products.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
 export default Products;

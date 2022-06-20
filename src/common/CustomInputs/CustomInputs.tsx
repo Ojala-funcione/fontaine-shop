@@ -1,5 +1,7 @@
+/* eslint-disable react/require-default-props */
 import {
   Button,
+  ButtonProps,
   FormControl,
   FormLabel,
   Input,
@@ -181,7 +183,7 @@ export const CustomSelect: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
 interface ICustomButtonProps {
   type: 'button' | 'submit' | 'reset' | undefined;
 }
-export const CustomButton: FC<ICustomButtonProps> = ({
+export const CustomButton: FC<ICustomButtonProps & ButtonProps> = ({
   children,
   ...props
 }) => (

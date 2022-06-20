@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import {
   Container,
   SimpleGrid,
@@ -17,6 +18,7 @@ import { ReactElement } from 'react';
 interface FeatureProps {
   text: string;
   iconBg: string;
+  // eslint-disable-next-line react/require-default-props
   icon?: ReactElement;
 }
 
@@ -61,11 +63,11 @@ const WhoWeAre = () => (
         </Text>
         <Stack
           spacing={4}
-          divider={
+          divider={(
             <StackDivider
               borderColor={useColorModeValue('gray.100', 'gray.700')}
             />
-          }
+          )}
         >
           <Feature
             icon={<Icon as={IoCardOutline} color="yellow.500" w={5} h={5} />}

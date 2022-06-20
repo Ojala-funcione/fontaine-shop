@@ -60,9 +60,7 @@ const RegisterForm: FC = () => {
         password: ''
       }}
       validationSchema={validationSchema}
-      onSubmit={(values: IValues) => {
-        return handleSubmit(values);
-      }}
+      onSubmit={(values: IValues) => handleSubmit(values)}
     >
       <Form>
         <Box display="flex" flexDirection="column" gap="1rem">
