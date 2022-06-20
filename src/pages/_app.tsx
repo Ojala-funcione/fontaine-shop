@@ -24,7 +24,10 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <Provider store={store}>
       <ChakraProvider>
-        <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
+        {/* <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider> */}
+        <AuthProvider>
+          <Component {...pageProps} />
+        </AuthProvider>
       </ChakraProvider>
     </Provider>
   );
