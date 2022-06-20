@@ -25,9 +25,6 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
     <Provider store={store}>
       <ChakraProvider>
         <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
-        {/* <AuthProvider>
-          <Component {...pageProps} />
-        </AuthProvider> */}
       </ChakraProvider>
     </Provider>
   );
