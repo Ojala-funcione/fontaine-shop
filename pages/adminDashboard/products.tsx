@@ -11,7 +11,7 @@ import InLineLoader from '@common/InlineLoader/InlineLoader';
 // import { CellActions, CellImage } from '@common/Tables/CustomTable/TableCell';
 import EditProductForm from '@components/forms/EditProductForm';
 import { Text } from '@chakra-ui/react';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '../_app';
 
 const Products: NextPageWithLayout = () => {
   const handleDelete = async (id: string, onClose: () => void) => {

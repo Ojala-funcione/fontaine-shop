@@ -7,7 +7,7 @@ import SectionDashboard, { SectionDashboardHeader } from '@common/sections/Secti
 import { useAppDispatch, useAppSelector } from '@Redux/hooks';
 import getAllCategories from '@Redux/categories/asyncActions';
 import InLineLoader from '@common/InlineLoader/InlineLoader';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '../../_app';
 
 const Staff: NextPageWithLayout = () => {
   const handleDelete = async (id: string, onClose: () => void) => {

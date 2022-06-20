@@ -9,7 +9,7 @@ import SectionDashboard, { SectionDashboardHeader } from '@common/sections/Secti
 import { useAppDispatch, useAppSelector } from '@Redux/hooks';
 // import CustomTable from '@common/Tables/CustomTable';
 import InLineLoader from '@common/InlineLoader/InlineLoader';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '../_app';
 
 const Customers: NextPageWithLayout = () => {
   const columns = [

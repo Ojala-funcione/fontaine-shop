@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import '../styles/globals.css';
+import '../src/styles/globals.css';
 import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AuthProvider } from '@context/useAuth';
@@ -24,10 +24,10 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
   return (
     <Provider store={store}>
       <ChakraProvider>
-        {/* <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider> */}
-        <AuthProvider>
+        <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
+        {/* <AuthProvider>
           <Component {...pageProps} />
-        </AuthProvider>
+        </AuthProvider> */}
       </ChakraProvider>
     </Provider>
   );

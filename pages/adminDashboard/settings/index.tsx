@@ -12,7 +12,7 @@ import Members from '@assets/icons/Members';
 import AddCategoryForm from '@components/forms/AddCategoryForm';
 import StaffMemberForm from '@components/forms/StaffMemberForm';
 import AddProductForm from '@components/forms/AddProductForm';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '../../_app';
 
 const cards: ICardData[] = [
   {

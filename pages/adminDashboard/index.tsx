@@ -9,7 +9,7 @@ import {
 import React, { useState, useEffect, ReactElement } from 'react';
 import DashboardLayout from '@components/Layout/DashboardLayout';
 import DashboardSection from '@common/DashboardSection/DashboardSection';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '../_app';
 
 const AdminDashboard: NextPageWithLayout = () => {
   //   const { getAllProducts, getAllCustomers } = useDb();

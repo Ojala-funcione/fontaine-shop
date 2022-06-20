@@ -12,7 +12,7 @@ import getAllCategories from '@Redux/categories/asyncActions';
 // eslint-disable-next-line prettier/prettier
 import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
 import InLineLoader from '@common/InlineLoader/InlineLoader';
-import { NextPageWithLayout } from 'pages/_app';
+import { NextPageWithLayout } from '../_app';
 
 const Categories: NextPageWithLayout = () => {
   const handleDelete = async (id: string, onClose: () => void) => {
