@@ -173,12 +173,12 @@ const AddProductForm = ({ onClose }: { onClose: () => void }) => {
 
             <FormControl>
               <AddVariant name="variants" />
-              <ErrorMessage name="variants" component="div" className="error" />
+              {/* <ErrorMessage name="variants" component="div" className="error" /> */}
             </FormControl>
             {/* _____________________ */}
             {/* <FormControl isRequired> */}
             <Uploader name="gallery" maxFiles={5} />
-            <ErrorMessage name="gallery" component="div" className="error" />
+            {/* <ErrorMessage name="gallery" component="div" className="error" /> */}
             {/* </FormControl> */}
             {/* _____________________ */}
             <Stack mt={4} spacing={2} direction="row" align="space-between">

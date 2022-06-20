@@ -76,7 +76,7 @@ const AddCategoryForm = ({ onClose }: { onClose: () => void }) => {
           <Stack mt={6}>
             <FormControl isRequired>
               <Uploader name="image" maxFiles={1} />
-              <ErrorMessage name="image" component="div" className="error" />
+              {/* <ErrorMessage name="image" component="div" className="error" /> */}
             </FormControl>
           </Stack>
           {/* _____________________ */}
