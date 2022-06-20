@@ -11,7 +11,8 @@ import {
   Textarea,
   useColorModeValue
 } from '@chakra-ui/react';
-import { ErrorMessage, FieldHookConfig, useField } from 'formik';
+// import { ErrorMessage, FieldHookConfig, useField } from 'formik';
+import { FieldHookConfig, useField } from 'formik';
 import { useState, FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
@@ -56,11 +57,11 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
         }}
       />
       {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
-      <ErrorMessage
+      {/* <ErrorMessage
         name={props.name}
         // component="div" className="error"
         render={(msg) => <div className="error">{msg}</div>}
-      />
+      /> */}
     </FormControl>
   );
 };
@@ -110,11 +111,11 @@ export const CustomInputPassword: FC<
         </InputRightElement>
       </InputGroup>
       {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
-      <ErrorMessage
+      {/* <ErrorMessage
         name={props.name}
         render={(msg) => <div className="error">{msg}</div>}
         // component="div" className="error"
-      />
+      /> */}
     </FormControl>
   );
 };
@@ -148,11 +149,11 @@ export const CustomTextarea: FC<
           border: '2px solid #51a6f5'
         }}
       />
-      <ErrorMessage
+      {/* <ErrorMessage
         name={props.name}
         // component="div" className="error"
         render={(msg) => <div className="error">{msg}</div>}
-      />
+      /> */}
     </FormControl>
   );
 };
@@ -190,11 +191,11 @@ export const CustomSelect: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
         {children}
       </Select>
       {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
-      <ErrorMessage
+      {/* <ErrorMessage
         name={props.name}
         render={(msg) => <div className="error">{msg}</div>}
         // component="div" className="error"
-      />
+      /> */}
     </FormControl>
   );
 };
