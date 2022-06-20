@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import {
   Box,
   Button,
@@ -184,7 +185,7 @@ const CategoryCarrusel = () => {
         >
           <MdArrowRight />
         </IconButton>
-        <Slider {...settings} ref={(slide) => setSlider(slide)}>
+        {/* <Slider {...settings} ref={(slide) => setSlider(slide)}>
           {categories.map((category) => (
             <CategoryCard
               key={category.category}
@@ -193,7 +194,7 @@ const CategoryCarrusel = () => {
               subcategory={category?.subcategory}
             />
           ))}
-        </Slider>
+        </Slider> */}
       </Box>
     </Container>
   );
