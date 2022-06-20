@@ -55,7 +55,12 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
           border: '2px solid #51a6f5'
         }}
       />
-      <ErrorMessage name={props.name} component="div" className="error" />
+      {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
+      <ErrorMessage
+        name={props.name}
+        // component="div" className="error"
+        render={(msg) => <div className="error">{msg}</div>}
+      />
     </FormControl>
   );
 };
@@ -104,7 +109,12 @@ export const CustomInputPassword: FC<
           </Button>
         </InputRightElement>
       </InputGroup>
-      <ErrorMessage name={props.name} component="div" className="error" />
+      {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
+      <ErrorMessage
+        name={props.name}
+        render={(msg) => <div className="error">{msg}</div>}
+        // component="div" className="error"
+      />
     </FormControl>
   );
 };
@@ -138,7 +148,11 @@ export const CustomTextarea: FC<
           border: '2px solid #51a6f5'
         }}
       />
-      <ErrorMessage name={props.name} component="div" className="error" />
+      <ErrorMessage
+        name={props.name}
+        // component="div" className="error"
+        render={(msg) => <div className="error">{msg}</div>}
+      />
     </FormControl>
   );
 };
@@ -175,7 +189,12 @@ export const CustomSelect: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
       >
         {children}
       </Select>
-      <ErrorMessage name={props.name} component="div" className="error" />
+      {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
+      <ErrorMessage
+        name={props.name}
+        render={(msg) => <div className="error">{msg}</div>}
+        // component="div" className="error"
+      />
     </FormControl>
   );
 };
