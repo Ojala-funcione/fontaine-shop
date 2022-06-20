@@ -14,7 +14,7 @@ const Contact: FC = () => (
   // }, [dispatch]);
   <Box>
     {/* <Button onClick={() => dispatch(getAllProducts())}>Test</Button> */}
-    Contact Page
+    Contact Page.
   </Box>
 );
 export default Contact;
