@@ -185,6 +185,7 @@ const CategoryCarrusel = () => {
         >
           <MdArrowRight />
         </IconButton>
+
         {/* <Slider {...settings} ref={(slide) => setSlider(slide)}>
           {categories.map((category) => (
             <CategoryCard
