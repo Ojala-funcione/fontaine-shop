@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
-// eslint-disable-next-line prettier/prettier
-import {
-  Text, Box, Flex, Image, Container
-} from '@chakra-ui/react';
+// eslint-disable-next-line object-curly-newline
+import { Text, Box, Flex, Image, Container } from '@chakra-ui/react';
 
 const slides = [
   {
