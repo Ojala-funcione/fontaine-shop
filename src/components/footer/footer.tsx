@@ -10,7 +10,13 @@ import {
   Text,
   useColorModeValue
 } from '@chakra-ui/react';
-import { FacebookLogo, InstagramLogo, WhatsappLogo } from 'phosphor-react';
+
+import {
+  RiWhatsappFill,
+  RiInstagramFill,
+  RiFacebookCircleFill
+} from 'react-icons/ri';
+
 import LogoRedondo from '@common/logo/FontaineRedondo';
 import { NavLink2 } from '@common/NavLink/NavLink';
 
@@ -47,13 +53,13 @@ const Footer: FC<IFooterProps> = () => (
           </Box>
           <SimpleGrid columns={3} spacing="1.25rem">
             <Stack>
-              <InstagramLogo size={50} weight="fill" />
+              <RiInstagramFill fontSize="40px" />
             </Stack>
             <Stack>
-              <FacebookLogo size={50} weight="fill" />
+              <RiFacebookCircleFill fontSize="40px" />
             </Stack>
             <Stack>
-              <WhatsappLogo size={50} weight="fill" />
+              <RiWhatsappFill fontSize="40px" />
             </Stack>
           </SimpleGrid>
         </Stack>
