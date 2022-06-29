@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model categories {
+  id        String  @id @db.Uuid
+  thumbnail String?
+  name      String? @db.VarChar(64)
+  slug      String? @db.VarChar(64)
+  status    Int?
+}
+
+model coupons {
+  id    String @id @db.Uuid
+  types Int?
+}
+
+model group_variants {
+  id   String  @id @db.Uuid
+  type String? @db.VarChar(64)
+}
+
+model order_details {
+  id          String  @id @db.Uuid
+  order_id    String? @db.VarChar(128)
+  products_id String? @db.VarChar(128)
+  price       String? @db.VarChar(128)
+  sku         String? @db.VarChar(128)
+  quantity    String? @db.VarChar(128)
+}
+
+model orders {
+  id               String  @id @db.Uuid
+  customer_id      Int?
+  ammount          Int?
+  shipping_address String? @db.VarChar(64)
+  billing_address  String? @db.VarChar(64)
+  order_email      String? @db.VarChar(64)
+  order_date       String? @db.VarChar(32)
+  order_status     Int?
+}
+
+model products {
+  id          String   @id @db.Uuid
+  sku         String?  @db.VarChar(64)
+  name        String?  @db.VarChar(64)
+  description String?  @db.VarChar(256)
+  image       String?
+  thumbnail   String?
+  stock       Int?
+  stock_min   Int?
+  dimensions  Json?    @db.Json
+  discount    Int?
+  status      Int?
+  variants    Boolean?
+  price       Int?
+}
+
+model products_categories {
+  product_id  String  @id @db.Uuid
+  category_id String? @db.Uuid
+}
+
+model products_variants {
+  id         String  @db.Uuid
+  id_group   String  @id @db.VarChar(64)
+  id_variant String? @db.VarChar(64)
+  id_product String? @db.VarChar(64)
+}
+
+model site_settings {
+  id String @id @db.Uuid
+}
+
+model user {
+  id               String   @id(map: "users_pkey") @db.Uuid
+  email            String?  @db.VarChar(64)
+  password         String?  @db.VarChar(64)
+  name             String?  @db.VarChar(64)
+  last_name        String?  @db.VarChar(64)
+  billing_address  String?  @db.VarChar(128)
+  shipping_address String?  @db.VarChar(128)
+  phone            Decimal? @db.Decimal(32, 0)
+  role             Int?
+  verified         Boolean?
+  photo_url        String?
+  access_token     String?
+  user_pool_id     String?
+  user_name        String?  @db.VarChar(64)
+  status           Int?
+}
+
+model variants {
+  id        String  @id @db.Uuid
+  name      String? @db.VarChar(64)
+  stock     Int?
+  stock_min Int?
+  sku       String? @db.VarChar(128)
+}
