@@ -6,15 +6,13 @@ import WhoWeAre from '@components/whoWeAre/WhoWeAre';
 import type { NextPage } from 'next';
 import HomeTabs from '@components/homeTabs/HomeTabs';
 import BannerCard from '@components/bannerCard/BannerCard';
-import CategoryCarrusel from '@components/categoryCarrusel/CategoryCarrusel';
 import BannerSlider from '@components/bannerSlider/BannerSlider';
 import { motion, useAnimation } from 'framer-motion';
 import { chakra } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { useGlobalContext } from '@context/globalContext/globalContext';
-// import BaseProvider from '@context/baseContext/baseContextProvider';
-// import { useBaseContext } from '@context/baseContext/baseContext';
+import CardsSlider from '@components/CardsSlider/CardsSlider';
 
 const ChakraMouse = chakra(motion.div);
 const Chakraclient = chakra(motion.div);
@@ -25,6 +23,7 @@ const Home: NextPage = () => {
     heroSection,
     productTabsSection,
     categorySliderSection,
+    brandSliderSection,
     bannerCardSection,
     aboutUsSection,
     feedbackSection
@@ -91,7 +90,7 @@ const Home: NextPage = () => {
           <BannerSlider />
         </ChakraMouse>
       )}
-      {categorySliderSection.isActive && (
+      {brandSliderSection.isActive && (
         <ChakraMouse
           initial={{ opacity: 0, x: 100 }}
           animate={{
@@ -100,7 +99,9 @@ const Home: NextPage = () => {
             transition: { duration: 1, ease: 'easeInOut' }
           }}
         >
-          <CategoryCarrusel />
+          {brandSliderSection.data && (
+            <CardsSlider data={brandSliderSection.data} />
+          )}
         </ChakraMouse>
       )}
       {productTabsSection.isActive && (
@@ -123,6 +124,20 @@ const Home: NextPage = () => {
       {aboutUsSection.isActive && (
         <ChakraMouse animate={animation3} ref={ref3}>
           <WhoWeAre />
+        </ChakraMouse>
+      )}
+      {categorySliderSection.isActive && (
+        <ChakraMouse
+          initial={{ opacity: 0, x: 100 }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            transition: { duration: 1, ease: 'easeInOut' }
+          }}
+        >
+          {categorySliderSection.data && (
+            <CardsSlider data={categorySliderSection.data} />
+          )}
         </ChakraMouse>
       )}
       {feedbackSection.isActive && (

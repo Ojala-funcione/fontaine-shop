@@ -49,7 +49,7 @@ const BannerSlider = () => {
     ml: `-${currentSlide * 100}%`
   };
   return (
-    <Container py={5} maxW="1440px" mb="100px" px="0">
+    <Container py={5} maxW="1440px" mb="40px" px="0">
       <Flex w="full" overflow="hidden" pos="relative">
         <Flex h="60vh" w="full" {...carouselStyle}>
           {slides.map((slide) => (

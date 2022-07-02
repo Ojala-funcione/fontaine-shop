@@ -1,3 +1,5 @@
+import { SliderCardProps } from '@components/CardsSlider/SliderCard';
+
 export interface SiteSettingsResponse {
   logo: string;
 }
@@ -40,11 +42,9 @@ export interface BannerCardSectionInterface {
     imgUrl: string;
   };
 }
-export interface CategorySliderSectionInterface {
+export interface SliderSectionInterface {
   isActive: Boolean;
-  data?: {
-    imgUrl: string;
-  };
+  data?: SliderCardProps[];
 }
 export interface AboutUsSectionInterface {
   isActive: Boolean;
@@ -56,7 +56,8 @@ export interface AboutUsSectionInterface {
 export interface SiteSettingsInterface {
   heroSection: HeroSectionsInterface;
   productTabsSection: ProductTabsSectionInterface;
-  categorySliderSection: CategorySliderSectionInterface;
+  categorySliderSection: SliderSectionInterface;
+  brandSliderSection: SliderSectionInterface;
   bannerCardSection: BannerCardSectionInterface;
   aboutUsSection: AboutUsSectionInterface;
   feedbackSection: FeedbackSectionInterface;

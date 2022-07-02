@@ -140,6 +140,9 @@ a {
   border-radius: 50px 0 0 50px;
 }
 
+.cards-slider .slick-list{
+  min-height: 160px!important;
+}
 
 /* //_________animaciones__________ */
 
