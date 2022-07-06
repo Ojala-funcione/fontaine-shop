@@ -1,4 +1,4 @@
-import { SliderCardProps } from '@components/CardsSlider/SliderCard';
+import { SliderCardProps } from '@components/HomePageComponents/CardsSlider/SliderCard';
 
 export interface SiteSettingsResponse {
   logo: string;
@@ -30,10 +30,25 @@ export interface ProductTabsSectionInterface {
     featured: ProductTabInterface;
   };
 }
+interface TestimonialInterface {
+  name: string;
+  role: string;
+  content: string;
+  avatar: string;
+}
 export interface FeedbackSectionInterface {
   isActive: Boolean;
   data?: {
-    imgUrl: string;
+    title: string;
+    subtitle: string;
+    testimonials: TestimonialInterface[];
+  };
+}
+export interface FeaturesSectionInterface {
+  isActive: Boolean;
+  data?: {
+    title: string;
+    items: { title: string; subtitle: string }[];
   };
 }
 export interface BannerCardSectionInterface {
@@ -49,7 +64,11 @@ export interface SliderSectionInterface {
 export interface AboutUsSectionInterface {
   isActive: Boolean;
   data?: {
+    title: string;
+    description: string;
+    shortDescription: string;
     imgUrl: string;
+    textCallToAction?: string;
   };
 }
 
@@ -61,6 +80,7 @@ export interface SiteSettingsInterface {
   bannerCardSection: BannerCardSectionInterface;
   aboutUsSection: AboutUsSectionInterface;
   feedbackSection: FeedbackSectionInterface;
+  featuresSection: FeaturesSectionInterface;
 }
 export interface HomeActiveSectionsInterface {
   heroSection: boolean;

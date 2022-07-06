@@ -27,7 +27,7 @@ const banner = [
 ];
 
 const BannerCard = () => (
-  <Container maxW="1400px">
+  <Container maxW="1440px" my="3rem" p="0">
     <SimpleGrid columns={[1, 1, 3]} justifyItems="center" spacing={8}>
       {banner.map((cardInfo) => (
         <Box

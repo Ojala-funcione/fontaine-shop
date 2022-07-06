@@ -1,31 +1,15 @@
+/* eslint-disable max-len */
 import {
   Avatar,
   Box,
-  chakra,
   Container,
   Flex,
+  Heading,
   SimpleGrid,
+  Text,
   useColorModeValue
 } from '@chakra-ui/react';
-
-const testimonials = [
-  {
-    name: 'Brandon P.',
-    role: 'Cliente',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque earum fugit, qui optio doloremque nobis tempore velit perferendis illum tempora quam? ',
-    avatar:
-      'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80'
-  },
-  {
-    name: 'Krysta B.',
-    role: 'Cliente',
-    content:
-      'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque earum fugit, qui optio doloremque nobis tempore velit perferendis illum tempora quam? ',
-    avatar:
-      'https://images.unsplash.com/photo-1598550874175-4d0ef436c909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80'
-  }
-];
+import { useGlobalContext } from '@context/globalContext/globalContext';
 
 interface TestimonialCardProps {
   name: string;
@@ -61,15 +45,15 @@ const TestimonialCard = (props: TestimonialCardProps) => {
       }}
     >
       <Flex direction="column" textAlign="left" justifyContent="space-between">
-        <chakra.p fontFamily="Inter" fontWeight="medium" fontSize="15px" pb={4}>
+        <Text as="p" fontFamily="Lato" fontSize="15px" pb={4}>
           {content}
-        </chakra.p>
-        <chakra.p fontFamily="Work Sans" fontWeight="bold" fontSize={14}>
+        </Text>
+        <Text fontFamily="Roboto" fontWeight="bold" fontSize={14}>
           {name}
-          <chakra.span fontFamily="Inter" fontWeight="medium" color="gray.500">
-            {role}
-          </chakra.span>
-        </chakra.p>
+          <Text as="span" fontWeight="medium" color="gray.500">
+            {` ${role}`}
+          </Text>
+        </Text>
       </Flex>
       <Avatar
         src={avatar}
@@ -82,46 +66,57 @@ const TestimonialCard = (props: TestimonialCardProps) => {
   );
 };
 
-const ClientFeedBack = () => (
-  <Box color={useColorModeValue('gray.700', 'gray.200')} marginBottom="5rem">
-    <Container maxW="1600px">
-      <Flex
-        textAlign="center"
-        pt={10}
-        justifyContent="center"
-        direction="column"
-        width="full"
-      >
-        <Box width={{ base: 'full', sm: 'lg', lg: '4xl' }} margin="auto">
-          <chakra.h1
-            py={5}
-            fontSize={48}
-            fontFamily="Work Sans"
-            fontWeight="bold"
-            color={useColorModeValue('gray.700', 'gray.50')}
+const ClientFeedBack = () => {
+  const {
+    homeActiveSections: { feedbackSection }
+  } = useGlobalContext();
+  const { data } = feedbackSection;
+
+  return (
+    <Box color={useColorModeValue('gray.700', 'gray.200')} marginBottom="5rem">
+      <Container maxW="1440px">
+        <Flex
+          textAlign="center"
+          pt={10}
+          justifyContent="center"
+          direction="column"
+          width="full"
+        >
+          <Box width={{ base: 'full', sm: 'lg', lg: '4xl' }} margin="auto">
+            <Heading
+              py={5}
+              size="2xl"
+              fontFamily="Roboto"
+              fontWeight="bold"
+              color={useColorModeValue('gray.700', 'gray.50')}
+            >
+              {data?.title}
+            </Heading>
+            <Heading
+              fontSize={25}
+              margin="auto"
+              width="100%"
+              fontFamily="Roboto"
+              fontWeight="medium"
+              color={useColorModeValue('gray.500', 'gray.400')}
+            >
+              {data?.subtitle}
+            </Heading>
+          </Box>
+          <SimpleGrid
+            columns={{ base: 1, xl: 2 }}
+            spacing="20"
+            mt={16}
+            mx="auto"
           >
-            Clientes Satisfechos
-          </chakra.h1>
-          <chakra.h2
-            fontSize={25}
-            margin="auto"
-            width="100%"
-            fontFamily="Inter"
-            fontWeight="medium"
-            color={useColorModeValue('gray.500', 'gray.400')}
-          >
-            En Fontaine nos esforzamos para que tengas la mejor experiencia en
-            tus compras
-          </chakra.h2>
-        </Box>
-        <SimpleGrid columns={{ base: 1, xl: 2 }} spacing="20" mt={16} mx="auto">
-          {testimonials.map((cardInfo) => (
-            <TestimonialCard {...cardInfo} key={cardInfo.name} />
-          ))}
-        </SimpleGrid>
-      </Flex>
-    </Container>
-  </Box>
-);
+            {data?.testimonials.map((cardInfo) => (
+              <TestimonialCard {...cardInfo} key={cardInfo.name} />
+            ))}
+          </SimpleGrid>
+        </Flex>
+      </Container>
+    </Box>
+  );
+};
 
 export default ClientFeedBack;

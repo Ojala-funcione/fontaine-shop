@@ -1,7 +1,5 @@
 /* eslint-disable no-console */
-/* eslint-disable no-unused-vars */
-// eslint-disable-next-line object-curly-newline
-import { Box, Button, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Heading, Text } from '@chakra-ui/react';
 import { FC } from 'react';
 
 export interface SliderCardProps {

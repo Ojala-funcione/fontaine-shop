@@ -39,7 +39,7 @@ const Feature = ({ text, icon, iconBg }: FeatureProps) => (
 );
 
 const WhoWeAre = () => (
-  <Container maxW="1400px" py={20}>
+  <Container maxW="1440px" py={20} bg="">
     <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
       <Stack spacing={4}>
         <Heading
@@ -48,7 +48,7 @@ const WhoWeAre = () => (
           fontWeight="bold"
           color={useColorModeValue('gray.700', 'gray.50')}
         >
-          Mas sobre Fontaine
+          {/* Mas sobre Fontaine */}
         </Heading>
         <Text
           fontSize={25}
@@ -58,8 +58,13 @@ const WhoWeAre = () => (
           fontWeight="medium"
           color={useColorModeValue('gray.500', 'gray.400')}
         >
-          Somos un e-commerce que trabaja para brindarte la mayor cantidad de
-          productos al mejor precio de una manera facil y segura.
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          <br />
+          Sed sodales
+          neque ex, semper pulvinar lacus commodo ac. Aenean maximus eros
+          vestibulum enim sagittis, vitae ultricies mi ullamcorper. Vivamus
+          justo erat, rhoncus nec nulla nec, vestibulum lacinia mi. Vestibulum
+          vel ex mauris.
         </Text>
         <Stack
           spacing={4}

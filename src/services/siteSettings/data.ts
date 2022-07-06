@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { SliderCardProps } from '@components/CardsSlider/SliderCard';
+import { SliderCardProps } from '@components/HomePageComponents/CardsSlider/SliderCard';
 import {
   HeroSectionsInterface,
   SiteSettingsInterface,
@@ -7,7 +7,8 @@ import {
   AboutUsSectionInterface,
   BannerCardSectionInterface,
   FeedbackSectionInterface,
-  SliderSectionInterface
+  SliderSectionInterface,
+  FeaturesSectionInterface
 } from './siteSettingsInterfaces';
 
 const heroSection: HeroSectionsInterface = {
@@ -188,15 +189,75 @@ const bannerCardSection: BannerCardSectionInterface = {
   }
 };
 const aboutUsSection: AboutUsSectionInterface = {
-  isActive: false,
+  isActive: true,
   data: {
-    imgUrl: ''
+    title: '¿Quienes Somos?',
+    imgUrl:
+      'https://comfortel.com.au/wp-content/uploads/2018/09/hair-salon-design-laboutique-comfortel_5.jpg',
+    textCallToAction: 'Saber Mas',
+    shortDescription: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+  tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Nam nec
+  tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae
+  erat consequat auctor eu in elit.`,
+    description: `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+  tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Nam nec
+  tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae
+  erat consequat auctor eu in elit.
+  Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit
+  tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo. Nam nec
+  tellus a odio tincidunt auctor a ornare odio. Sed non mauris vitae
+  erat consequat auctor eu in elit.`
+  }
+};
+
+const featuresSection: FeaturesSectionInterface = {
+  isActive: true,
+  data: {
+    title: '¿Por Qué Elegirnos?',
+    items: [
+      {
+        title: 'Pagos rapidos y seguros',
+        subtitle: 'Con todos los medios de pago'
+      },
+      {
+        title: 'Soporte 24x7',
+        subtitle: 'Con todos los medios de pago'
+      },
+      {
+        title: 'Precios Increibles',
+        subtitle: 'Los mejores descuentos en productos destacados'
+      },
+      {
+        title: 'Envios Gratis',
+        subtitle: 'En compras mayores a $6000'
+      }
+    ]
   }
 };
 const feedbackSection: FeedbackSectionInterface = {
-  isActive: false,
+  isActive: true,
   data: {
-    imgUrl: ''
+    title: 'Clientes Satisfechos',
+    subtitle:
+      ' En Fontaine nos esforzamos para que tengas la mejor experiencia en tus compras',
+    testimonials: [
+      {
+        name: 'Brandon P.',
+        role: 'Cliente',
+        content:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque earum fugit, qui optio doloremque nobis tempore velit perferendis illum tempora quam? ',
+        avatar:
+          'https://images.unsplash.com/photo-1603415526960-f7e0328c63b1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80'
+      },
+      {
+        name: 'Krysta B.',
+        role: 'Cliente',
+        content:
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque earum fugit, qui optio doloremque nobis tempore velit perferendis illum tempora quam? ',
+        avatar:
+          'https://images.unsplash.com/photo-1598550874175-4d0ef436c909?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=334&q=80'
+      }
+    ]
   }
 };
 
@@ -207,7 +268,8 @@ const homeSectionsData: SiteSettingsInterface = {
   brandSliderSection,
   bannerCardSection,
   aboutUsSection,
-  feedbackSection
+  feedbackSection,
+  featuresSection
 };
 
 export default homeSectionsData;

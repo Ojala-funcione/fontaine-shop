@@ -331,7 +331,7 @@ const shopCardInfo = [
 ];
 
 const HomeTabs = () => (
-  <Container maxW="1400px" py={10}>
+  <Container maxW="1440px" p={0} pb="2rem">
     <Tabs size="md" p={0} variant="enclosed">
       <TabList>
         <Tab>Nuevos Productos</Tab>

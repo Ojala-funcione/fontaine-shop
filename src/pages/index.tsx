@@ -2,17 +2,18 @@
 /* eslint-disable no-unused-expressions */
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
 import ClientFeedBack from '@components/client feedback/ClientFeedBack';
-import WhoWeAre from '@components/whoWeAre/WhoWeAre';
 import type { NextPage } from 'next';
 import HomeTabs from '@components/homeTabs/HomeTabs';
 import BannerCard from '@components/bannerCard/BannerCard';
-import BannerSlider from '@components/bannerSlider/BannerSlider';
+import BannerSlider from '@components/HomePageComponents/BannerSlider/BannerSlider';
 import { motion, useAnimation } from 'framer-motion';
-import { chakra } from '@chakra-ui/react';
+import { Box, chakra } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 import { useGlobalContext } from '@context/globalContext/globalContext';
-import CardsSlider from '@components/CardsSlider/CardsSlider';
+import CardsSlider from '@components/HomePageComponents/CardsSlider/CardsSlider';
+import AboutUsSection from '@components/HomePageComponents/AboutUsSection/AboutUsSection';
+import FeaturesSection from '@components/HomePageComponents/FeaturesSection/FeaturesSection';
 
 const ChakraMouse = chakra(motion.div);
 const Chakraclient = chakra(motion.div);
@@ -26,7 +27,8 @@ const Home: NextPage = () => {
     brandSliderSection,
     bannerCardSection,
     aboutUsSection,
-    feedbackSection
+    feedbackSection,
+    featuresSection
   } = homeActiveSections;
 
   const { ref: ref1, inView: inview1 } = useInView({
@@ -78,32 +80,34 @@ const Home: NextPage = () => {
   return (
     <>
       <ScrollToTopButton />
-      {heroSection.isActive && (
-        <ChakraMouse
-          initial={{ opacity: 0, x: -100 }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            transition: { duration: 1, ease: 'easeInOut' }
-          }}
-        >
-          <BannerSlider />
-        </ChakraMouse>
-      )}
-      {brandSliderSection.isActive && (
-        <ChakraMouse
-          initial={{ opacity: 0, x: 100 }}
-          animate={{
-            opacity: 1,
-            x: 0,
-            transition: { duration: 1, ease: 'easeInOut' }
-          }}
-        >
-          {brandSliderSection.data && (
-            <CardsSlider data={brandSliderSection.data} />
-          )}
-        </ChakraMouse>
-      )}
+      <Box minHeight="calc(100vh - 90px)">
+        {heroSection.isActive && (
+          <ChakraMouse
+            initial={{ opacity: 0, x: -100 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: { duration: 1, ease: 'easeInOut' }
+            }}
+          >
+            <BannerSlider />
+          </ChakraMouse>
+        )}
+        {brandSliderSection.isActive && (
+          <ChakraMouse
+            initial={{ opacity: 0, x: 100 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: { duration: 1, ease: 'easeInOut' }
+            }}
+          >
+            {brandSliderSection.data && (
+              <CardsSlider data={brandSliderSection.data} />
+            )}
+          </ChakraMouse>
+        )}
+      </Box>
       {productTabsSection.isActive && (
         <ChakraMouse
           initial={{ opacity: 0, y: 100 }}
@@ -121,9 +125,20 @@ const Home: NextPage = () => {
           <BannerCard />
         </ChakraMouse>
       )}
+      {featuresSection.isActive && (
+        <ChakraMouse animate={animation} ref={ref1}>
+          <FeaturesSection />
+        </ChakraMouse>
+      )}
       {aboutUsSection.isActive && (
         <ChakraMouse animate={animation3} ref={ref3}>
-          <WhoWeAre />
+          <AboutUsSection
+            title={aboutUsSection.data?.title!}
+            description={aboutUsSection.data?.shortDescription!}
+            imgUrl={aboutUsSection.data?.imgUrl!}
+            textCallToAction={aboutUsSection.data?.textCallToAction!}
+            showCallToAction
+          />
         </ChakraMouse>
       )}
       {categorySliderSection.isActive && (

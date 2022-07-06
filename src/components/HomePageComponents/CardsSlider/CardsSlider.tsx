@@ -1,13 +1,4 @@
-/* eslint-disable no-unused-vars */
-import {
-  Box,
-  Button,
-  Container,
-  Heading,
-  IconButton,
-  Stack,
-  Text
-} from '@chakra-ui/react';
+import { Box, Container, IconButton } from '@chakra-ui/react';
 import { FC, useState } from 'react';
 import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import Slider from 'react-slick';
@@ -35,8 +26,8 @@ interface CardSliderProps {
 const CardsSlider: FC<CardSliderProps> = ({ data }) => {
   const [slider, setSlider] = useState<Slider | null>(null);
   return (
-    <Container maxW="1440px" px={0} py={10}>
-      <Box position="relative" width="100%">
+    <Container maxW="1440px" px={0} py="3vh">
+      <Box position="relative" width="100%" display="flex" overflow="hidden">
         <link
           rel="stylesheet"
           type="text/css"
