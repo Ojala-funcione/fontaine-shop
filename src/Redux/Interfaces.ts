@@ -5,7 +5,7 @@ export interface IProduct {
   isCombo: boolean;
   isFeatured: boolean;
   name: string;
-  brand: number;
+  brand: string;
   description: string;
   category: string;
   price: number;

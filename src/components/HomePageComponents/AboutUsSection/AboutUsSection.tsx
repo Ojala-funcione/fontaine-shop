@@ -7,7 +7,8 @@ import {
   Text,
   useColorModeValue,
   Button,
-  Divider
+  Divider,
+  useBreakpointValue
 } from '@chakra-ui/react';
 import { FC } from 'react';
 import Link from 'next/link';
@@ -28,8 +29,12 @@ const AboutUsSection: FC<AboutUsSectionInterface> = ({
   showCallToAction
 }) => {
   const borderButtonColor = useColorModeValue('gray.900', 'gray.100');
+  const titleSize = useBreakpointValue({
+    base: '4xl',
+    lg: '5xl'
+  });
   return (
-    <Container maxW="1440px" py={20} bg="" minHeight="600px">
+    <Container maxW="1440px" py={20} minHeight="600px">
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Flex
           bg=""
@@ -49,7 +54,7 @@ const AboutUsSection: FC<AboutUsSectionInterface> = ({
           />
 
           <Heading
-            fontSize="5xl"
+            fontSize={titleSize}
             fontFamily="Roboto"
             color={useColorModeValue('gray.700', 'gray.50')}
             pb="2rem"
