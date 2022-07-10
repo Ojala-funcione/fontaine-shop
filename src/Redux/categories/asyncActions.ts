@@ -8,9 +8,12 @@ const getAllCategories = () => async (dispatch: any) => {
     const q = query(collection(db, 'categories'));
     const querySnapshot = await getDocs(q);
     const allCategories: ICategory[] = querySnapshot.docs.map((document) => {
-      const { name, parent, subcategories }: any = { ...document.data() };
+      const { image, name, parent, subcategories }: any = {
+        ...document.data()
+      };
       return {
         id: document.id,
+        image,
         name,
         parent,
         subcategories

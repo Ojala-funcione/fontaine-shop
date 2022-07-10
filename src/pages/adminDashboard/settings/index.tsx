@@ -19,7 +19,7 @@ const cards: ICardData[] = [
     Icon: <Members width="3.5rem" height="3.5rem" />,
     title: 'Personal',
     subtitle: 'Manejo y edicion de tu personal',
-    linkTo: ''
+    linkTo: '/staff'
   },
   {
     Icon: <SiteSettings width="3.5rem" height="3.5rem" />,

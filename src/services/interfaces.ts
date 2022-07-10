@@ -25,10 +25,10 @@ export interface ICartProduct {
 }
 export interface ICategory {
   id: string;
-  image: string;
   name: string;
-  parent: string;
-  subcategories: any;
+  image?: string;
+  parent?: string;
+  subcategories?: any;
 }
 export interface IUser {
   uid: string;

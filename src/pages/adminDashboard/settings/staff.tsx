@@ -1,12 +1,9 @@
 /* eslint-disable no-unused-vars */
-import React, { ReactElement, useEffect } from 'react';
-// import { Box } from '@chakra-ui/react';
+import React, { ReactElement } from 'react';
 import DashboardLayout from '@components/Layout/DashboardLayout';
 // eslint-disable-next-line prettier/prettier
 import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
-import { useAppDispatch, useAppSelector } from '@Redux/hooks';
-import getAllCategories from '@Redux/categories/asyncActions';
-import InLineLoader from '@common/InlineLoader/InlineLoader';
+import CustomersTable from '@components/DashboardComponents/CustomersPageComponents/CustomersTable/CustomersTable';
 import { NextPageWithLayout } from '../../_app';
 
 const Staff: NextPageWithLayout = () => {
@@ -18,21 +15,11 @@ const Staff: NextPageWithLayout = () => {
       // console.error(error);
     }
   };
-  const dispatch = useAppDispatch();
-  const categories = useAppSelector((state) => state.categories.categoryList);
-  useEffect(() => {
-    dispatch(getAllCategories());
-  }, [dispatch]);
 
   return (
     <SectionDashboard>
-      <SectionDashboardHeader title="Categorias" />
-      {categories.length ? (
-        // <CustomTable data={categories} columnsConfig={columns} />
-        <InLineLoader />
-      ) : (
-        <InLineLoader />
-      )}
+      <SectionDashboardHeader title="Personal" />
+      <CustomersTable />
     </SectionDashboard>
   );
 };

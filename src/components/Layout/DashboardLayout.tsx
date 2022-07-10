@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import {
   Box,
   Drawer,
@@ -10,19 +9,12 @@ import {
 } from '@chakra-ui/react';
 import DashboardHeader from '@components/header/DashboardHeader';
 import DashboardSidebar from '@components/sidebar/DashboardSidebar';
-import getAllCategories from '@Redux/categories/asyncActions';
-import { useAppDispatch } from '@Redux/hooks';
-import { getAllProducts } from '@Redux/products/asyncActions';
-import React, { useEffect } from 'react';
+import React from 'react';
 import { IoArrowBack } from 'react-icons/io5';
 
 const DashboardLayout: React.FC = ({ children }) => {
-  const dispatch = useAppDispatch();
   const { isOpen, onOpen, onClose } = useDisclosure();
-  useEffect(() => {
-    dispatch(getAllProducts());
-    dispatch(getAllCategories());
-  }, [dispatch]);
+
   return (
     <Box
       // bg={useColorModeValue('gray.100', 'gray.800')}
