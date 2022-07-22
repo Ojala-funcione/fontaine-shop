@@ -20,6 +20,6 @@ export interface CategoriesApi {
   getAllCategories(): Promise<AllCategoriesResponse>;
   createCategory(category: ICreateCategory): Promise<ICategory>;
   editCategory(category: ICategory): Promise<ICategory>;
-  getOneCategory(categoryId: string): Promise<ICategory>;
+  getOneCategory(id: string): Promise<ICategory | undefined>;
   deleteCategory(categoryId: string): Promise<string>;
 }

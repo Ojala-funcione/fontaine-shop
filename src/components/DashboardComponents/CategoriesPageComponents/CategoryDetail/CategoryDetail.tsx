@@ -1,7 +1,4 @@
-/* eslint-disable no-unused-vars */
-import React, { FC, useEffect, useState } from 'react';
-// import { InLineLoader } from '../../components/InlineLoader/InlineLoader';
-// import { useDb } from '../../db/DbProvider';
+import React, { FC } from 'react';
 import {
   Box,
   Divider,
@@ -12,24 +9,18 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import InLineLoader from '@common/InlineLoader/InlineLoader';
-import { ICategory } from 'services/categories/categoriesInterfaces';
+import { ICategoryDetailProps } from './interfaces';
+import useCategoryDetailController from './CategoryDetail.controller';
 
-interface ICategoryDetail {
-  itemId: string;
-}
-
-const CategoryDetail: FC<ICategoryDetail> = ({ itemId }) => {
-  // const { getOneCategory } = useDb();
-  const [category, setCategory] = useState<ICategory | undefined>(undefined);
+const CategoryDetail: FC<ICategoryDetailProps> = (props) => {
+  const {
+    useController = useCategoryDetailController,
+    itemId,
+    onClose
+  } = props;
+  const controller = useController(itemId, onClose);
   const titleColor = useColorModeValue('#1F2937', '#eee');
   const textColor = useColorModeValue('#6b7280', '#ccc');
-  useEffect(() => {
-    // async function getData(id) {
-    //   const customerDetail = await getOneCategory(id);
-    //   setCategory(customerDetail);
-    // }
-    // getData(itemId);
-  }, [itemId]);
 
   return (
     <Box
@@ -41,7 +32,7 @@ const CategoryDetail: FC<ICategoryDetail> = ({ itemId }) => {
       alignItems="start"
       w="100%"
     >
-      {category ? (
+      {!controller.isLoading && controller.category ? (
         <Box
           display="flex"
           flexDirection={{ base: 'column', md: 'row' }}
@@ -58,7 +49,7 @@ const CategoryDetail: FC<ICategoryDetail> = ({ itemId }) => {
             position="relative"
             alignSelf="center"
           >
-            <Image alt="" src={category.image} />
+            <Image alt="" src={controller.category.image} />
           </Box>
           <Box
             w={{ base: '100%', md: '50%' }}
@@ -75,18 +66,18 @@ const CategoryDetail: FC<ICategoryDetail> = ({ itemId }) => {
               fontWeight={600}
               textTransform="capitalize"
             >
-              {category.name}
+              {controller.category.name}
             </Heading>
             <Box fontSize="14px" color={textColor} my="16px">
-              {`Slug: ${category.slug}`}
+              {`Slug: ${controller.category.slug}`}
             </Box>
 
             <Divider />
             <Box mt="12px" display="flex" flexDirection="row">
               <Text mr="1.5rem" color={titleColor}>
                 {'Subcategorias: '}
-                {category.subcategories?.length &&
-                  category.subcategories.map((item: string) => (
+                {controller.category.subcategories?.length &&
+                  controller.category.subcategories.map((item: string) => (
                     <Tag textTransform="capitalize" mx="6px" key={item}>
                       {item}
                     </Tag>

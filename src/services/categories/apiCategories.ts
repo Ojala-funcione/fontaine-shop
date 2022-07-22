@@ -42,7 +42,7 @@ const useAPICategories = (): CategoriesApi => {
     console.log(category);
     return categoriesData[0];
   };
-  const getOneCategory = async (categoryId: string): Promise<ICategory> => {
+  const getOneCategory = async (id: string): Promise<ICategory | undefined> => {
     // try {
     //   const response = await axios.post('https://url_base.com/algo', {
     //     qsy: 'algo'
@@ -51,8 +51,9 @@ const useAPICategories = (): CategoriesApi => {
     // } catch (error) {
     //   throw error;
     // }
-    console.log(categoryId);
-    return categoriesData[0];
+    const category = categoriesData.find((item) => item.id === id);
+
+    return category;
   };
   const deleteCategory = async (categoryId: string): Promise<string> => {
     // try {

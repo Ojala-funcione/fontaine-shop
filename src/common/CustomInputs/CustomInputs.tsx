@@ -12,7 +12,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 // import { ErrorMessage, FieldHookConfig, useField } from 'formik';
-import { FieldHookConfig, useField } from 'formik';
+import { ErrorMessage, FieldHookConfig, useField } from 'formik';
 import { useState, FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
@@ -59,7 +59,7 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
         type={props.type}
         // {...props}
       />
-      {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
+      <ErrorMessage name={props.name} component="div" className="error" />
       {/* <ErrorMessage
         name={props.name}
         // component="div" className="error"

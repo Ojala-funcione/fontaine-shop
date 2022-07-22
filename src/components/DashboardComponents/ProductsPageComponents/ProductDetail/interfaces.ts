@@ -6,7 +6,7 @@ export interface IProductDetailController {
   isLoading: boolean;
   onButtonPressed: () => void;
 }
-export interface IProductDetailControllerProps {
+export interface IProductDetailProps {
   itemId: string;
   onClose: () => void;
   useController?: (

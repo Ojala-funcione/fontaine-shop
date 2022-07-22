@@ -1,26 +1,23 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-array-index-key */
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import {
   Box,
   Divider,
   Heading,
   Text,
   Tag,
-  useColorModeValue,
-  Select,
-  Image
+  useColorModeValue
+  // Select,
+  // Image
 } from '@chakra-ui/react';
 import ProductImageCarousel from '@common/ProductImageCarousel/ProductImageCarousel';
 import InLineLoader from '@common/InlineLoader/InlineLoader';
-import { IProductDetailControllerProps } from './interfaces';
+import { IProductDetailProps } from './interfaces';
 import useProductDetailController from './ProductDetail.controller';
 
-const ProductDetail: FC<IProductDetailControllerProps> = (
-  { itemId, onClose },
-  props
-) => {
-  const { useController = useProductDetailController } = props;
+const ProductDetail: FC<IProductDetailProps> = (props) => {
+  const { useController = useProductDetailController, itemId, onClose } = props;
   const controller = useController(itemId, onClose);
   const { product } = controller;
 
@@ -46,20 +43,7 @@ const ProductDetail: FC<IProductDetailControllerProps> = (
       alignItems="start"
       w="100%"
     >
-      {controller.isLoading ? (
-        <Box
-          display="flex"
-          flexDirection={{ base: 'column', md: 'row' }}
-          minHeight="500px"
-          height="fit-content"
-          alignItems="Start"
-          gap="2rem"
-          p={{ base: '1.5rem 0', md: '2rem 1rem' }}
-          w="100%"
-        >
-          <InLineLoader />
-        </Box>
-      ) : (
+      {!controller.isLoading && product ? (
         <>
           <Box
             display="flex"
@@ -76,7 +60,7 @@ const ProductDetail: FC<IProductDetailControllerProps> = (
               h="fit-content"
               position="relative"
             >
-              {product.discountInPercent > 0 && (
+              {product.discount > 0 && (
                 <Tag
                   size="sm"
                   borderRadius="1rem"
@@ -89,7 +73,7 @@ const ProductDetail: FC<IProductDetailControllerProps> = (
                   fontWeight="bold"
                   p="6px 12px"
                 >
-                  {`${product.discountInPercent} %`}
+                  {`${product.discount} %`}
                 </Tag>
               )}
 
@@ -101,7 +85,6 @@ const ProductDetail: FC<IProductDetailControllerProps> = (
               display="flex"
               flexDirection="column"
               px={{ base: '0', lg: '2rem' }}
-              // gap="0.5rem"
             >
               <Heading
                 size="md"
@@ -248,6 +231,19 @@ const ProductDetail: FC<IProductDetailControllerProps> = (
             </Text>
           </Box>
         </>
+      ) : (
+        <Box
+          display="flex"
+          flexDirection={{ base: 'column', md: 'row' }}
+          minHeight="500px"
+          height="fit-content"
+          alignItems="Start"
+          gap="2rem"
+          p={{ base: '1.5rem 0', md: '2rem 1rem' }}
+          w="100%"
+        >
+          <InLineLoader />
+        </Box>
       )}
     </Box>
   );
