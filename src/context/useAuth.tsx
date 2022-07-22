@@ -15,7 +15,7 @@ import {
   updateDoc
 } from 'firebase/firestore';
 import { useToast } from '@chakra-ui/react';
-import { IUser } from 'Redux/Interfaces';
+import { IUser } from '@Services/users/usersInterfaces';
 import { auth, db } from '../../firebase';
 
 export interface IAuthContext {

@@ -19,7 +19,7 @@ import { NavLink2 } from '@common/NavLink/NavLink';
 // import { useRouter } from 'next/router';
 import { MdClose, MdMenu, MdOutlineLogin } from 'react-icons/md';
 import { HiOutlineShoppingBag } from 'react-icons/hi';
-import DarkModeSwitch from '@components/DarkModeSwitch/DarkModeSwitch';
+import DarkModeSwitch from '@common/DarkModeSwitch/DarkModeSwitch';
 
 const Links = [
   { href: '/', name: 'Home' },

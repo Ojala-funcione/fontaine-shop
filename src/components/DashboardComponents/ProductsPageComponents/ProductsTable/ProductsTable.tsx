@@ -2,22 +2,17 @@
 import { Text } from '@chakra-ui/react';
 import { Column } from 'react-table';
 import { FC } from 'react';
-
-import { IProduct } from '@Redux/Interfaces';
-import productData from 'services/products/data';
 import { CellActions, CellImage } from '@common/Tables/CustomTable/TableCell';
 import CustomTable from '@common/Tables/CustomTable';
+import EditProductForm from '@components/forms/EditProductForm';
+import { IProduct } from 'services/products/productsInterfaces';
+import ProductDetail from '../ProductDetail/ProductDetail';
+import { IProductsTableProps } from './interfaces';
+import useProductsTableController from './ProductsTable.controller';
 
-const ProductssTable: FC = () => {
-  const handleDelete = async (id: string, onClose: () => void) => {
-    try {
-      console.log('borrado', id);
-      onClose();
-    } catch (error) {
-      // console.error(error);
-    }
-  };
-  const data: IProduct[] = productData;
+const ProductssTable: FC<IProductsTableProps> = (props) => {
+  const { useController = useProductsTableController, component } = props;
+  const controller = useController();
 
   const columns: Column<IProduct>[] = [
     {
@@ -82,18 +77,18 @@ const ProductssTable: FC = () => {
     },
     {
       Header: 'Acciones',
-      accessor: 'productId',
+      accessor: 'id',
       Cell: ({ value }: { value: any }) => (
         <CellActions
           edit={{
-            // Component: EditProductForm,
+            Component: EditProductForm,
             size: 'lg'
           }}
-          onClickDelete={handleDelete}
-          //   view={{
-          //     Component: ProductDetail,
-          //     size: '6xl',
-          //   }}
+          onClickDelete={controller.onDeleteButtonPressed}
+          view={{
+            Component: ProductDetail,
+            size: '6xl'
+          }}
           data={value}
         />
       ),
@@ -103,6 +98,13 @@ const ProductssTable: FC = () => {
     }
   ];
 
-  return <CustomTable data={data} columns={columns} />;
+  return (
+    <CustomTable
+      data={controller.products}
+      columns={columns}
+      isLoading={controller.isLoading}
+      component={component}
+    />
+  );
 };
 export default ProductssTable;

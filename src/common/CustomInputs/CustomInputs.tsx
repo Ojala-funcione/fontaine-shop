@@ -41,6 +41,7 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
       >
         {label}
       </FormLabel>
+      {/* {console.log(field, meta, props)} */}
       <Input
         {...field}
         placeholder={props.placeholder}
@@ -55,6 +56,8 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
         _focus={{
           border: '2px solid #51a6f5'
         }}
+        type={props.type}
+        // {...props}
       />
       {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
       {/* <ErrorMessage

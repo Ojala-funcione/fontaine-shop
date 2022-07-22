@@ -1,17 +1,22 @@
 /* eslint-disable no-unused-vars */
 import { SliderCardProps } from '@components/HomePageComponents/CardsSlider/SliderCard';
 import {
-  HeroSectionsInterface,
+  IHeroSection,
   SiteSettingsInterface,
   ProductTabsSectionInterface,
   AboutUsSectionInterface,
   BannerCardSectionInterface,
   FeedbackSectionInterface,
   SliderSectionInterface,
-  FeaturesSectionInterface
+  FeaturesSectionInterface,
+  IGeneralSettings
 } from './siteSettingsInterfaces';
 
-const heroSection: HeroSectionsInterface = {
+export const generalSettings: IGeneralSettings = {
+  logo: 'https://firebasestorage.googleapis.com/v0/b/fontaine-dev.appspot.com/o/logo-square.jpg?alt=media&token=f1b1b8d0-a08d-4f9c-9798-e4eb3b4a95d8'
+};
+
+export const heroSection: IHeroSection = {
   isActive: true,
   data: {
     imgUrl: [
@@ -26,7 +31,7 @@ const heroSection: HeroSectionsInterface = {
     ]
   }
 };
-const productTabsSection: ProductTabsSectionInterface = {
+export const productTabsSection: ProductTabsSectionInterface = {
   isActive: true,
   data: {
     news: {
@@ -55,7 +60,7 @@ const productTabsSection: ProductTabsSectionInterface = {
     }
   }
 };
-const categorySliderSection: SliderSectionInterface = {
+export const categorySliderSection: SliderSectionInterface = {
   isActive: false,
   data: [
     {
@@ -129,7 +134,7 @@ const categorySliderSection: SliderSectionInterface = {
     }
   ]
 };
-const brandSliderSection: SliderSectionInterface = {
+export const brandSliderSection: SliderSectionInterface = {
   isActive: true,
   data: [
     {
@@ -182,13 +187,11 @@ const brandSliderSection: SliderSectionInterface = {
     }
   ]
 };
-const bannerCardSection: BannerCardSectionInterface = {
+export const bannerCardSection: BannerCardSectionInterface = {
   isActive: false,
-  data: {
-    imgUrl: ''
-  }
+  data: undefined
 };
-const aboutUsSection: AboutUsSectionInterface = {
+export const aboutUsSection: AboutUsSectionInterface = {
   isActive: true,
   data: {
     title: '¿Quienes Somos?',
@@ -210,7 +213,7 @@ const aboutUsSection: AboutUsSectionInterface = {
   }
 };
 
-const featuresSection: FeaturesSectionInterface = {
+export const featuresSection: FeaturesSectionInterface = {
   isActive: true,
   data: {
     title: '¿Por Qué Elegirnos?',
@@ -234,7 +237,7 @@ const featuresSection: FeaturesSectionInterface = {
     ]
   }
 };
-const feedbackSection: FeedbackSectionInterface = {
+export const feedbackSection: FeedbackSectionInterface = {
   isActive: true,
   data: {
     title: 'Clientes Satisfechos',

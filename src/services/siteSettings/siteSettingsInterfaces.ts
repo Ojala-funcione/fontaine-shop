@@ -1,14 +1,7 @@
+/* eslint-disable no-unused-vars */
 import { SliderCardProps } from '@components/HomePageComponents/CardsSlider/SliderCard';
 
-export interface SiteSettingsResponse {
-  logo: string;
-}
-export interface SiteSettingsApi {
-  getSiteSettings(): Promise<SiteSettingsResponse>;
-  setSiteSettings(): Promise<SiteSettingsResponse>;
-}
-
-export interface HeroSectionsInterface {
+export interface IHeroSection {
   isActive: Boolean;
   data?: {
     imgUrl: string[];
@@ -73,7 +66,7 @@ export interface AboutUsSectionInterface {
 }
 
 export interface SiteSettingsInterface {
-  heroSection: HeroSectionsInterface;
+  heroSection: IHeroSection;
   productTabsSection: ProductTabsSectionInterface;
   categorySliderSection: SliderSectionInterface;
   brandSliderSection: SliderSectionInterface;
@@ -82,15 +75,39 @@ export interface SiteSettingsInterface {
   feedbackSection: FeedbackSectionInterface;
   featuresSection: FeaturesSectionInterface;
 }
-export interface HomeActiveSectionsInterface {
-  heroSection: boolean;
-  productTabsSection: null | {
-    news: boolean;
-    offer: boolean;
-    featured: boolean;
-  };
-  categorySliderSection: boolean;
-  bannerCardSection: boolean;
-  aboutUsSection: boolean;
-  feedbackSection: boolean;
+// export interface HomeActiveSectionsInterface {
+//   heroSection: boolean;
+//   productTabsSection: null | {
+//     news: boolean;
+//     offer: boolean;
+//     featured: boolean;
+//   };
+//   categorySliderSection: boolean;
+//   bannerCardSection: boolean;
+//   aboutUsSection: boolean;
+//   feedbackSection: boolean;
+// }
+export interface IGeneralSettings {
+  logo: string;
+  footer?: string;
+}
+export interface SiteSettingsApi {
+  getGeneralSettings(): Promise<IGeneralSettings>;
+  setGeneralSettings(): Promise<IGeneralSettings>;
+  getHeroSectionSettings(): Promise<IHeroSection>;
+  setHeroSectionSettings(): Promise<IHeroSection>;
+  getProductTabsSectionSettings(): Promise<ProductTabsSectionInterface>;
+  setProductTabsSectionSettings(): Promise<ProductTabsSectionInterface>;
+  getBrandSliderSectionSettings(): Promise<SliderSectionInterface>;
+  setBrandSliderSectionSettings(): Promise<SliderSectionInterface>;
+  getCategorySliderSectionSettings(): Promise<SliderSectionInterface>;
+  setCategorySliderSectionSettings(): Promise<SliderSectionInterface>;
+  getFeedbackSectionSettings(): Promise<FeedbackSectionInterface>;
+  setFeedbackSectionSettings(): Promise<FeedbackSectionInterface>;
+  getBannerCardSectionSettings(): Promise<BannerCardSectionInterface>;
+  setBannerCardSectionSettings(): Promise<BannerCardSectionInterface>;
+  getAboutUsSectionSettings(): Promise<AboutUsSectionInterface>;
+  setAboutUsSectionSettings(): Promise<AboutUsSectionInterface>;
+  getFeaturesSectionSettings(): Promise<FeaturesSectionInterface>;
+  setFeaturesSectionSettings(): Promise<FeaturesSectionInterface>;
 }

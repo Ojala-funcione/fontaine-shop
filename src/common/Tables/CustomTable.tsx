@@ -4,6 +4,7 @@ import {
   Box,
   IconButton,
   IconButtonProps,
+  Skeleton,
   Table,
   TableCellProps,
   TableColumnHeaderProps,
@@ -24,7 +25,7 @@ import {
   useFlexLayout,
   Column
 } from 'react-table';
-import { FC, useMemo } from 'react';
+import { FC, ReactNode, useMemo } from 'react';
 
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 import {
@@ -130,11 +131,15 @@ const PaginationButton: FC<IconButtonProps> = ({ children, ...props }) => (
 interface ITableProps<Data extends object> {
   columns: Column<Data>[];
   data: Data[];
+  isLoading?: boolean;
+  component?: ReactNode;
 }
 
 const CustomTable = <Data extends object>({
   data: tableData,
   columns: columnsConfig,
+  isLoading,
+  component,
   ...props
 }: ITableProps<Data>) => {
   const bgRowHoverColor = useColorModeValue('#e9ecef66', 'gray.700');
@@ -185,76 +190,85 @@ const CustomTable = <Data extends object>({
         overflow="auto"
         {...props}
       >
-        <Table
-          variant="simple"
-          py="10px"
-          overflow="hidden"
-          {...getTableProps()}
-        >
-          <Thead>
-            {headerGroups.map((headerGroup) => (
-              <Tr
-                {...headerGroup.getHeaderGroupProps()}
-                minWidth="500px"
-                key={headerGroup.id}
-              >
-                {headerGroup.headers.map((column) => (
-                  <ThCustom
-                    {...column.getHeaderProps(column.getSortByToggleProps())}
-                    key={column.id}
-                    maxW={column.maxWidth}
-                    minW={column.minWidth}
-                    w="auto"
-                  >
-                    {column.render('Header')}
-                    {!column.disableSortBy && (
-                      <HeaderIcon
-                        icon={
-                          column.isSorted ? (
-                            column.isSortedDesc ? (
-                              <BiSortUp height="1rem" />
-                            ) : (
-                              <BiSortDown height="1rem" />
-                            )
-                          ) : (
-                            <> </>
-                          )
-                        }
-                      />
-                    )}
-                  </ThCustom>
-                ))}
-              </Tr>
-            ))}
-          </Thead>
-          <Tbody {...getTableBodyProps()} minWidth="500px">
-            {page.map((row) => {
-              prepareRow(row);
-              return (
+        <Box pb="1rem" display="flex" justifyContent="flex-end">
+          {component}
+        </Box>
+        <Skeleton height="600px" isLoaded={!isLoading}>
+          <Table
+            variant="simple"
+            py="10px"
+            overflow="hidden"
+            {...getTableProps()}
+            _loading={{ background: 'red' }}
+          >
+            <Thead>
+              {headerGroups.map((headerGroup) => (
                 <Tr
-                  _hover={{
-                    bg: bgRowHoverColor
-                  }}
-                  {...row.getRowProps()}
+                  {...headerGroup.getHeaderGroupProps()}
                   minWidth="500px"
-                  key={row.id}
+                  key={headerGroup.getHeaderGroupProps().key}
                 >
-                  {row.cells.map((cell) => (
-                    <TdCustom
-                      {...cell.getCellProps()}
-                      key={cell.column.id}
-                      width="auto"
-                      maxW={cell.column.maxWidth}
-                      minW={cell.column.minWidth}
+                  {headerGroup.headers.map((column) => (
+                    <ThCustom
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                      maxW={column.maxWidth}
+                      minW={column.minWidth}
+                      w="auto"
+                      key={
+                        column.getHeaderProps(column.getSortByToggleProps()).key
+                      }
                     >
-                      {cell.render('Cell')}
-                    </TdCustom>
+                      {column.render('Header')}
+                      {!column.disableSortBy && (
+                        <HeaderIcon
+                          key={column.id + column.Header}
+                          icon={
+                            column.isSorted ? (
+                              column.isSortedDesc ? (
+                                <BiSortUp height="1rem" />
+                              ) : (
+                                <BiSortDown height="1rem" />
+                              )
+                            ) : (
+                              <> </>
+                            )
+                          }
+                        />
+                      )}
+                    </ThCustom>
                   ))}
                 </Tr>
-              );
-            })}
-          </Tbody>
-        </Table>
+              ))}
+            </Thead>
+            <Tbody {...getTableBodyProps()} minWidth="500px">
+              {page.map((row) => {
+                prepareRow(row);
+                return (
+                  <Tr
+                    _hover={{
+                      bg: bgRowHoverColor
+                    }}
+                    {...row.getRowProps()}
+                    minWidth="500px"
+                    key={row.getRowProps().key}
+                  >
+                    {row.cells.map((cell) => (
+                      <TdCustom
+                        {...cell.getCellProps()}
+                        key={cell.getCellProps().key}
+                        width="auto"
+                        maxW={cell.column.maxWidth}
+                        minW={cell.column.minWidth}
+                      >
+                        {cell.render('Cell')}
+                      </TdCustom>
+                    ))}
+                  </Tr>
+                );
+              })}
+            </Tbody>
+          </Table>
+        </Skeleton>
       </Box>
       <Box
         w="100%"
@@ -301,5 +315,9 @@ const CustomTable = <Data extends object>({
       </Box>
     </Box>
   );
+};
+CustomTable.defaultProps = {
+  isLoading: false,
+  component: <> </>
 };
 export default CustomTable;

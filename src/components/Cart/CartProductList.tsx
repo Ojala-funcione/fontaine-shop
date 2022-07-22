@@ -12,14 +12,12 @@ import {
   IconButton,
   Button
 } from '@chakra-ui/react';
-import { useAppDispatch, useAppSelector } from '@Redux/hooks';
-import { ICartProduct, IProduct } from '@Redux/Interfaces';
-import {
-  addProductCart,
-  clearCart,
-  removeOneProductFromCart,
-  removeProductFromCart
-} from '@Redux/products/productSlice';
+// import {
+//   addProductCart,
+//   clearCart,
+//   removeOneProductFromCart,
+//   removeProductFromCart
+// } from '@Redux/products/productSlice';
 
 import { FC } from 'react';
 import {
@@ -34,13 +32,14 @@ import {
   IoIosCloseCircleOutline,
   IoIosClose
 } from 'react-icons/io';
+import { ICartProduct, IProduct } from 'services/products/productsInterfaces';
 
 interface ICartItemProps {
   item: ICartProduct;
 }
 const CartItem: FC<ICartItemProps> = ({ item }) => {
   const { product, quantity, amount } = item;
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   return (
     <Box
       // bg="blue"
@@ -81,7 +80,7 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
           _active={{
             bg: '#0005'
           }}
-          onClick={() => dispatch(addProductCart(product))}
+          // onClick={() => dispatch(addProductCart(product))}
           icon={<HiPlus fontSize="1.15rem" />}
         />
         <Text
@@ -115,7 +114,7 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
           _active={{
             bg: '#0005'
           }}
-          onClick={() => dispatch(removeOneProductFromCart(product))}
+          // onClick={() => dispatch(removeOneProductFromCart(product))}
           icon={<HiMinus fontSize="1.15rem" />}
         />
       </Box>
@@ -180,17 +179,18 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
         _active={{
           bg: '#0005'
         }}
-        onClick={() => dispatch(removeProductFromCart(product))}
+        // onClick={() => dispatch(removeProductFromCart(product))}
       />
     </Box>
   );
 };
 
 const CartProductList: FC = () => {
-  const { cartProducts, quantityCart, amountCart } = useAppSelector(
-    (state) => state.products
-  );
-  const dispatch = useAppDispatch();
+  // const { cartProducts, quantityCart, amountCart } = useAppSelector(
+  //   (state) => state.products
+  // );
+  // const dispatch = useAppDispatch();
+  console.log();
   return (
     <Box w="100%" minH="100%" pb="60px">
       <Box
@@ -208,14 +208,14 @@ const CartProductList: FC = () => {
         borderBottom="1px solid #aaa"
         // bg={useColorModeValue('#fff', '#000')}
       >
-        {quantityCart > 0 ? (
+        {/* {quantityCart > 0 ? (
           <HiShoppingBag fontSize="1.25rem" />
         ) : (
           <HiOutlineShoppingBag fontSize="1.25rem" />
         )}
         <Text as="span" fontSize="1rem" fontWeight="500">
           {quantityCart > 1 ? `${quantityCart} Items` : `${quantityCart} Item`}
-        </Text>
+        </Text> */}
         <IconButton
           aria-label="remove-product"
           icon={<HiOutlineTrash />}
@@ -238,10 +238,10 @@ const CartProductList: FC = () => {
           // _active={{
           //   bg: '#0005'
           // }}
-          onClick={() => dispatch(clearCart())}
+          // onClick={() => dispatch(clearCart())}
         />
       </Box>
-      {cartProducts.length ? (
+      {/* {cartProducts.length ? (
         <>
           {cartProducts.map((item) => (
             <CartItem key={item.product.productId} item={item} />
@@ -251,7 +251,7 @@ const CartProductList: FC = () => {
         <Box p="2rem" mt="2rem" fontWeight={600} bg="green">
           Aun no agregaste ningun producto a tu carrito
         </Box>
-      )}
+      )} */}
       <Box
         w="100%"
         h="60px"
@@ -289,7 +289,7 @@ const CartProductList: FC = () => {
             p="0.65rem"
             borderRadius="full"
           >
-            {`$ ${amountCart.toFixed(2)}`}
+            {/* {`$ ${amountCart.toFixed(2)}`} */}
           </Text>
         </Button>
       </Box>

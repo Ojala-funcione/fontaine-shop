@@ -1,6 +1,6 @@
-import { IUser } from 'services/interfaces';
+import { IUser } from './usersInterfaces';
 
-const usersData: IUser[] = [
+export const usersData: IUser[] = [
   {
     uid: 'HAfho8o1FkTghygWg8AlsQhQnkj2',
     email: 'leoruhl94@gmail.com',
@@ -47,4 +47,33 @@ const usersData: IUser[] = [
     zip: null
   }
 ];
-export default usersData;
+export const userCustomerData: IUser = {
+  uid: 'rzkFwwa9YubjsutEFhcacUtAQJJ2',
+  email: 'jamedina@live.com.ar',
+  name: 'Jimena Medina',
+  firstName: 'Jimena',
+  lastName: 'Medina',
+  role: 'Customer',
+  address: null,
+  city: null,
+  country: null,
+  phoneNumber: null,
+  photoURL: null,
+  state: null,
+  zip: null
+};
+export const userSuperAdminData: IUser = {
+  uid: 'HAfho8o1FkTghygWg8AlsQhQnkj2',
+  email: 'leoruhl94@gmail.com',
+  name: 'Leonardo Ruhl',
+  firstName: 'Leonardo',
+  lastName: 'Ruhl',
+  role: 'SuperAdmin',
+  address: null,
+  city: null,
+  country: null,
+  phoneNumber: null,
+  photoURL: null,
+  state: null,
+  zip: null
+};

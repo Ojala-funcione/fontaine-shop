@@ -145,6 +145,31 @@ a {
   min-height: 160px!important;
 }
 
+.slick-thumb {
+  display: flex !important;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+  bottom: -75px;
+  overflow-y: auto;
+}  
+.slick-thumb li {
+    /* // min-width: 60px; */
+    max-width: 75px;
+    width: auto;
+    height: auto;
+    max-height: 75px;
+    cursor: pointer;
+  }
+
+  @media screen and (max-width: 500px) {
+    .slick-thumb {bottom: -60px;}
+    .slick-thumb li{
+      max-height: 55px;
+    }
+  }
+
 /* //_________animaciones__________ */
 
 @keyframes animation{

@@ -1,6 +1,6 @@
 import { Box, useColorModeValue } from '@chakra-ui/react';
-import Footer from '@components/footer/footer';
-import Header from '@components/header/header';
+import Footer from '@components/Layout/footer/footer';
+import Header from '@components/Layout/header/header';
 
 import React from 'react';
 

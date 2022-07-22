@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import '../styles/globals.css';
+// import '../styles/globals.css';
+import '../styles/globals.scss';
 import type { AppProps } from 'next/app';
 import { ChakraProvider } from '@chakra-ui/react';
 import { AuthProvider } from '@context/useAuth';
-import { Provider } from 'react-redux';
-import store from 'Redux/store';
+// import { Provider } from 'react-redux';
+// import store from 'Redux/store';
 import DefaultLayout from '@components/Layout/DefaultLayout';
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
@@ -24,11 +25,11 @@ const MyApp = ({ Component, pageProps }: AppPropsWithLayout) => {
     ((page: any) => <DefaultLayout>{page}</DefaultLayout>);
   return (
     <GlobalProvider>
-      <Provider store={store}>
-        <ChakraProvider>
-          <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
-        </ChakraProvider>
-      </Provider>
+      {/* <Provider store={store}> */}
+      <ChakraProvider>
+        <AuthProvider>{getLayout(<Component {...pageProps} />)}</AuthProvider>
+      </ChakraProvider>
+      {/* </Provider> */}
     </GlobalProvider>
   );
 };

@@ -63,7 +63,7 @@ const HomeTabs = () => {
                   spacing={8}
                 >
                   {productToShow.map((product) => (
-                    <ProductCard key={product.productId} product={product} />
+                    <ProductCard key={product.id} product={product} />
                   ))}
                 </SimpleGrid>
               </TabPanel>

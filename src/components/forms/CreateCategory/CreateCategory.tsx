@@ -3,13 +3,16 @@
 // eslint-disable-next-line object-curly-newline
 import { Box, Button, FormControl, Heading, Stack } from '@chakra-ui/react';
 import { Formik, Form, ErrorMessage } from 'formik';
-import * as Yup from 'yup';
+// import * as Yup from 'yup';
 import {
   CustomButton,
   CustomInput,
   CustomSelect
 } from '@common/CustomInputs/CustomInputs';
-import Uploader from './Uploader/Uploader';
+import { FC } from 'react';
+import Uploader from '../Uploader/Uploader';
+import { ICreateCategoryFormProps } from './interfaces';
+import useCreateCategoryFormController from './CreateCategory.controller';
 
 /* TODO:
 * => comprobar que no haya categorias repetidas para listarlas en el select
@@ -17,47 +20,30 @@ import Uploader from './Uploader/Uploader';
 * los espacios con guiones
 * => validar con yup que el string del slug no contenga caracteres invalidos
 * => verificar que el nombre de la categoria nueva no exista
+* => mejorar la validacion de errores y mostrar los msjs
 
 */
 
-const validationSchema = Yup.object().shape({
-  name: Yup.string()
-    .required('Catetegory Name is Required')
-    .max(100, 'Max 100 Characters'),
-  slug: Yup.string().required('slug').max(100, 'Max 100 Characters'),
-  parent_category: Yup.string().max(100, 'Max 100 Characters'),
-  image: Yup.array().min(1).max(5).required()
-});
-const AddCategoryForm = ({ onClose }: { onClose: () => void }) => {
+const CreateCategoryForm: FC<ICreateCategoryFormProps> = (props) => {
   // const { GenericToastSuccess, GenericToastError } = Toast();
-  const categories = [
-    { name: 'cat1', id: 's1' },
-    { name: 'cat2', id: 's2' },
-    { name: 'cat3', id: 's3' }
-  ];
-  const handleSubmit = async (values: any) => {
-    // console.log('Submit', values);
-  };
+  const { useController = useCreateCategoryFormController, onClose } = props;
+  const controller = useController(onClose);
+
   return (
     <Box bg="transparent" p="20px">
       <Heading as="h2" my="20px" textAlign="center" size="xl">
         Crear Nueva Categoría
       </Heading>
       <Formik
-        initialValues={{
-          name: '',
-          slug: '',
-          parent_category: '',
-          image: []
-        }}
-        validationSchema={validationSchema}
-        onSubmit={(values) => handleSubmit(values)}
+        initialValues={controller.initialValues}
+        validationSchema={controller.validationSchema}
+        onSubmit={(values) => controller.onSubmitButtonPressed(values)}
       >
         <Form>
           <Stack mt={4} spacing={6} direction="column">
             <CustomInput id="name" label="Nombre" type="text" name="name" />
             <CustomInput id="slug" label="Slug" type="text" name="slug" />
-            <CustomSelect
+            {/* <CustomSelect
               id="parent_category"
               label="Categoría Padre"
               type="text"
@@ -70,27 +56,28 @@ const AddCategoryForm = ({ onClose }: { onClose: () => void }) => {
                     {cat.name}
                   </option>
                 ))}
-            </CustomSelect>
+            </CustomSelect> */}
           </Stack>
           {/* ____________ */}
-          <Stack mt={6}>
+          {/* <Stack mt={6}>
             <FormControl isRequired>
-              <Uploader name="image" maxFiles={1} />
-              {/* <ErrorMessage name="image" component="div" className="error" /> */}
-            </FormControl>
-          </Stack>
+              <Uploader name="image" maxFiles={1} /> */}
+          {/* <ErrorMessage name="image" component="div" className="error" /> */}
+          {/* </FormControl>
+          </Stack> */}
           {/* _____________________ */}
           <Stack mt={4} spacing={2} direction="row" align="space-between">
-            <Button> a </Button>
             <CustomButton
               type="reset"
               variant="outline"
               colorScheme="red"
-              onClick={() => onClose()}
+              onClick={controller.onCancelButtonPressed}
             >
               Cancelar
             </CustomButton>
-            <CustomButton type="submit">Añadir</CustomButton>
+            <CustomButton isLoading={controller.isLoading} type="submit">
+              Añadir
+            </CustomButton>
           </Stack>
           {/* _____________________ */}
         </Form>
@@ -98,4 +85,4 @@ const AddCategoryForm = ({ onClose }: { onClose: () => void }) => {
     </Box>
   );
 };
-export default AddCategoryForm;
+export default CreateCategoryForm;

@@ -7,8 +7,8 @@ import {
   useColorModeValue,
   useDisclosure
 } from '@chakra-ui/react';
-import DashboardHeader from '@components/header/DashboardHeader';
-import DashboardSidebar from '@components/sidebar/DashboardSidebar';
+import DashboardHeader from '@components/Layout/header/DashboardHeader';
+import DashboardSidebar from '@components/Layout/sidebar/DashboardSidebar';
 import React from 'react';
 import { IoArrowBack } from 'react-icons/io5';
 

@@ -12,7 +12,7 @@ import { useAuth } from '@context/useAuth';
 import MenuProfile from '@common/MenuProfile/MenuProfile';
 // import { useRouter } from 'next/router';
 import { MdMenu, MdOutlineLogin } from 'react-icons/md';
-import DarkModeSwitch from '@components/DarkModeSwitch/DarkModeSwitch';
+import DarkModeSwitch from '@common/DarkModeSwitch/DarkModeSwitch';
 
 interface IHeaderProps {
   onOpenSidebar: () => void;

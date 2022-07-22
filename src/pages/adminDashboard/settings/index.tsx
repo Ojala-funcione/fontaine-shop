@@ -9,9 +9,9 @@ import SidebarCategoryIcon from '@assets/icons/SidebarCategoryIcon';
 import SiteSettings from '@assets/icons/SiteSettings';
 import ProductIcon from '@assets/icons/ProductIcon';
 import Members from '@assets/icons/Members';
-import AddCategoryForm from '@components/forms/AddCategoryForm';
+import CreateCategoryForm from '@components/forms/CreateCategory/CreateCategory';
 import StaffMemberForm from '@components/forms/StaffMemberForm';
-import AddProductForm from '@components/forms/AddProductForm';
+import AddProductForm from '@components/forms/CreateProduct/CreateProductForm';
 import { NextPageWithLayout } from '../../_app';
 
 const cards: ICardData[] = [
@@ -42,7 +42,7 @@ const cards: ICardData[] = [
     Icon: <SidebarCategoryIcon width="3.5rem" height="3.5rem" />,
     title: 'Agregar Categorias',
     subtitle: 'Crear una nueva categoria',
-    form: AddCategoryForm
+    form: CreateCategoryForm
   },
   {
     Icon: <ProductIcon width="3.5rem" height="3.5rem" />,

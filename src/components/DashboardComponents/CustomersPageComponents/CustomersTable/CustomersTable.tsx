@@ -3,8 +3,8 @@ import { Column } from 'react-table';
 import { FC } from 'react';
 import { CellActions, CellAvatar } from '@common/Tables/CustomTable/TableCell';
 import CustomTable from '@common/Tables/CustomTable';
-import { IUser } from 'services/interfaces';
-import usersData from 'services/users/data';
+import { usersData } from 'services/users/data';
+import { IUser } from 'services/users/usersInterfaces';
 
 const CustomersTable: FC = () => {
   const data: IUser[] = usersData;
