@@ -26,10 +26,10 @@ const useCreateProductFormController = (
     brand: '',
     description: '',
     category: '',
-    price: undefined,
-    discount: undefined,
-    stock: undefined,
-    minStock: undefined,
+    price: '',
+    discount: '',
+    stock: '',
+    minStock: '',
     sku: '',
     image:
       'https://firebasestorage.googleapis.com/v0/b/fontaine-dev.appspot.com/o/logo-square.jpg?alt=media&token=f1b1b8d0-a08d-4f9c-9798-e4eb3b4a95d8',
@@ -78,9 +78,10 @@ const useCreateProductFormController = (
       input.discount = 0;
     }
     input = { ...input, image: input.gallery[0] };
-    console.log('submit', input);
+    console.log('submit', input, typeof input.discount);
     createProduct(input);
   };
+
   const onCancelButtonPressed = () => {
     console.log('cancel');
     onClose && onClose();

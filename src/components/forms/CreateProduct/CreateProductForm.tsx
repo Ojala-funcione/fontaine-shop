@@ -60,7 +60,7 @@ const CreateProductForm: FC<ICreateProductFormProps> = (props) => {
                 id="discountInPercent"
                 type="number"
                 label="Descuento %"
-                name="discountInPercent"
+                name="discount"
               />
             </Stack>
             <Stack mt={4} spacing={2} direction="row" align="space-between">

@@ -8,10 +8,10 @@ export interface ICreateProduct {
   brand: string;
   description: string;
   category: string;
-  price: number | undefined;
-  discount: number | undefined;
-  stock: number | undefined;
-  minStock: number | undefined;
+  price: number | string;
+  discount: number | string;
+  stock: number | string;
+  minStock: number | string;
   sku: string;
   image: string;
   gallery: Array<string>;
