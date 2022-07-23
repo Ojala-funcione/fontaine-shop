@@ -12,7 +12,7 @@ import {
   IconButton,
   Button
 } from '@chakra-ui/react';
-import { useAppSelector } from '@Redux/hooks';
+// import { useAppSelector } from '@Redux/hooks';
 
 import { FC } from 'react';
 import { HiOutlineShoppingBag, HiShoppingBag } from 'react-icons/hi';
@@ -23,9 +23,10 @@ interface IProps {
 }
 
 const CartFloatButton: FC<IProps> = ({ onOpen }) => {
-  const { quantityCart, amountCart } = useAppSelector(
-    (state) => state.products
-  );
+  // const { quantityCart, amountCart } = useAppSelector(
+  //   (state) => state.products
+  // );
+  console.log();
   return (
     <Box
       minW="90px"
@@ -52,9 +53,9 @@ const CartFloatButton: FC<IProps> = ({ onOpen }) => {
         gap="0.25rem"
         alignItems="center"
       >
-        {quantityCart > 0 ? <HiShoppingBag /> : <HiOutlineShoppingBag />}
+        {/* {quantityCart > 0 ? <HiShoppingBag /> : <HiOutlineShoppingBag />} */}
         <Text as="span" fontSize="0.875rem">
-          {quantityCart > 1 ? `${quantityCart} Items` : `${quantityCart} Item`}
+          {/* {quantityCart > 1 ? `${quantityCart} Items` : `${quantityCart} Item`} */}
         </Text>
       </Box>
       <Box
@@ -65,7 +66,7 @@ const CartFloatButton: FC<IProps> = ({ onOpen }) => {
         color="#266BF9"
         fontWeight="600"
       >
-        {`$ ${amountCart.toFixed(2)}`}
+        {/* {`$ ${amountCart.toFixed(2)}`} */}
       </Box>
     </Box>
   );

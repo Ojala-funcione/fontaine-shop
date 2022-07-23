@@ -1,20 +1,36 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable no-unused-expressions */
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
-import ClientFeedBack from '@components/client feedback/ClientFeedBack';
-import WhoWeAre from '@components/whoWeAre/WhoWeAre';
+import ClientFeedBack from '@components/HomePageComponents/client feedback/ClientFeedBack';
 import type { NextPage } from 'next';
-import HomeTabs from '@components/homeTabs/HomeTabs';
-import BannerCard from '@components/bannerCard/BannerCard';
-import CategoryCarrusel from '@components/categoryCarrusel/CategoryCarrusel';
-import BannerSlider from '@components/bannerSlider/BannerSlider';
+import HomeTabs from '@components/HomePageComponents/homeTabs/HomeTabs';
+import BannerCard from '@components/HomePageComponents/bannerCard/BannerCard';
+import BannerSlider from '@components/HomePageComponents/BannerSlider/BannerSlider';
 import { motion, useAnimation } from 'framer-motion';
-import { chakra } from '@chakra-ui/react';
+import { Box, chakra } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
+import { useGlobalContext } from '@context/globalContext/globalContext';
+import CardsSlider from '@components/HomePageComponents/CardsSlider/CardsSlider';
+import AboutUsSection from '@components/HomePageComponents/AboutUsSection/AboutUsSection';
+import FeaturesSection from '@components/HomePageComponents/FeaturesSection/FeaturesSection';
 
 const ChakraMouse = chakra(motion.div);
 const Chakraclient = chakra(motion.div);
 
 const Home: NextPage = () => {
+  const { homeActiveSections } = useGlobalContext();
+  const {
+    heroSection,
+    productTabsSection,
+    categorySliderSection,
+    brandSliderSection,
+    bannerCardSection,
+    aboutUsSection,
+    feedbackSection,
+    featuresSection
+  } = homeActiveSections;
+
   const { ref: ref1, inView: inview1 } = useInView({
     triggerOnce: true
   });
@@ -28,136 +44,122 @@ const Home: NextPage = () => {
   const animation = useAnimation();
   const animation2 = useAnimation();
   const animation3 = useAnimation();
-
   useEffect(() => {
-    if (inview1) {
-      animation.start({
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.2,
-          ease: 'easeInOut'
-        }
-      });
-    }
-    if (!inview1) {
-      animation.start({
-        y: 100,
-        opacity: 0,
-        transition: {
-          duration: 0.2,
-          ease: 'easeInOut'
-        }
-      });
-    }
+    animation.start({
+      y: inview1 ? 0 : 100,
+      opacity: inview1 ? 1 : 0,
+      transition: {
+        duration: 0.2,
+        ease: 'easeInOut'
+      }
+    });
   }, [animation, inview1]);
 
   useEffect(() => {
-    if (inview2) {
-      animation2.start({
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.2,
-          ease: 'easeInOut'
-        }
-      });
-    }
-    if (!inview2) {
-      animation2.start({
-        y: 100,
-        opacity: 0,
-        transition: {
-          duration: 0.2,
-          ease: 'easeInOut'
-        }
-      });
-    }
+    animation.start({
+      y: inview2 ? 0 : 100,
+      opacity: inview2 ? 1 : 0,
+      transition: {
+        duration: 0.2,
+        ease: 'easeInOut'
+      }
+    });
   }, [animation, animation2, inview2]);
 
   useEffect(() => {
-    if (inview3) {
-      animation3.start({
-        y: 0,
-        opacity: 1,
-        transition: {
-          duration: 0.5,
-          ease: 'easeInOut'
-        }
-      });
-    }
-    if (!inview3) {
-      animation3.start({
-        y: 100,
-        opacity: 0,
-        transition: {
-          duration: 0.5,
-          ease: 'easeInOut'
-        }
-      });
-    }
+    animation.start({
+      y: inview3 ? 0 : 100,
+      opacity: inview3 ? 1 : 0,
+      transition: {
+        duration: 0.5,
+        ease: 'easeInOut'
+      }
+    });
   }, [animation, animation3, inview3]);
 
   return (
     <>
       <ScrollToTopButton />
-      <ChakraMouse
-        initial={{
-          opacity: 0,
-          x: -100
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-          transition: {
-            duration: 1,
-            ease: 'easeInOut'
-          }
-        }}
-      >
-        <BannerSlider />
-      </ChakraMouse>
-      <ChakraMouse
-        initial={{
-          opacity: 0,
-          x: 100
-        }}
-        animate={{
-          opacity: 1,
-          x: 0,
-          transition: {
-            duration: 1,
-            ease: 'easeInOut'
-          }
-        }}
-      >
-        <CategoryCarrusel />
-      </ChakraMouse>
-      <ChakraMouse
-        initial={{
-          opacity: 0,
-          y: 100
-        }}
-        animate={{
-          opacity: 1,
-          y: 0,
-          transition: {
-            duration: 1,
-            ease: 'easeInOut'
-          }
-        }}
-      >
-        <HomeTabs />
-      </ChakraMouse>
-      <ChakraMouse animate={animation} ref={ref1}>
-        <BannerCard />
-      </ChakraMouse>
-      <ChakraMouse animate={animation3} ref={ref3}>
-        <WhoWeAre />
-      </ChakraMouse>
-      <Chakraclient animate={animation2} ref={ref2}>
-        <ClientFeedBack />
-      </Chakraclient>
+      <Box minHeight="calc(100vh - 90px)">
+        {heroSection.isActive && (
+          <ChakraMouse
+            initial={{ opacity: 0, x: -100 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: { duration: 1, ease: 'easeInOut' }
+            }}
+          >
+            <BannerSlider />
+          </ChakraMouse>
+        )}
+        {brandSliderSection.isActive && (
+          <ChakraMouse
+            initial={{ opacity: 0, x: 100 }}
+            animate={{
+              opacity: 1,
+              x: 0,
+              transition: { duration: 1, ease: 'easeInOut' }
+            }}
+          >
+            {brandSliderSection.data && (
+              <CardsSlider data={brandSliderSection.data} />
+            )}
+          </ChakraMouse>
+        )}
+      </Box>
+      {productTabsSection.isActive && (
+        <ChakraMouse
+          initial={{ opacity: 0, y: 100 }}
+          animate={{
+            opacity: 1,
+            y: 0,
+            transition: { duration: 1, ease: 'easeInOut' }
+          }}
+        >
+          <HomeTabs />
+        </ChakraMouse>
+      )}
+      {bannerCardSection.isActive && (
+        <ChakraMouse animate={animation} ref={ref1}>
+          <BannerCard />
+        </ChakraMouse>
+      )}
+      {featuresSection.isActive && (
+        <ChakraMouse animate={animation} ref={ref1}>
+          <FeaturesSection />
+        </ChakraMouse>
+      )}
+      {aboutUsSection.isActive && (
+        <ChakraMouse animate={animation3} ref={ref3}>
+          <AboutUsSection
+            title={aboutUsSection.data?.title!}
+            description={aboutUsSection.data?.shortDescription!}
+            imgUrl={aboutUsSection.data?.imgUrl!}
+            textCallToAction={aboutUsSection.data?.textCallToAction!}
+            showCallToAction
+          />
+        </ChakraMouse>
+      )}
+      {categorySliderSection.isActive && (
+        <ChakraMouse
+          initial={{ opacity: 0, x: 100 }}
+          animate={{
+            opacity: 1,
+            x: 0,
+            transition: { duration: 1, ease: 'easeInOut' }
+          }}
+        >
+          {categorySliderSection.data && (
+            <CardsSlider data={categorySliderSection.data} />
+          )}
+        </ChakraMouse>
+      )}
+      {feedbackSection.isActive && (
+        <Chakraclient animate={animation2} ref={ref2}>
+          <ClientFeedBack />
+        </Chakraclient>
+      )}
     </>
   );
 };

@@ -1,24 +1,49 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-vars */
-import React, { ReactElement } from 'react';
-import { Box, useDisclosure } from '@chakra-ui/react';
+import React, { ReactElement, useEffect, useState } from 'react';
+import { Box, useDisclosure, useToast } from '@chakra-ui/react';
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
 import HeroShop from '@components/ShopComponents/HeroShop/HeroShop';
 import ProductsContainer from '@components/ShopComponents/ProductsContainer/ProductsContainer';
 import FilterSidebar from '@components/ShopComponents/FilterSidebar/FilterSidebar';
-import { useAppSelector } from '@Redux/hooks';
+// import { useAppSelector } from '@Redux/hooks';
 import CartFloatButton from '@components/Cart/CartFloatButton';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
 import CartProductList from '@components/Cart/CartProductList';
 import ShopLayout from '@components/Layout/ShopLayout';
+import { IProduct } from 'services/products/productsInterfaces';
+import useAPIProducts from 'services/products/apiProducts';
 import { NextPageWithLayout } from './_app';
-// import { IProduct } from '@Redux/Interfaces';
 
 const Store: NextPageWithLayout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
-  const products = useAppSelector((state) => state.products.listedProducts);
+  // const products = useAppSelector((state) => state.products.listedProducts);
   // const cart = useAppSelector((state) => state.products.cartProducts);
   // const quantityCart = useAppSelector((state) => state.products.quantityCart);
   // console.log('products', products);
+  const apiProducts = useAPIProducts();
+  const toast = useToast();
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [products, setProducts] = useState<IProduct[]>([]);
+  const getAllProducts = (): void => {
+    setIsLoading(true);
+    setTimeout(() => {
+      apiProducts
+        .getAllProductsPaginated(0, 10)
+        .then((r) => {
+          setProducts(r.products);
+        })
+        .catch((err: string) => {
+          toast({ title: err.toString(), status: 'error', duration: 9000 });
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }, 2000);
+  };
+  useEffect(() => {
+    getAllProducts();
+  }, []);
   return (
     <>
       <ScrollToTopButton />

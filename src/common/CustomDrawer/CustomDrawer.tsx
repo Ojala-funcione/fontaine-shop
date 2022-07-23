@@ -50,7 +50,7 @@ const CustomDrawer: FC<DrawerProps> = ({
       )}
       <DrawerBody>
         {/* {Component && <Component onClose={onClose} />} */}
-        {Component && <Component />}
+        {Component && <Component onClose={onClose} />}
         {children}
       </DrawerBody>
     </DrawerContent>

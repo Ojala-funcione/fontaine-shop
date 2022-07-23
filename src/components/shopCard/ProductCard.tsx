@@ -12,14 +12,15 @@ import {
   IconButton
 } from '@chakra-ui/react';
 import TagCard from '@common/Tags/TagCard';
-import { useAppDispatch, useAppSelector } from '@Redux/hooks';
-import { IProduct } from '@Redux/Interfaces';
-import {
-  addProductCart,
-  removeOneProductFromCart
-} from '@Redux/products/productSlice';
+// import { useAppDispatch, useAppSelector } from '@Redux/hooks';
+// import { IProduct } from '@Redux/Interfaces';
+// import {
+//   addProductCart,
+//   removeOneProductFromCart
+// } from '@Redux/products/productSlice';
 import { FC } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
+import { IProduct } from 'services/products/productsInterfaces';
 
 interface ISlider {
   slides: string[];
@@ -110,23 +111,23 @@ interface IProps {
 const ProductCard: FC<IProps> = ({ product }) => {
   const {
     gallery,
-    isOffer,
-    isCombo,
+    onSale,
+    onCombo,
     isFeatured,
     isNew,
-    discountInPercent,
+    discount,
     name,
     image,
     price,
     salePrice,
     category,
-    productId
+    id
   } = product;
 
-  const dispatch = useAppDispatch();
+  // const dispatch = useAppDispatch();
   // const quantityCart = useAppSelector((state) => state.products.quantityCart);
-  const cart = useAppSelector((state) => state.products.cartProducts);
-  const isInCart = cart.find((item) => item.product.productId === productId);
+  // const cart = useAppSelector((state) => state.products.cartProducts);
+  // const isInCart = cart.find((item) => item.product.id === id);
   // console.log('card', quantityCart);
   return (
     <Box
@@ -150,7 +151,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
       justifyContent="start"
       position="relative"
     >
-      {/* {isOffer && (
+      {/* {onSale && (
         <TagCard
           // bg="#EAB308"
           bg="#009f7f"
@@ -159,7 +160,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
           top="10px"
           position="absolute"
         >
-          {`- ${discountInPercent} %`}
+          {`- ${discount} %`}
         </TagCard>
       )} */}
       <Box
@@ -180,7 +181,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
         >
           {/* {isFeatured && <TagCard bg="#000">Destacado</TagCard>} */}
           {/* {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>} */}
-          {/* {isCombo && <TagCard bg="#000">Combo</TagCard>} */}
+          {/* {onCombo && <TagCard bg="#000">Combo</TagCard>} */}
         </Box>
         {/* <MiniSlider slides={gallery}></MiniSlider> */}
         <Image
@@ -232,7 +233,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
               >
                 {`$ ${salePrice.toFixed(2)}`}
               </Text>
-              {isOffer && (
+              {onSale && (
                 <Text
                   as="del"
                   color="#9ca3af"
@@ -244,7 +245,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                 </Text>
               )}
             </HStack>
-            {isInCart ? (
+            {/* {isInCart ? (
               <Box display="flex" bg="#266bf9" borderRadius="5px">
                 <IconButton
                   borderRadius="5px 0 0 5px"
@@ -302,21 +303,21 @@ const ProductCard: FC<IProps> = ({ product }) => {
                   onClick={() => dispatch(addProductCart(product))}
                 />
               </Box>
-            ) : (
-              <IconButton
-                h="36px"
-                w="36px"
-                minW="36px"
-                bg="transparent"
-                border="solid 1px #e1e1e1"
-                aria-label="add-product"
-                icon={<HiPlus />}
-                _focus={{
-                  outline: 'none'
-                }}
-                onClick={() => dispatch(addProductCart(product))}
-              />
-            )}
+            ) : ( */}
+            <IconButton
+              h="36px"
+              w="36px"
+              minW="36px"
+              bg="transparent"
+              border="solid 1px #e1e1e1"
+              aria-label="add-product"
+              icon={<HiPlus />}
+              _focus={{
+                outline: 'none'
+              }}
+              // onClick={() => dispatch(addProductCart(product))}
+            />
+            {/* )} */}
           </HStack>
         </Box>
       </Box>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, SimpleGrid } from '@chakra-ui/react';
-import { IProduct } from '@Redux/Interfaces';
 import ProductCard from '@components/shopCard/ProductCard';
+import { IProduct } from 'services/products/productsInterfaces';
 
 const ProductsContainer = ({ products }: { products: IProduct[] }) => (
   <Box
@@ -29,31 +29,9 @@ const ProductsContainer = ({ products }: { products: IProduct[] }) => (
     flexWrap="wrap"
     gap="20px"
   > */}
-      {/* {console.log('estao llega', products)} */}
 
       {products?.map((product) => (
-        <ProductCard
-          key={product.productId}
-          product={product}
-          // name={product.name}
-          // price={product.price}
-          // image={product.image}
-          // gallery={product.gallery}
-          // discountInPercent={product.discountInPercent}
-          // salePrice={product.salePrice}
-          // isOffer={product.isOffer}
-          // category={product.category}
-          // isNew={product.isNew}
-          // productId={product.productId}
-          // isCombo={product.isCombo}
-          // isFeatured={product.isFeatured}
-          // brand={product.brand}
-          // description={product.description}
-          // stock={product.stock}
-          // minStock={product.minStock}
-          // sku={product.sku}
-          // variants={product.variants}
-        />
+        <ProductCard key={product.id} product={product} />
       ))}
     </SimpleGrid>
   </Box>

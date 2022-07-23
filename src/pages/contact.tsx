@@ -3,7 +3,7 @@
 import React, { FC, useEffect } from 'react';
 import { Box, Button } from '@chakra-ui/react';
 // import { useAppDispatch, useAppSelector } from 'Redux/hooks';
-import { getAllProducts } from 'Redux/products/asyncActions';
+// import { getAllProducts } from 'Redux/products/asyncActions';
 
 const Contact: FC = () => (
   // const dispatch = useAppDispatch();

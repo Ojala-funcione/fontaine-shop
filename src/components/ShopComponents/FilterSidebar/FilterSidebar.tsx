@@ -21,19 +21,18 @@ import {
 import { IoOptionsOutline } from 'react-icons/io5';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
 import Logo from '@common/logo/logo';
-import { useAppSelector } from '@Redux/hooks';
+// import { useAppSelector } from '@Redux/hooks';
 
-const CategoryFilter = () => {
-  const categories = useAppSelector((state) => state.categories.categoryList);
+const CategoryFilter = () => (
+  // const categories = useAppSelector((state) => state.categories.categoryList);
   // console.log(categories);
 
-  return (
-    <Box display="flex" flexDirection="column" gap="0.5rem">
-      <Heading fontSize="1.5rem" pb="1rem">
-        Categorias
-      </Heading>
-      <Box pl="1rem" display="flex" flexDirection="column" gap="0.5rem">
-        {categories.map((cat) => (
+  <Box display="flex" flexDirection="column" gap="0.5rem">
+    <Heading fontSize="1.5rem" pb="1rem">
+      Categorias
+    </Heading>
+    <Box pl="1rem" display="flex" flexDirection="column" gap="0.5rem">
+      {/* {categories.map((cat) => (
           <Checkbox
             // type="checkbox"
             key={cat.id}
@@ -42,12 +41,10 @@ const CategoryFilter = () => {
           >
             {cat.name}
           </Checkbox>
-        ))}
-      </Box>
+        ))} */}
     </Box>
-  );
-};
-
+  </Box>
+);
 const FilterSidebar = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const logoColor = useColorModeValue('#222220', '#ffffff');
