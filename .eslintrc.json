@@ -35,7 +35,10 @@
       }
     ],
     "semi": ["error", "always"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
     "arrow-body-style": ["error", "as-needed"],
     "implicit-arrow-linebreak": 0,
     "react/prop-types": 0,
@@ -66,7 +69,8 @@
         "ts": "never",
         "tsx": "never"
       }
-   ],
-   "no-confusing-arrow": 0
+    ],
+    "no-confusing-arrow": 0,
+    "no-unused-vars": 0
   }
 }
