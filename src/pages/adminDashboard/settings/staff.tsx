@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
-import React, { ReactElement } from 'react';
-import DashboardLayout from '@components/Layout/DashboardLayout';
-// eslint-disable-next-line prettier/prettier
-import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
-import CustomersTable from '@components/DashboardComponents/CustomersPageComponents/CustomersTable/CustomersTable';
-import { NextPageWithLayout } from '../../_app';
+import React, { ReactElement } from "react";
+import DashboardLayout from "@components/Layout/DashboardLayout";
+import SectionDashboard, {
+  SectionDashboardHeader,
+} from "@common/sections/SectionDashboard";
+import CustomersTable from "@components/DashboardComponents/CustomersPageComponents/CustomersTable/CustomersTable";
+import { NextPageWithLayout } from "../../_app";
 
 const Staff: NextPageWithLayout = () => {
   const handleDelete = async (id: string, onClose: () => void) => {

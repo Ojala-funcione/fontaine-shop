@@ -9,10 +9,9 @@ generator client {
 
 model Category {
   id        String  @id @default(uuid())
-  image     String? @default("https://firebasestorage.googleapis.com/v0/b/fontaine-dev.appspot.com/o/logo-square.jpg?alt=media&token=f1b1b8d0-a08d-4f9c-9798-e4eb3b4a95d8")
-  name      Product @relation(fields: [categoryId], references: [id])
-  categoryId String
+  name      Product  @relation(fields: [id], references: [id])
   slug      String   @unique
+  image     String? @default("https://firebasestorage.googleapis.com/v0/b/fontaine-dev.appspot.com/o/logo-square.jpg?alt=media&token=f1b1b8d0-a08d-4f9c-9798-e4eb3b4a95d8")
   status    Int      @default(1)
 }
 
@@ -30,7 +29,7 @@ model Order {
 
 model Product {
   id          String   @id @default(uuid())
-  sku         String    @unique
+  sku         String?  
   name        String
   brand       String  
   description String?  

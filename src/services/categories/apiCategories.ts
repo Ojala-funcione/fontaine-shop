@@ -30,6 +30,7 @@ const useAPICategories = (): CategoriesApi => {
     console.log(category);
     return category;
   };
+
   const editCategory = async (category: ICategory): Promise<ICategory> => {
     // try {
     //   const response = await axios.post('https://url_base.com/algo', {

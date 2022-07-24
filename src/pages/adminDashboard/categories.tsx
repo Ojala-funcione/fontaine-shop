@@ -1,14 +1,14 @@
-import React, { ReactElement } from 'react';
-import DashboardLayout from '@components/Layout/DashboardLayout';
-// eslint-disable-next-line prettier/prettier
-import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
-
-import CategoriesTable from '@components/DashboardComponents/CategoriesPageComponents/CategoriesTable/CategoriesTable';
-import { Stack, useDisclosure } from '@chakra-ui/react';
-import CreateCategoryForm from '@components/forms/CreateCategory/CreateCategory';
-import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
-import ButtonAdd from '@common/Buttons/ButtonAdd';
-import { NextPageWithLayout } from '../_app';
+import React, { ReactElement } from "react";
+import DashboardLayout from "@components/Layout/DashboardLayout";
+import SectionDashboard, {
+  SectionDashboardHeader,
+} from "@common/sections/SectionDashboard";
+import CategoriesTable from "@components/DashboardComponents/CategoriesPageComponents/CategoriesTable/CategoriesTable";
+import { Stack, useDisclosure } from "@chakra-ui/react";
+import CreateCategoryForm from "@components/forms/CreateCategory/CreateCategory";
+import CustomDrawer from "@common/CustomDrawer/CustomDrawer";
+import ButtonAdd from "@common/Buttons/ButtonAdd";
+import { NextPageWithLayout } from "../_app";
 
 const Categories: NextPageWithLayout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -16,7 +16,7 @@ const Categories: NextPageWithLayout = () => {
     <SectionDashboard>
       <SectionDashboardHeader title="Categorias" />
       <Stack
-        direction={['column', 'row']}
+        direction={["column", "row"]}
         spacing="24px"
         p=".5rem"
         justifyContent="flex-end"

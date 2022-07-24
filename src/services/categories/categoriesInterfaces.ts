@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable linebreak-style */
 export interface ICategory {
   id: string;
   name: string;

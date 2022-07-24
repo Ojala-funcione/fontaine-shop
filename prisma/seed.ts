@@ -1,22 +1,19 @@
 /* eslint-disable linebreak-style */
-import { PrismaClient } from '@prisma/client';
-import { productSeed, categoriesSeed } from './data';
-
-const prisma = new PrismaClient();
+import prisma from "../src/db/index";
+import { productSeed, categoriesSeed } from "./data";
 
 async function main() {
-  await prisma.product.createMany({
-    data: productSeed
-  });
-
   await prisma.category.createMany({
-    data: categoriesSeed
+    data: categoriesSeed,
+  });
+  await prisma.product.createMany({
+    data: productSeed,
   });
 }
 
 main()
   .catch((e) => {
-    // console.log(e);
+    console.log(e);
     process.exit(1);
   })
   .finally(async () => {
