@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 import { Box, Heading, Text } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 export interface SliderCardProps {
   title?: string;

@@ -1,10 +1,10 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Text } from '@chakra-ui/react';
 import { Column } from 'react-table';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { CellActions, CellImage } from '@common/Tables/CustomTable/TableCell';
 import CustomTable from '@common/Tables/CustomTable';
-import EditProductForm from '@components/forms/EditProductForm';
+import EditProductForm from '@components/forms/EditProduct/EditProductForm';
 import { IProduct } from 'services/products/productsInterfaces';
 import ProductDetail from '../ProductDetail/ProductDetail';
 import { IProductsTableProps } from './interfaces';

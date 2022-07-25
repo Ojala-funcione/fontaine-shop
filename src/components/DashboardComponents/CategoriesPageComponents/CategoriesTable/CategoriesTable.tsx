@@ -1,9 +1,9 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Column } from 'react-table';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { CellActions, CellImage } from '@common/Tables/CustomTable/TableCell';
 import CustomTable from '@common/Tables/CustomTable';
-import EditCategoryForm from '@components/forms/EditCategoryForm';
+import EditCategoryForm from '@components/forms/EditCategory/EditCategoryForm';
 import { ICategory } from 'services/categories/categoriesInterfaces';
 import CategoryDetail from '../CategoryDetail/CategoryDetail';
 import { ICategoriesTableProps } from './interfaces';

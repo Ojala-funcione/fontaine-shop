@@ -1,6 +1,6 @@
 import { Box, Container, Text, useColorModeValue } from '@chakra-ui/react';
 import Logo from '@common/logo/logo';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useAuth } from '@context/useAuth';
 import { useRouter } from 'next/router';
 import RegisterForm from '@components/forms/RegisterForm';

@@ -7,7 +7,7 @@ import {
 } from '@chakra-ui/react';
 import ModalForm from '@common/modal/ModalForm';
 import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { useRouter } from 'next/router';
 
 interface FormModalProps {

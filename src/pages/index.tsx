@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
-import ClientFeedBack from '@components/HomePageComponents/client feedback/ClientFeedBack';
+import ClientFeedBack from '@components/HomePageComponents/ClientFeedback/ClientFeedBack';
 import type { NextPage } from 'next';
 import HomeTabs from '@components/HomePageComponents/homeTabs/HomeTabs';
 import BannerCard from '@components/HomePageComponents/bannerCard/BannerCard';
@@ -9,7 +9,7 @@ import BannerSlider from '@components/HomePageComponents/BannerSlider/BannerSlid
 import { motion, useAnimation } from 'framer-motion';
 import { Box, chakra } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useGlobalContext } from '@context/globalContext/globalContext';
 import CardsSlider from '@components/HomePageComponents/CardsSlider/CardsSlider';
 import AboutUsSection from '@components/HomePageComponents/AboutUsSection/AboutUsSection';

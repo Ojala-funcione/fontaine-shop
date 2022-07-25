@@ -1,7 +1,7 @@
 import { Box, Container, Text, useColorModeValue } from '@chakra-ui/react';
 import Logo from '@common/logo/logo';
 import LoginForm from '@components/forms/LoginFom';
-import { FC, useEffect } from 'react';
+import React, { FC, useEffect } from 'react';
 import { useAuth } from '@context/useAuth';
 import { useRouter } from 'next/router';
 import Link from 'next/link';

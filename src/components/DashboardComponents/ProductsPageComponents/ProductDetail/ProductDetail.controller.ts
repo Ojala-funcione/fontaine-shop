@@ -39,12 +39,13 @@ const useProductDetailController = (
   // listeners
   useEffect(() => {
     getProduct(itemId);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [itemId]);
 
   // view events
   const onButtonPressed = () => {
     // setProduct(undefined);
-    console.log('click');
+    // console.log('click');
   };
 
   // private methods

@@ -12,7 +12,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { ErrorMessage, FieldHookConfig, useField } from 'formik';
-import { useState, FC } from 'react';
+import React, { useState, FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 interface ICustomFieldProps {

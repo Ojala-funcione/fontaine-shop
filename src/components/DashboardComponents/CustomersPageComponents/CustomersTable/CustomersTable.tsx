@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 import { Column } from 'react-table';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { CellActions, CellAvatar } from '@common/Tables/CustomTable/TableCell';
 import CustomTable from '@common/Tables/CustomTable';
 import { usersData } from 'services/users/data';

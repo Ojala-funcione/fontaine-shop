@@ -6,7 +6,8 @@
     "dev": "next dev -p 3006",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint",
+    "nextlint": "next lint",
+    "lint": "eslint src/",
     "lint:fix": "eslint src/ --fix"
   },
   "dependencies": {

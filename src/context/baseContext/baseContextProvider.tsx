@@ -1,4 +1,4 @@
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { BaseContext, SettingsInterface } from './baseContext';
 
 const BaseProvider: FC = ({ children }) => {

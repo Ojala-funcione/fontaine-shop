@@ -1,5 +1,5 @@
 import { Button, ButtonProps, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { BsPlusLg } from 'react-icons/bs';
 
 const ButtonAdd: FC<ButtonProps> = ({ children, ...props }) => (

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
@@ -20,7 +21,7 @@ const useCategoriesTableController = (): ICategoriesTableController => {
 
   // view events
   const onDeleteButtonPressed = (id: string, onClose: () => void) => {
-    console.log('delete');
+    // console.log('delete');
     deleteCategory(id);
     onClose();
   };

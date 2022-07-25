@@ -1,7 +1,9 @@
+/* eslint-disable object-curly-newline */
 import React, { ReactElement } from 'react';
 import DashboardLayout from '@components/Layout/DashboardLayout';
-// eslint-disable-next-line prettier/prettier
-import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
+import SectionDashboard, {
+  SectionDashboardHeader
+} from '@common/sections/SectionDashboard';
 
 import CategoriesTable from '@components/DashboardComponents/CategoriesPageComponents/CategoriesTable/CategoriesTable';
 import { Stack, useDisclosure } from '@chakra-ui/react';

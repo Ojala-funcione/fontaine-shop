@@ -7,6 +7,7 @@ import { AuthProvider } from '@context/useAuth';
 // import { Provider } from 'react-redux';
 // import store from 'Redux/store';
 import DefaultLayout from '@components/Layout/DefaultLayout';
+import React from 'react';
 import type { ReactElement, ReactNode } from 'react';
 import type { NextPage } from 'next';
 import GlobalProvider from '@context/globalContext/globalContextProvider';

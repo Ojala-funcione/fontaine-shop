@@ -78,12 +78,12 @@ const useCreateProductFormController = (
       input.discount = 0;
     }
     input = { ...input, image: input.gallery[0] };
-    console.log('submit', input, typeof input.discount);
+    // console.log('submit', input, typeof input.discount);
     createProduct(input);
   };
 
   const onCancelButtonPressed = () => {
-    console.log('cancel');
+    // console.log('cancel');
     onClose && onClose();
   };
 

@@ -1,19 +1,21 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-unused-expressions */
 /* eslint-disable no-use-before-define */
-/* eslint-disable no-unused-vars */
 import * as Yup from 'yup';
 import { useToast } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import useAPICategories from 'services/categories/apiCategories';
-import { ICreateCategory } from 'services/categories/categoriesInterfaces';
-import { ICreateCategoryFormController } from './interfaces';
+import { ICategory } from 'services/categories/categoriesInterfaces';
+import { IEditCategoryFormController } from './interfaces';
 
-const useCreateCategoryFormController = (
+const useEditCategoryFormController = (
+  itemId: string,
   onClose?: () => void
-): ICreateCategoryFormController => {
+): IEditCategoryFormController => {
   const apiCategories = useAPICategories();
   const toast = useToast();
-  const initialValues: ICreateCategory = {
+  const initialValues: ICategory = {
+    id: '',
     name: '',
     slug: '',
     image:
@@ -28,19 +30,18 @@ const useCreateCategoryFormController = (
     // image: Yup.array().min(1).max(5).required()
     // image: Yup.string().min(1).max(5).optional()
   });
-
-  const [input, setInput] = useState<ICreateCategory>(initialValues);
+  const [category, setCategory] = useState<ICategory | undefined>();
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   // listeners
-  // useEffect(() => {
-  //   getProduct(itemId);
-  // }, [itemId]);
+  useEffect(() => {
+    getCategory(itemId);
+  }, [itemId]);
 
   // view events
-  const onSubmitButtonPressed = (values: ICreateCategory) => {
+  const onSubmitButtonPressed = (values: ICategory) => {
     // console.log('submit');
-    createCategory(values);
+    updateCategory(values);
   };
   const onCancelButtonPressed = () => {
     // console.log('cancel');
@@ -48,14 +49,35 @@ const useCreateCategoryFormController = (
   };
 
   // private methods
-  const createCategory = (newCategory: ICreateCategory): void => {
+
+  const getCategory = (id: string): void => {
     setIsLoading(true);
     setTimeout(() => {
       apiCategories
-        .createCategory(newCategory)
+        .getOneCategory(id)
+        .then((r) => {
+          setCategory(r);
+        })
+        .catch((err: string) => {
+          onClose && onClose();
+          toast({ title: err.toString(), status: 'error', duration: 9000 });
+        })
+        .finally(() => {
+          // console.log('finish');
+          setIsLoading(false);
+          onClose && onClose();
+        });
+    }, 2000);
+  };
+
+  const updateCategory = (updatedCategory: ICategory): void => {
+    setIsLoading(true);
+    setTimeout(() => {
+      apiCategories
+        .editCategory(updatedCategory)
         .then((r) => {
           toast({
-            title: `Categoria ${r.name} Creada`,
+            title: `Categoria ${r.name} editada`,
             status: 'success',
             duration: 5000
           });
@@ -73,7 +95,7 @@ const useCreateCategoryFormController = (
   };
 
   return {
-    initialValues,
+    category,
     validationSchema,
     isLoading,
     onSubmitButtonPressed,
@@ -81,4 +103,4 @@ const useCreateCategoryFormController = (
   };
 };
 
-export default useCreateCategoryFormController;
+export default useEditCategoryFormController;

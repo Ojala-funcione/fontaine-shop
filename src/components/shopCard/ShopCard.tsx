@@ -10,9 +10,9 @@ import {
   Button,
   Container
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import React, { FC, useState } from 'react';
 
-interface shopCardProps {
+interface ShopCardProps {
   slides: Array<{ img: string }>;
   isDiscount: boolean;
   discountInPercent: string;
@@ -24,7 +24,7 @@ interface shopCardProps {
   category: string;
 }
 
-const ShopCard = (props: shopCardProps) => {
+const ShopCard: FC<ShopCardProps> = (props) => {
   const {
     slides,
     isDiscount,

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-use-before-define */
 /* eslint-disable no-unused-vars */
 import { useToast } from '@chakra-ui/react';
@@ -23,7 +24,7 @@ const useCategoryDetailController = (
 
   // view events
   const onButtonPressed = () => {
-    console.log('click');
+    // console.log('click');
   };
 
   // private methods

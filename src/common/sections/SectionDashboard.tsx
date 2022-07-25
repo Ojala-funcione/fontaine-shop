@@ -1,5 +1,5 @@
 import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 interface ISectionHeader {
   title: string;

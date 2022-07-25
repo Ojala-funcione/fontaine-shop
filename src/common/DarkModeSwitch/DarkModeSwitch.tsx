@@ -1,4 +1,5 @@
 import { useColorMode, Box, IconButton } from '@chakra-ui/react';
+import React from 'react';
 import { BsMoonStarsFill } from 'react-icons/bs';
 import { FaSun } from 'react-icons/fa';
 

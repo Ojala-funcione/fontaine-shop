@@ -1,5 +1,5 @@
 import { Box, Container, IconButton } from '@chakra-ui/react';
-import { FC, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { MdArrowLeft, MdArrowRight } from 'react-icons/md';
 import Slider from 'react-slick';
 import SliderCard, { SliderCardProps } from './SliderCard';

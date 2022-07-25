@@ -10,6 +10,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { useGlobalContext } from '@context/globalContext/globalContext';
+import React from 'react';
 
 interface TestimonialCardProps {
   name: string;
@@ -18,7 +19,7 @@ interface TestimonialCardProps {
   avatar: string;
 }
 
-const TestimonialCard = (props: TestimonialCardProps) => {
+const TestimonialCard: React.FC<TestimonialCardProps> = (props) => {
   const { name, role, content, avatar } = props;
   return (
     <Flex
