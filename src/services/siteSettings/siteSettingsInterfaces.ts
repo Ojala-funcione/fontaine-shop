@@ -1,5 +1,5 @@
 /* eslint-disable no-unused-vars */
-import { SliderCardProps } from '@components/HomePageComponents/CardsSlider/SliderCard';
+import { SliderCardProps } from '@components/_HomePageComponents/CardsSlider/SliderCard';
 
 export interface IHeroSection {
   isActive: boolean;

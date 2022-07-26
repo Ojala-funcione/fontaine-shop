@@ -3,14 +3,14 @@
 import React, { ReactElement, useEffect, useState } from 'react';
 import { Box, useDisclosure, useToast } from '@chakra-ui/react';
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
-import HeroShop from '@components/ShopComponents/HeroShop/HeroShop';
-import ProductsContainer from '@components/ShopComponents/ProductsContainer/ProductsContainer';
-import FilterSidebar from '@components/ShopComponents/FilterSidebar/FilterSidebar';
+import HeroShop from '@components/_ShopPageComponents/HeroShop/HeroShop';
+import ProductsContainer from '@components/_ShopPageComponents/ProductsContainer/ProductsContainer';
+import FilterSidebar from '@components/_ShopPageComponents/FilterSidebar/FilterSidebar';
 // import { useAppSelector } from '@Redux/hooks';
 import CartFloatButton from '@components/Cart/CartFloatButton';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
 import CartProductList from '@components/Cart/CartProductList';
-import ShopLayout from '@components/Layout/ShopLayout';
+import ShopLayout from '@components/_Layout/ShopLayout';
 import { IProduct } from 'services/products/productsInterfaces';
 import useAPIProducts from 'services/products/apiProducts';
 import { NextPageWithLayout } from './_app';

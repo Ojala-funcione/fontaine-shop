@@ -37,7 +37,7 @@ SectionDashboardHeader.defaultProps = {
   size: 'xl'
 };
 
-const SectionDashboard: FC = ({ children, ...props }) => (
+export const SectionDashboard: FC = ({ children, ...props }) => (
   <Box
     display="flex"
     flexDirection="column"

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { IProduct } from '@Services/products/productsInterfaces';
 import React, { createContext, useContext } from 'react';
 import homeSectionsData from 'services/siteSettings/data';

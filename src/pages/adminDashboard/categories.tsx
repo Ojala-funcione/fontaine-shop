@@ -1,11 +1,12 @@
 /* eslint-disable object-curly-newline */
 import React, { ReactElement } from 'react';
-import DashboardLayout from '@components/Layout/DashboardLayout';
-import SectionDashboard, {
+import DashboardLayout from '@components/_Layout/DashboardLayout';
+import {
+  SectionDashboard,
   SectionDashboardHeader
 } from '@common/sections/SectionDashboard';
 
-import CategoriesTable from '@components/DashboardComponents/CategoriesPageComponents/CategoriesTable/CategoriesTable';
+import CategoriesTable from '@components/_DashboardComponents/CategoriesPageComponents/CategoriesTable/CategoriesTable';
 import { Stack, useDisclosure } from '@chakra-ui/react';
 import CreateCategoryForm from '@components/forms/CreateCategory/CreateCategory';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';

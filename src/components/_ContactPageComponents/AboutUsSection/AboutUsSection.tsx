@@ -6,35 +6,27 @@ import {
   Heading,
   Text,
   useColorModeValue,
-  Button,
+  // Button,
   Divider,
   useBreakpointValue
 } from '@chakra-ui/react';
 import React, { FC } from 'react';
-import Link from 'next/link';
+// import Link from 'next/link';
+import { IAboutUsSectionProps } from './interfaces';
+import useAboutUsController from './AboutUsSection.controller';
 
-interface AboutUsSectionInterface {
-  title: string;
-  description: string;
-  imgUrl: string;
-  textCallToAction?: string;
-  showCallToAction?: boolean;
-}
+const AboutUsSection: FC<IAboutUsSectionProps> = (props) => {
+  const { useController = useAboutUsController } = props;
+  const controller = useController();
+  const { data } = controller;
 
-const AboutUsSection: FC<AboutUsSectionInterface> = ({
-  title,
-  description,
-  textCallToAction,
-  imgUrl,
-  showCallToAction
-}) => {
-  const borderButtonColor = useColorModeValue('gray.900', 'gray.100');
+  // const borderButtonColor = useColorModeValue('gray.900', 'gray.100');
   const titleSize = useBreakpointValue({
     base: '4xl',
     lg: '5xl'
   });
   return (
-    <Container maxW="1440px" py={20} minHeight="600px">
+    <Container maxW="1440px" py={20} minHeight="600px" id="#about">
       <SimpleGrid columns={{ base: 1, md: 2 }} spacing={10}>
         <Flex
           bg=""
@@ -59,7 +51,7 @@ const AboutUsSection: FC<AboutUsSectionInterface> = ({
             color={useColorModeValue('gray.700', 'gray.50')}
             pb="2rem"
           >
-            {title}
+            {data?.title}
           </Heading>
           <Text
             fontSize="1rem"
@@ -69,9 +61,9 @@ const AboutUsSection: FC<AboutUsSectionInterface> = ({
             color={useColorModeValue('gray.500', 'gray.400')}
             pb="1rem"
           >
-            {description}
+            {data?.description}
           </Text>
-          {showCallToAction && (
+          {/* {data?.showCallToAction && (
             <Link href="/contact" passHref>
               <Button
                 alignSelf="flex-end"
@@ -87,16 +79,16 @@ const AboutUsSection: FC<AboutUsSectionInterface> = ({
                 _hover={{ bg: 'gray.700', color: '#fff' }}
                 _focus={{ outline: 'none' }}
               >
-                {textCallToAction}
+                {data?.textCallToAction}
               </Button>
             </Link>
-          )}
+          )} */}
         </Flex>
         <Flex>
           <Image
             rounded="md"
             alt="feature image"
-            src={imgUrl}
+            src={data?.imgUrl}
             objectFit="cover"
           />
         </Flex>
@@ -104,8 +96,5 @@ const AboutUsSection: FC<AboutUsSectionInterface> = ({
     </Container>
   );
 };
-AboutUsSection.defaultProps = {
-  textCallToAction: '',
-  showCallToAction: false
-};
+
 export default AboutUsSection;

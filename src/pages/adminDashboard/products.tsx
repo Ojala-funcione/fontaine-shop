@@ -1,10 +1,12 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { ReactElement } from 'react';
-import DashboardLayout from '@components/Layout/DashboardLayout';
-// eslint-disable-next-line prettier/prettier
-import SectionDashboard, { SectionDashboardHeader } from '@common/sections/SectionDashboard';
-import ProductsTable from '@components/DashboardComponents/ProductsPageComponents/ProductsTable/ProductsTable';
+import DashboardLayout from '@components/_Layout/DashboardLayout';
+import {
+  SectionDashboard,
+  SectionDashboardHeader
+} from '@common/sections/SectionDashboard';
+import ProductsTable from '@components/_DashboardComponents/ProductsPageComponents/ProductsTable/ProductsTable';
 import { Stack, useDisclosure } from '@chakra-ui/react';
 import ButtonAdd from '@common/Buttons/ButtonAdd';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';

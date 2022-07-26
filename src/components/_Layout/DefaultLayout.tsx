@@ -1,12 +1,14 @@
 /* eslint-disable no-unused-vars */
 import { Box, useColorModeValue } from '@chakra-ui/react';
-import Footer from '@components/Layout/footer/footer';
-import Header from '@components/Layout/header/header';
+import Footer from '@components/_Layout/footer/footer';
+import Header from '@components/_Layout/header/header';
+import { useRouter } from 'next/router';
 import React from 'react';
 
-const ShopLayout: React.FC = ({ children }) => (
+const DefaultLayout: React.FC = ({ children }) => (
+  // const { pathname } = useRouter();
+  // // const isDashboard = pathname.startsWith('/adminDashboard');
   <Box
-    // height="fit-content"
     display="flex"
     flexDirection="column"
     minHeight="100vh"
@@ -18,5 +20,4 @@ const ShopLayout: React.FC = ({ children }) => (
     {/* <Footer display={isDashboard ? 'none' : ''} /> */}
   </Box>
 );
-
-export default ShopLayout;
+export default DefaultLayout;

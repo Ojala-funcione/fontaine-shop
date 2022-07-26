@@ -1,19 +1,19 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-unused-expressions */
 import ScrollToTopButton from '@common/Buttons/ScrollToTopButton';
-import ClientFeedBack from '@components/HomePageComponents/ClientFeedback/ClientFeedBack';
+import ClientFeedBack from '@components/_HomePageComponents/ClientFeedback/ClientFeedBack';
 import type { NextPage } from 'next';
-import HomeTabs from '@components/HomePageComponents/homeTabs/HomeTabs';
-import BannerCard from '@components/HomePageComponents/bannerCard/BannerCard';
-import BannerSlider from '@components/HomePageComponents/BannerSlider/BannerSlider';
+import HomeTabs from '@components/_HomePageComponents/homeTabs/HomeTabs';
+import BannerCard from '@components/_HomePageComponents/bannerCard/BannerCard';
+import BannerSlider from '@components/_HomePageComponents/BannerSlider/BannerSlider';
 import { motion, useAnimation } from 'framer-motion';
 import { Box, chakra } from '@chakra-ui/react';
 import { useInView } from 'react-intersection-observer';
 import React, { useEffect } from 'react';
 import { useGlobalContext } from '@context/globalContext/globalContext';
-import CardsSlider from '@components/HomePageComponents/CardsSlider/CardsSlider';
-import AboutUsSection from '@components/HomePageComponents/AboutUsSection/AboutUsSection';
-import FeaturesSection from '@components/HomePageComponents/FeaturesSection/FeaturesSection';
+import CardsSlider from '@components/_HomePageComponents/CardsSlider/CardsSlider';
+import AboutUsSection from '@components/_HomePageComponents/AboutUsSection/AboutUsSection';
+import FeaturesSection from '@components/_HomePageComponents/FeaturesSection/FeaturesSection';
 
 const ChakraMouse = chakra(motion.div);
 const Chakraclient = chakra(motion.div);

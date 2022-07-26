@@ -24,7 +24,7 @@ import DarkModeSwitch from '@common/DarkModeSwitch/DarkModeSwitch';
 const Links = [
   { href: '/', name: 'Home' },
   { href: '/store', name: 'Tienda' },
-  { href: '/contact', name: 'Contacto' }
+  { href: '/about', name: 'Nosotros' }
 ];
 
 const Header: React.FC = () => {

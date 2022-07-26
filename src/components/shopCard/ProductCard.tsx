@@ -3,14 +3,14 @@ import {
   Box,
   Heading,
   Text,
-  Stack,
+  // Stack,
   Image,
   useColorModeValue,
   Flex,
   HStack,
   IconButton
 } from '@chakra-ui/react';
-import TagCard from '@common/Tags/TagCard';
+// import TagCard from '@common/Tags/TagCard';
 import { useGlobalContext } from '@context/globalContext/globalContext';
 import React, { FC } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
@@ -104,12 +104,12 @@ interface IProps {
 }
 const ProductCard: FC<IProps> = ({ product }) => {
   const {
-    gallery,
+    // gallery,
     onSale,
-    onCombo,
-    isFeatured,
-    isNew,
-    discount,
+    // onCombo,
+    // isFeatured,
+    // isNew,
+    // discount,
     name,
     image,
     price,

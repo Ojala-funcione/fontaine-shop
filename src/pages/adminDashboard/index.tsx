@@ -7,7 +7,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import React, { useState, useEffect, ReactElement } from 'react';
-import DashboardLayout from '@components/Layout/DashboardLayout';
+import DashboardLayout from '@components/_Layout/DashboardLayout';
 import DashboardSection from '@common/DashboardSection/DashboardSection';
 import { NextPageWithLayout } from '../_app';
 

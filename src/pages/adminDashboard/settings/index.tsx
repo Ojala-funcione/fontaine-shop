@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import React, { ReactElement } from 'react';
 import { Box } from '@chakra-ui/react';
-import DashboardLayout from '@components/Layout/DashboardLayout';
+import DashboardLayout from '@components/_Layout/DashboardLayout';
 import SettingsCard, { ICardData } from '@components/Cards/SettingsCard';
 import OrderIcon from '@assets/icons/OrderIcon';
 import CouponIcon from '@assets/icons/CouponIcon';
