@@ -1,6 +1,4 @@
 import React from 'react';
 
-const Modal = () => {
-  return <div>modal</div>;
-};
+const Modal = () => <div>modal</div>;
 export default Modal;

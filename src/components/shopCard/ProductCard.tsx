@@ -1,25 +1,20 @@
 /* eslint-disable react/no-unused-prop-types */
-/* eslint-disable no-unused-vars */
 import {
   Box,
   Heading,
   Text,
-  Stack,
+  // Stack,
   Image,
   useColorModeValue,
   Flex,
   HStack,
   IconButton
 } from '@chakra-ui/react';
-import TagCard from '@common/Tags/TagCard';
-import { useAppDispatch, useAppSelector } from '@Redux/hooks';
-import { IProduct } from '@Redux/Interfaces';
-import {
-  addProductCart,
-  removeOneProductFromCart
-} from '@Redux/products/productSlice';
-import { FC } from 'react';
+// import TagCard from '@common/Tags/TagCard';
+import { useGlobalContext } from '@context/globalContext/globalContext';
+import React, { FC } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
+import { IProduct } from 'services/products/productsInterfaces';
 
 interface ISlider {
   slides: string[];
@@ -109,25 +104,22 @@ interface IProps {
 }
 const ProductCard: FC<IProps> = ({ product }) => {
   const {
-    gallery,
-    isOffer,
-    isCombo,
-    isFeatured,
-    isNew,
-    discountInPercent,
+    // gallery,
+    onSale,
+    // onCombo,
+    // isFeatured,
+    // isNew,
+    // discount,
     name,
     image,
     price,
     salePrice,
     category,
-    productId
+    id
   } = product;
 
-  const dispatch = useAppDispatch();
-  // const quantityCart = useAppSelector((state) => state.products.quantityCart);
-  const cart = useAppSelector((state) => state.products.cartProducts);
-  const isInCart = cart.find((item) => item.product.productId === productId);
-  // console.log('card', quantityCart);
+  const { cart, addProductToCart, removeProductFromCart } = useGlobalContext();
+  const isInCart = cart.products.find((item) => item.product.id === id);
   return (
     <Box
       w="100%"
@@ -150,7 +142,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
       justifyContent="start"
       position="relative"
     >
-      {/* {isOffer && (
+      {/* {onSale && (
         <TagCard
           // bg="#EAB308"
           bg="#009f7f"
@@ -159,7 +151,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
           top="10px"
           position="absolute"
         >
-          {`- ${discountInPercent} %`}
+          {`- ${discount} %`}
         </TagCard>
       )} */}
       <Box
@@ -169,7 +161,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
         height="100%"
         position="relative"
       >
-        <Box
+        {/* <Box
           position="absolute"
           top="5px"
           left="5px"
@@ -177,11 +169,11 @@ const ProductCard: FC<IProps> = ({ product }) => {
           flexDirection="column"
           gap="5px"
           zIndex={1}
-        >
-          {/* {isFeatured && <TagCard bg="#000">Destacado</TagCard>} */}
-          {/* {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>} */}
-          {/* {isCombo && <TagCard bg="#000">Combo</TagCard>} */}
-        </Box>
+        > */}
+        {/* {isFeatured && <TagCard bg="#000">Destacado</TagCard>} */}
+        {/* {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>} */}
+        {/* {onCombo && <TagCard bg="#000">Combo</TagCard>} */}
+        {/* </Box> */}
         {/* <MiniSlider slides={gallery}></MiniSlider> */}
         <Image
           marginInline="auto"
@@ -232,7 +224,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
               >
                 {`$ ${salePrice.toFixed(2)}`}
               </Text>
-              {isOffer && (
+              {onSale && (
                 <Text
                   as="del"
                   color="#9ca3af"
@@ -265,7 +257,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                   _active={{
                     bg: '#0005'
                   }}
-                  onClick={() => dispatch(removeOneProductFromCart(product))}
+                  onClick={() => removeProductFromCart(product)}
                 />
                 <Text
                   h="36px"
@@ -299,7 +291,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                   _active={{
                     bg: '#0005'
                   }}
-                  onClick={() => dispatch(addProductCart(product))}
+                  onClick={() => addProductToCart(product)}
                 />
               </Box>
             ) : (
@@ -314,7 +306,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                 _focus={{
                   outline: 'none'
                 }}
-                onClick={() => dispatch(addProductCart(product))}
+                onClick={() => addProductToCart(product)}
               />
             )}
           </HStack>

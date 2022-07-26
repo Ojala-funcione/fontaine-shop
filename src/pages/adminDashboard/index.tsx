@@ -6,25 +6,26 @@ import {
   Text,
   useColorModeValue
 } from '@chakra-ui/react';
-import React, { useState, useEffect } from 'react';
-import DashboardLayout from '@components/Layout/DashboardLayout';
+import React, { useState, useEffect, ReactElement } from 'react';
+import DashboardLayout from '@components/_Layout/DashboardLayout';
 import DashboardSection from '@common/DashboardSection/DashboardSection';
+import { NextPageWithLayout } from '../_app';
 
-const AdminDashboard = () => {
+const AdminDashboard: NextPageWithLayout = () => {
   //   const { getAllProducts, getAllCustomers } = useDb();
 
   const [products, setProducts] = useState([]);
   const [customers, setCustomers] = useState([]);
 
-  //   useEffect(() => {
-  //     async function getData() {
-  //       const customers = await getAllCustomers();
-  //       const products = await getAllProducts();
-  //       setCustomers(customers);
-  //       setProducts(products);
-  //     }
-  //     getData();
-  //   }, []);
+  // useEffect(() => {
+  //   async function getData() {
+  //     const customers = await getAllCustomers();
+  //     const products = await getAllProducts();
+  //     setCustomers(customers);
+  //     setProducts(products);
+  //   }
+  //   getData();
+  // }, []);
 
   return (
     <Container maxW="8xl" centerContent>
@@ -113,5 +114,8 @@ const AdminDashboard = () => {
     </Container>
   );
 };
-AdminDashboard.Layout = DashboardLayout;
+// AdminDashboard.Layout = DashboardLayout;
+AdminDashboard.getLayout = function getLayout(page: ReactElement) {
+  return <DashboardLayout>{page}</DashboardLayout>;
+};
 export default AdminDashboard;

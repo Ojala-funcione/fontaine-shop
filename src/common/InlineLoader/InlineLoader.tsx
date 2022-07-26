@@ -1,5 +1,5 @@
-import { Box } from '@chakra-ui/react';
-import React from 'react';
+import { Box, ChakraProps } from '@chakra-ui/react';
+import React, { FC } from 'react';
 
 const Dot = ({ style }: { style: any }) => (
   <Box
@@ -14,7 +14,7 @@ const Dot = ({ style }: { style: any }) => (
     style={style}
   />
 );
-const InLineLoader = () => (
+const InLineLoader: FC<ChakraProps> = () => (
   <Box
     display="flex"
     justifyContent="center"

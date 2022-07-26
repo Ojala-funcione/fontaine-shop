@@ -1,3 +1,5 @@
+/* eslint-disable no-shadow */
+/* eslint-disable no-unused-vars */
 /* eslint-disable camelcase */
 import {
   Box,
@@ -15,10 +17,11 @@ import {
 } from 'react-icons/hi';
 import { useField } from 'formik';
 
-import VariantOptionInput from './VariantOptionInput';
-import ShowVariants from './VariantList';
+// import VariantOptionInput from './VariantOptionInput';
+// import ShowVariants from './VariantList';
 
-const AddVariant = ({ name }) => {
+const AddVariant = ({ name }: { name: string }) => {
+  // eslint-disable-next-line no-unused-vars
   const [_, __, helpers] = useField(name);
   const [open, setOpen] = useState(false);
   const [varianteActual, setVarianteActual] = useState('');
@@ -28,34 +31,35 @@ const AddVariant = ({ name }) => {
   const ph_input = useColorModeValue('#777777', '#bababa');
   const color_trashbtn = useColorModeValue('#2f2f2f', '#bababa');
 
-  const setearOpciones = (nuevaOpcion, variante) => {
-    setAllVariants({
-      ...allVariants,
-      [variante]: [...allVariants[variante], nuevaOpcion]
-    });
+  const setearOpciones = (nuevaOpcion: any, variante: string) => {
+    // setAllVariants({
+    //   ...allVariants,
+    //   [variante]: [...allVariants[variante], nuevaOpcion]
+    // });
   };
   const handleSubmit = () => {
-    setAllVariants({ ...allVariants, [varianteActual]: [] });
-    setVarianteActual('');
+    // setAllVariants({ ...allVariants, [varianteActual]: [] });
+    // setVarianteActual('');
   };
-  const deleteVariant = (variant) => {
+  const deleteVariant = (variant: string) => {
     setAllVariants((state) => {
       // eslint-disable-next-line no-param-reassign
-      delete state[variant];
-      return { ...state };
+      // delete state[variant];
+      // return { ...state };
     });
   };
-  const deleteVariantOption = (variant, name) => {
-    setAllVariants((state) => {
-      const filteredVariants = state[variant].filter(
-        (item) => item.name !== name
-      );
-      return { ...state, [variant]: filteredVariants };
-    });
+  const deleteVariantOption = (variant: any, name: any) => {
+    // setAllVariants((state) => {
+    //   const filteredVariants = state[variant].filter(
+    //     (item) => item.name !== name
+    //   );
+    //   return { ...state, [variant]: filteredVariants };
+    // });
   };
 
   useEffect(() => {
     helpers.setValue(allVariants);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [allVariants]);
 
   return (
@@ -144,6 +148,7 @@ const AddVariant = ({ name }) => {
                 </Text>
                 <IconButton
                   position="absolute"
+                  aria-label="."
                   top="0"
                   right="0"
                   bg="transpatent"
@@ -162,7 +167,7 @@ const AddVariant = ({ name }) => {
                   onClick={() => deleteVariant(variant)}
                   icon={<HiOutlineTrash />}
                 />
-                <ShowVariants
+                {/* <ShowVariants
                   allVariants={allVariants}
                   deleteVariantOption={deleteVariantOption}
                   variant={variant}
@@ -171,7 +176,7 @@ const AddVariant = ({ name }) => {
                 <VariantOptionInput
                   handleOption={setearOpciones}
                   variant={variant}
-                />
+                /> */}
               </Box>
             ))}
           </Box>

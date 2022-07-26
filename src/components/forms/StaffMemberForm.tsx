@@ -8,10 +8,10 @@ import {
 } from '@common/CustomInputs/CustomInputs';
 // import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Formik, Form } from 'formik';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 
-const isValidEmail = async (value) => {
+const isValidEmail = async (value?: string) => {
   try {
     if (!value) return false;
 
@@ -27,7 +27,7 @@ const isValidEmail = async (value) => {
     // }
     return false;
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return false;
   }
 };
@@ -49,8 +49,8 @@ const StaffMemberForm = ({ onClose }: { onClose: () => void }) => {
   // const { roles, getAllRoles, getOneUserByEmail, updateUserByField } = useDb();
 
   // const navigate = useNavigate();
-  const handleSubmit = async (values) => {
-    console.log(values);
+  const handleSubmit = async (values: any) => {
+    // console.log(values);
     // try {
     //   const user = await getOneUserByEmail(values.email);
     //   await updateUserByField(user.id, 'role', values.role);

@@ -1,5 +1,7 @@
+/* eslint-disable react/require-default-props */
 import {
   Button,
+  ButtonProps,
   FormControl,
   FormLabel,
   Input,
@@ -10,7 +12,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 import { ErrorMessage, FieldHookConfig, useField } from 'formik';
-import { useState, FC } from 'react';
+import React, { useState, FC } from 'react';
 import { AiFillEye, AiFillEyeInvisible } from 'react-icons/ai';
 
 interface ICustomFieldProps {
@@ -38,6 +40,7 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
       >
         {label}
       </FormLabel>
+      {/* {console.log(field, meta, props)} */}
       <Input
         {...field}
         placeholder={props.placeholder}
@@ -52,8 +55,15 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
         _focus={{
           border: '2px solid #51a6f5'
         }}
+        type={props.type}
+        // {...props}
       />
-      <ErrorMessage name={props.name} component="div" className="error" />
+      {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
+      <ErrorMessage
+        name={props.name}
+        // component="div" className="error"
+        render={(msg) => <div className="error">{msg}</div>}
+      />
     </FormControl>
   );
 };
@@ -105,7 +115,12 @@ export const CustomInputPassword: FC<
           </Button>
         </InputRightElement>
       </InputGroup>
-      <ErrorMessage name={props.name} component="div" className="error" />
+      {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
+      <ErrorMessage
+        name={props.name}
+        render={(msg) => <div className="error">{msg}</div>}
+        // component="div" className="error"
+      />
     </FormControl>
   );
 };
@@ -143,7 +158,11 @@ export const CustomTextarea: FC<
           border: '2px solid #51a6f5'
         }}
       />
-      <ErrorMessage name={props.name} component="div" className="error" />
+      <ErrorMessage
+        name={props.name}
+        // component="div" className="error"
+        render={(msg) => <div className="error">{msg}</div>}
+      />
     </FormControl>
   );
 };
@@ -184,7 +203,12 @@ export const CustomSelect: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
       >
         {children}
       </Select>
-      <ErrorMessage name={props.name} component="div" className="error" />
+      {/* <ErrorMessage name={props.name} component="div" className="error" /> */}
+      <ErrorMessage
+        name={props.name}
+        render={(msg) => <div className="error">{msg}</div>}
+        // component="div" className="error"
+      />
     </FormControl>
   );
 };
@@ -195,7 +219,7 @@ CustomSelect.defaultProps = {
 interface ICustomButtonProps {
   type: 'button' | 'submit' | 'reset' | undefined;
 }
-export const CustomButton: FC<ICustomButtonProps> = ({
+export const CustomButton: FC<ICustomButtonProps & ButtonProps> = ({
   children,
   ...props
 }) => (

@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import { Box, Image, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Gravatar from 'react-gravatar';
 import {
   TableButtonDelete,
@@ -96,7 +96,24 @@ export const CellAvatar: FC<ICellAvatar> = ({ data, ...props }) => (
       borderRadius="full"
       overflow="hidden"
     >
-      <Gravatar email={data} default="robohash" size={40} />
+      <Gravatar
+        email={data}
+        // default="robohash"
+        default="monsterid"
+        size={40}
+      />
     </Box>
   </Box>
 );
+
+// Gravatar
+// type DefaultImage =
+//   | '404'
+//   | 'mm'
+//   | 'mp'
+//   | 'identicon'
+//   | 'monsterid'
+//   | 'robohash'
+//   | 'wavatar'
+//   | 'retro'
+//   | 'blank';

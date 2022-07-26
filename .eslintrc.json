@@ -6,12 +6,12 @@
     "es6": true
   },
   "extends": [
+    "next",
     "next/core-web-vitals",
     "eslint:recommended",
-    "plugin:jsx-a11y/recommended",
-    "plugin:prettier/recommended",
+    "plugin:react/recommended",
     "airbnb",
-    "next"
+    "plugin:prettier/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -22,25 +22,23 @@
     "sourceType": "module"
   },
 
-  "plugins": ["react", "prettier"],
+  "plugins": ["react", "@typescript-eslint", "prettier"],
   "rules": {
     "prettier/prettier": [
-      "error",
+      "warn",
       {
         "singleQuote": true,
-        "tabWidth": 2,
-        "trailingComma": "none",
-        "endOfLine": "crlf",
-        "bracketSpacing": true
+        "trailingComma": "none"
       }
     ],
-    "semi": ["error", "always"],
-    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx", ".ts", ".tsx"] }],
+    "react/jsx-filename-extension": [
+      1,
+      { "extensions": [".js", ".jsx", ".ts", ".tsx"] }
+    ],
     "arrow-body-style": ["error", "as-needed"],
     "implicit-arrow-linebreak": 0,
     "react/prop-types": 0,
     "react/jsx-props-no-spreading": 0,
-    "linebreak-style": ["error", "windows"],
     "comma-dangle": ["error", "never"],
     "operator-linebreak": 0,
     "object-curly-newline": [
@@ -67,7 +65,9 @@
         "ts": "never",
         "tsx": "never"
       }
-   ],
-   "no-confusing-arrow": 0
+    ],
+    "no-confusing-arrow": 0,
+    "no-console": "warn",
+    "no-unused-vars": "warn"
   }
 }

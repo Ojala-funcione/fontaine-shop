@@ -1,11 +1,13 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-nested-ternary */
-/* eslint-disable react/jsx-key */
 import {
   Box,
-  Button,
   IconButton,
+  IconButtonProps,
+  Skeleton,
   Table,
+  TableCellProps,
+  TableColumnHeaderProps,
   Tbody,
   Td,
   Text,
@@ -20,9 +22,10 @@ import {
   useGlobalFilter,
   usePagination,
   useBlockLayout,
-  useFlexLayout
+  useFlexLayout,
+  Column
 } from 'react-table';
-import { FC, useMemo } from 'react';
+import React, { FC, ReactNode, useMemo } from 'react';
 
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 import {
@@ -53,7 +56,7 @@ const HeaderIcon: FC<IHeaderIconProps> = ({ icon }) => (
   </Text>
 );
 
-const ThCustom: FC = ({ children, ...props }) => (
+const ThCustom: FC<TableColumnHeaderProps> = ({ children, ...props }) => (
   <Th
     minW="fit-content"
     h="fit-content"
@@ -87,7 +90,7 @@ const ThCustom: FC = ({ children, ...props }) => (
     </Box>
   </Th>
 );
-const TdCustom: FC = ({ children, ...props }) => (
+const TdCustom: FC<TableCellProps> = ({ children, ...props }) => (
   <Td
     borderColor={useColorModeValue('#dee2e6', '#dee2e6')}
     minW="fit-content"
@@ -103,9 +106,8 @@ const TdCustom: FC = ({ children, ...props }) => (
     {children}
   </Td>
 );
-const PaginationButton: FC = ({ children, ...props }) => (
+const PaginationButton: FC<IconButtonProps> = ({ children, ...props }) => (
   <IconButton
-    aria-label=""
     p="0.2rem"
     minW="fit-content"
     h="fit-content"
@@ -126,25 +128,23 @@ const PaginationButton: FC = ({ children, ...props }) => (
   </IconButton>
 );
 
-interface ColumnConfig {
-  Header: string;
-  accessor: string;
-  Cell?: () => ReactJSXElement;
-  minWidth?: number;
-  maxWidth?: number;
-  sort?: boolean;
+interface ITableProps<Data extends object> {
+  columns: Column<Data>[];
+  data: Data[];
+  isLoading?: boolean;
+  component?: ReactNode;
 }
-interface ITableProps {
-  columnsConfig: ColumnConfig[];
-  data: any[];
-}
-const CustomTable: FC<ITableProps> = ({
-  data = [],
-  columnsConfig,
+
+const CustomTable = <Data extends object>({
+  data: tableData,
+  columns: columnsConfig,
+  isLoading,
+  component,
   ...props
-}) => {
+}: ITableProps<Data>) => {
   const bgRowHoverColor = useColorModeValue('#e9ecef66', 'gray.700');
   const columns = useMemo(() => [...columnsConfig], [columnsConfig]);
+  const data = useMemo(() => [...tableData], [tableData]);
   const tableInstance = useTable(
     { columns, data, initialState: { pageIndex: 0, pageSize: 10 } },
     useGlobalFilter,
@@ -190,71 +190,85 @@ const CustomTable: FC<ITableProps> = ({
         overflow="auto"
         {...props}
       >
-        <Table
-          variant="simple"
-          py="10px"
-          overflow="hidden"
-          {...getTableProps()}
-        >
-          <Thead>
-            {headerGroups.map((headerGroup) => (
-              <Tr {...headerGroup.getHeaderGroupProps()} minWidth="500px">
-                {headerGroup.headers.map((column) => (
-                  <ThCustom
-                    {...column.getHeaderProps(
-                      column.sort && column.getSortByToggleProps()
-                    )}
-                    maxW={column.maxWidth}
-                    minW={column.minWidth}
-                    w="auto"
-                  >
-                    {column.render('Header')}
-                    {column.sort && (
-                      <HeaderIcon
-                        icon={
-                          column.isSorted ? (
-                            column.isSortedDesc ? (
-                              <BiSortUp height="1rem" />
-                            ) : (
-                              <BiSortDown height="1rem" />
-                            )
-                          ) : (
-                            ''
-                          )
-                        }
-                      />
-                    )}
-                  </ThCustom>
-                ))}
-              </Tr>
-            ))}
-          </Thead>
-          <Tbody {...getTableBodyProps()} minWidth="500px">
-            {page.map((row) => {
-              prepareRow(row);
-              return (
+        <Box pb="1rem" display="flex" justifyContent="flex-end">
+          {component}
+        </Box>
+        <Skeleton height="600px" isLoaded={!isLoading}>
+          <Table
+            variant="simple"
+            py="10px"
+            overflow="hidden"
+            {...getTableProps()}
+            _loading={{ background: 'red' }}
+          >
+            <Thead>
+              {headerGroups.map((headerGroup) => (
                 <Tr
-                  _hover={{
-                    bg: bgRowHoverColor
-                  }}
-                  {...row.getRowProps()}
+                  {...headerGroup.getHeaderGroupProps()}
                   minWidth="500px"
+                  key={headerGroup.getHeaderGroupProps().key}
                 >
-                  {row.cells.map((cell) => (
-                    <TdCustom
-                      {...cell.getCellProps()}
-                      width="auto"
-                      maxW={cell.column.maxWidth}
-                      minW={cell.column.minWidth}
+                  {headerGroup.headers.map((column) => (
+                    <ThCustom
+                      {...column.getHeaderProps(column.getSortByToggleProps())}
+                      maxW={column.maxWidth}
+                      minW={column.minWidth}
+                      w="auto"
+                      key={
+                        column.getHeaderProps(column.getSortByToggleProps()).key
+                      }
                     >
-                      {cell.render('Cell')}
-                    </TdCustom>
+                      {column.render('Header')}
+                      {!column.disableSortBy && (
+                        <HeaderIcon
+                          key={column.id + column.Header}
+                          icon={
+                            column.isSorted ? (
+                              column.isSortedDesc ? (
+                                <BiSortUp height="1rem" />
+                              ) : (
+                                <BiSortDown height="1rem" />
+                              )
+                            ) : (
+                              <> </>
+                            )
+                          }
+                        />
+                      )}
+                    </ThCustom>
                   ))}
                 </Tr>
-              );
-            })}
-          </Tbody>
-        </Table>
+              ))}
+            </Thead>
+            <Tbody {...getTableBodyProps()} minWidth="500px">
+              {page.map((row) => {
+                prepareRow(row);
+                return (
+                  <Tr
+                    _hover={{
+                      bg: bgRowHoverColor
+                    }}
+                    {...row.getRowProps()}
+                    minWidth="500px"
+                    key={row.getRowProps().key}
+                  >
+                    {row.cells.map((cell) => (
+                      <TdCustom
+                        {...cell.getCellProps()}
+                        key={cell.getCellProps().key}
+                        width="auto"
+                        maxW={cell.column.maxWidth}
+                        minW={cell.column.minWidth}
+                      >
+                        {cell.render('Cell')}
+                      </TdCustom>
+                    ))}
+                  </Tr>
+                );
+              })}
+            </Tbody>
+          </Table>
+        </Skeleton>
       </Box>
       <Box
         w="100%"
@@ -264,16 +278,18 @@ const CustomTable: FC<ITableProps> = ({
         alignItems="center"
       >
         <PaginationButton
+          aria-label="first-page"
           onClick={() => gotoPage(0)}
           disabled={!canPreviousPage}
-          display={!canPreviousPage && 'none'}
+          display={!canPreviousPage ? 'none' : undefined}
         >
           <HiOutlineChevronDoubleLeft fontSize="1rem" />
         </PaginationButton>
         <PaginationButton
+          aria-label="prev"
           onClick={() => previousPage()}
           disabled={!canPreviousPage}
-          display={!canPreviousPage && 'none'}
+          display={!canPreviousPage ? 'none' : undefined}
         >
           <HiOutlineChevronLeft fontSize="1rem" />
         </PaginationButton>
@@ -281,21 +297,27 @@ const CustomTable: FC<ITableProps> = ({
           {`${pageIndex + 1} de ${pageOptions.length}`}
         </Text>
         <PaginationButton
+          aria-label="next"
           onClick={() => nextPage()}
           disabled={!canNextPage}
-          display={!canNextPage && 'none'}
+          display={!canNextPage ? 'none' : undefined}
         >
           <HiOutlineChevronRight fontSize="1rem" />
         </PaginationButton>
         <PaginationButton
+          aria-label="last-page"
           onClick={() => gotoPage(pageCount - 1)}
           disabled={!canNextPage}
-          display={!canNextPage && 'none'}
+          display={!canNextPage ? 'none' : undefined}
         >
           <HiOutlineChevronDoubleRight fontSize="1rem" />
         </PaginationButton>
       </Box>
     </Box>
   );
+};
+CustomTable.defaultProps = {
+  isLoading: false,
+  component: <> </>
 };
 export default CustomTable;

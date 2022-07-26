@@ -1,22 +1,18 @@
-import { Button, useColorModeValue, useDisclosure } from '@chakra-ui/react';
+import {
+  IconButton,
+  IconButtonProps,
+  useColorModeValue,
+  useDisclosure
+} from '@chakra-ui/react';
 import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
 import CustomModal from '@common/CustomModal/CustomModal';
 import DeleleItemMessage from '@components/DeleleItemMessage';
 import { HiOutlineTrash, HiEye } from 'react-icons/hi';
 import { FiEdit } from 'react-icons/fi';
-import { FC } from 'react';
-import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
+import React, { FC, JSXElementConstructor } from 'react';
 
-interface IIconButtonBase {
-  icon: ReactJSXElement;
-  onClick: any;
-}
-export const IconButtonBase: FC<IIconButtonBase> = ({
-  onClick,
-  icon,
-  ...props
-}) => (
-  <Button
+export const IconButtonBase: FC<IconButtonProps> = ({ ...props }) => (
+  <IconButton
     _focus={{
       outline: 'none',
       bg: 'transparent'
@@ -34,11 +30,8 @@ export const IconButtonBase: FC<IIconButtonBase> = ({
     p={0}
     m={0}
     bg="transparent"
-    onClick={onClick}
     {...props}
-  >
-    {icon}
-  </Button>
+  />
 );
 interface ITBD {
   onClick: any;
@@ -49,6 +42,7 @@ export const TableButtonDelete: FC<ITBD> = ({ onClick, itemId }) => {
   return (
     <>
       <IconButtonBase
+        aria-label="delete"
         onClick={onOpen}
         _hover={{ color: '#ff3636' }}
         color={useColorModeValue('#ed143daa', '#ed143ddd')}
@@ -69,18 +63,23 @@ export const TableButtonDelete: FC<ITBD> = ({ onClick, itemId }) => {
     </>
   );
 };
-interface ITBV {
+interface ITableButtonProps {
   // onClick: any;
-  itemId: any;
-  Component: any;
-  size: any;
+  itemId: string;
+  Component: JSXElementConstructor<any>;
+  size: string;
 }
 
-export const TableButtonEdit: FC<ITBV> = ({ Component, itemId, size }) => {
+export const TableButtonEdit: FC<ITableButtonProps> = ({
+  Component,
+  itemId,
+  size
+}) => {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
     <>
       <IconButtonBase
+        aria-label="edit"
         onClick={onOpen}
         _hover={{ color: '#168af7' }}
         // _hover={{ color: "#2495ff" }}
@@ -98,7 +97,7 @@ export const TableButtonEdit: FC<ITBV> = ({ Component, itemId, size }) => {
   );
 };
 
-export const TableButtonView: FC<ITBV> = ({
+export const TableButtonView: FC<ITableButtonProps> = ({
   // onClick,
   itemId,
   Component,
@@ -108,6 +107,7 @@ export const TableButtonView: FC<ITBV> = ({
   return (
     <>
       <IconButtonBase
+        aria-label="view"
         onClick={onOpen}
         _hover={{ color: '#168af7' }}
         color="#51a6f5"
@@ -118,7 +118,7 @@ export const TableButtonView: FC<ITBV> = ({
         size={size || '2xl'}
         isOpen={isOpen}
         onClose={onClose}
-        scrollBehavior="outside"
+        // scrollBehavior="outside"
         // closeButton={false}
       >
         <Component

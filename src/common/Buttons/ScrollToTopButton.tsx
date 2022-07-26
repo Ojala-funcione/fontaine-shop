@@ -25,9 +25,7 @@ const ScrollToTopButton: FC = () => {
     };
 
     window.addEventListener('scroll', toggleVisibility);
-    return () => {
-      return window.removeEventListener('scroll', toggleVisibility);
-    };
+    return () => window.removeEventListener('scroll', toggleVisibility);
   }, []);
 
   const colorbutton = useColorModeValue('#fff', '#000');

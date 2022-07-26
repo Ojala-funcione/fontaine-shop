@@ -15,7 +15,7 @@ import {
   updateDoc
 } from 'firebase/firestore';
 import { useToast } from '@chakra-ui/react';
-import { IUser } from 'Redux/Interfaces';
+import { IUser } from '@Services/users/usersInterfaces';
 import { auth, db } from '../../firebase';
 
 export interface IAuthContext {
@@ -141,7 +141,7 @@ export const AuthProvider: React.FC = ({ children }) => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
-        console.log(user, currentUser);
+        // console.log(user, currentUser);
         const docRef = doc(db, 'users', currentUser.uid);
         const docSnap = await getDoc(docRef);
         const dbUser = docSnap.data();
@@ -159,6 +159,7 @@ export const AuthProvider: React.FC = ({ children }) => {
     });
     return () => unsubscribe();
   }, []);
+
   // eslint-disable-next-line react/jsx-no-constructed-context-values
   const values: IAuthContext = {
     user,
