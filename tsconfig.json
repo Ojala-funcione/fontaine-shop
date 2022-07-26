@@ -7,7 +7,7 @@
       "@common/*":["common/*"],
       "@components/*":["components/*"],
       "@context/*":["context/*"],
-      "@Redux/*":["Redux/*"]
+      "@Services/*":["services/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],

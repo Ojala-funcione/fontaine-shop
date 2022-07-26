@@ -5,7 +5,7 @@ import {
   DrawerContent,
   DrawerCloseButton
 } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 interface DrawerProps {
   Component?: any;
@@ -50,7 +50,7 @@ const CustomDrawer: FC<DrawerProps> = ({
       )}
       <DrawerBody>
         {/* {Component && <Component onClose={onClose} />} */}
-        {Component && <Component />}
+        {Component && <Component onClose={onClose} />}
         {children}
       </DrawerBody>
     </DrawerContent>

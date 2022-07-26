@@ -1,5 +1,5 @@
 import { Box, Heading, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 interface ISectionHeader {
   title: string;
@@ -37,7 +37,7 @@ SectionDashboardHeader.defaultProps = {
   size: 'xl'
 };
 
-const SectionDashboard: FC = ({ children, ...props }) => (
+export const SectionDashboard: FC = ({ children, ...props }) => (
   <Box
     display="flex"
     flexDirection="column"

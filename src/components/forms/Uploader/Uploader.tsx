@@ -11,7 +11,6 @@ import {
   Input,
   useColorModeValue
 } from '@chakra-ui/react';
-// import { UploadIcon } from '../../../assets/icons/UploadIcon';
 import { FaCloudUploadAlt } from 'react-icons/fa';
 
 interface IThumbProps {
@@ -90,7 +89,7 @@ const Uploader: FC<IUploaderProps> = ({ name, maxFiles = 2 }) => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: { image: ['image/*'] },
+    accept: { image: ['image/webp', 'image/png', 'image/jpeg'] },
     maxFiles,
     // maxSize: 500 * 1024,
     multiple: false
@@ -140,7 +139,7 @@ const Uploader: FC<IUploaderProps> = ({ name, maxFiles = 2 }) => {
           textAlign="center"
           // className="uploader__text"
         >
-          <Text as="span" fontWeight="bold" color="#4a8cca">
+          <Text as="span" fontWeight="bold" color="#4a8cca" paddingRight="5px">
             Drag/Upload
           </Text>
           your image here.
