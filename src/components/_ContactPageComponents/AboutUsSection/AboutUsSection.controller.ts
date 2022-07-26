@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable no-use-before-define */
 import { useToast } from '@chakra-ui/react';
 import useAPISiteSettings from '@Services/siteSettings/apiSiteSettings';

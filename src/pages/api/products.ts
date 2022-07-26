@@ -1,7 +1,8 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-case-declarations */
-import { Product } from "@prisma/client";
-import type { NextApiRequest, NextApiResponse } from "next";
-import prisma from "../../db";
+import { Product } from '@prisma/client';
+import type { NextApiRequest, NextApiResponse } from 'next';
+import prisma from '../../db';
 
 // export default async function handler(
 //   req: NextApiRequest,
@@ -51,16 +52,16 @@ export default async function userHandler(
       sku,
       image,
       gallery,
-      variants,
+      variants
     },
-    method,
+    method
   } = req;
 
   switch (method) {
-    case "GET":
+    case 'GET':
       if (id) {
         const product = await prisma.product.findUnique({
-          where: { id: id as string },
+          where: { id: id as string }
         });
         res.status(200).json(product);
       }
@@ -69,22 +70,22 @@ export default async function userHandler(
       res.status(200).json(products);
 
       break;
-    case "POST":
+    case 'POST':
       const newProduct = await prisma.product.create({
-        data: req.body,
+        data: req.body
       });
       res.status(200).json(newProduct);
       break;
-    case "PUT":
+    case 'PUT':
       // Update or create data in your database
       res.status(200).json(null);
       break;
-    case "DELETE":
+    case 'DELETE':
       // es un put difrazado
       res.status(200).json(null);
       break;
     default:
-      res.setHeader("Allow", ["GET", "PUT"]);
+      res.setHeader('Allow', ['GET', 'PUT']);
       res.status(405).end(`Method ${method} Not Allowed`);
   }
 }

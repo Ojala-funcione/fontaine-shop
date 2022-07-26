@@ -8,8 +8,6 @@
   "extends": [
     "next",
     "next/core-web-vitals",
-    "plugin:react/recommended",
-    "standard",
     "eslint:recommended",
     "plugin:react/recommended",
     "airbnb",
