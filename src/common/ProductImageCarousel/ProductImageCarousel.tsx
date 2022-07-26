@@ -9,7 +9,7 @@ import {
   Link,
   useBreakpointValue
 } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import { AiOutlineLeft, AiOutlineRight } from 'react-icons/ai';
 import Slider, { Settings } from 'react-slick';
 

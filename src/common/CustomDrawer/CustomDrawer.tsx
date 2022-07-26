@@ -5,7 +5,7 @@ import {
   DrawerContent,
   DrawerCloseButton
 } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 interface DrawerProps {
   Component?: any;

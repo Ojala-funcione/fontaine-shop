@@ -80,9 +80,9 @@ declare module 'react-table' {
       // feature set, this is a safe default.
       Record<string, any> {}
 
-  export interface Hooks<
+  export type Hooks<
     D extends Record<string, unknown> = Record<string, unknown>
-  > extends UseSortByHooks<D> {}
+  > = UseSortByHooks<D>;
   //   UseExpandedHooks<D>,
   //       UseGroupByHooks<D>,
   //       UseRowSelectHooks<D>,

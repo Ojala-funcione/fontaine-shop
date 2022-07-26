@@ -9,7 +9,7 @@ import {
   CustomInput,
   CustomSelect
 } from '@common/CustomInputs/CustomInputs';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Uploader from '../Uploader/Uploader';
 import { ICreateCategoryFormProps } from './interfaces';
 import useCreateCategoryFormController from './CreateCategory.controller';
@@ -25,7 +25,6 @@ import useCreateCategoryFormController from './CreateCategory.controller';
 */
 
 const CreateCategoryForm: FC<ICreateCategoryFormProps> = (props) => {
-  // const { GenericToastSuccess, GenericToastError } = Toast();
   const { useController = useCreateCategoryFormController, onClose } = props;
   const controller = useController(onClose);
 

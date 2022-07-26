@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 /* eslint-disable no-useless-catch */
 // import axios from 'axios';
 import {

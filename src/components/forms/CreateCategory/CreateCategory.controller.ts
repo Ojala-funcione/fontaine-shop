@@ -39,11 +39,11 @@ const useCreateCategoryFormController = (
 
   // view events
   const onSubmitButtonPressed = (values: ICreateCategory) => {
-    console.log('submit');
+    // console.log('submit');
     createCategory(values);
   };
   const onCancelButtonPressed = () => {
-    console.log('cancel');
+    // console.log('cancel');
     onClose && onClose();
   };
 

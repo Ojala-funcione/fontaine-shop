@@ -1,14 +1,14 @@
 /* eslint-disable no-unused-vars */
-import { SliderCardProps } from '@components/HomePageComponents/CardsSlider/SliderCard';
+import { SliderCardProps } from '@components/_HomePageComponents/CardsSlider/SliderCard';
 
 export interface IHeroSection {
-  isActive: Boolean;
+  isActive: boolean;
   data?: {
     imgUrl: string[];
   };
 }
 export interface ProductTabInterface {
-  isActive: Boolean;
+  isActive: boolean;
   data?: {
     title: string;
     products: string[];
@@ -16,7 +16,7 @@ export interface ProductTabInterface {
   };
 }
 export interface ProductTabsSectionInterface {
-  isActive: Boolean;
+  isActive: boolean;
   data?: {
     news: ProductTabInterface;
     offer: ProductTabInterface;
@@ -30,7 +30,7 @@ interface TestimonialInterface {
   avatar: string;
 }
 export interface FeedbackSectionInterface {
-  isActive: Boolean;
+  isActive: boolean;
   data?: {
     title: string;
     subtitle: string;
@@ -38,24 +38,24 @@ export interface FeedbackSectionInterface {
   };
 }
 export interface FeaturesSectionInterface {
-  isActive: Boolean;
+  isActive: boolean;
   data?: {
     title: string;
     items: { title: string; subtitle: string }[];
   };
 }
 export interface BannerCardSectionInterface {
-  isActive: Boolean;
+  isActive: boolean;
   data?: {
     imgUrl: string;
   };
 }
 export interface SliderSectionInterface {
-  isActive: Boolean;
+  isActive: boolean;
   data?: SliderCardProps[];
 }
 export interface AboutUsSectionInterface {
-  isActive: Boolean;
+  isActive: boolean;
   data?: {
     title: string;
     description: string;

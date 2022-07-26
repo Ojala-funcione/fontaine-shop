@@ -1,13 +1,16 @@
 /* eslint-disable object-curly-newline */
 import { Box, Button, Heading, HStack, Text } from '@chakra-ui/react';
+import React from 'react';
 import { HiOutlineTrash } from 'react-icons/hi';
 
-const DeleleItemMessage = ({
-  onClose,
-  onClickDelete
-}: {
+interface DeleleItemMessageProps {
   onClose: () => void;
   onClickDelete: () => void;
+}
+
+const DeleleItemMessage: React.FC<DeleleItemMessageProps> = ({
+  onClose,
+  onClickDelete
 }) => (
   <Box
     display="flex"

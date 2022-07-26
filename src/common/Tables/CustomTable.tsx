@@ -25,7 +25,7 @@ import {
   useFlexLayout,
   Column
 } from 'react-table';
-import { FC, ReactNode, useMemo } from 'react';
+import React, { FC, ReactNode, useMemo } from 'react';
 
 import { BiSortDown, BiSortUp } from 'react-icons/bi';
 import {

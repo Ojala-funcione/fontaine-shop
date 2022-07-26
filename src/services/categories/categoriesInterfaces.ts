@@ -16,6 +16,7 @@ export interface ICreateCategory {
   slug: string;
   image?: string;
 }
+
 export interface CategoriesApi {
   getAllCategories(): Promise<AllCategoriesResponse>;
   createCategory(category: ICreateCategory): Promise<ICategory>;

@@ -12,14 +12,9 @@ import {
   IconButton,
   Button
 } from '@chakra-ui/react';
-// import {
-//   addProductCart,
-//   clearCart,
-//   removeOneProductFromCart,
-//   removeProductFromCart
-// } from '@Redux/products/productSlice';
+import { useGlobalContext } from '@context/globalContext/globalContext';
 
-import { FC } from 'react';
+import React, { FC } from 'react';
 import {
   HiMinus,
   HiOutlineShoppingBag,
@@ -39,7 +34,8 @@ interface ICartItemProps {
 }
 const CartItem: FC<ICartItemProps> = ({ item }) => {
   const { product, quantity, amount } = item;
-  // const dispatch = useAppDispatch();
+  const { addProductToCart, clearProductFromCart, removeProductFromCart } =
+    useGlobalContext();
   return (
     <Box
       // bg="blue"
@@ -80,7 +76,7 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
           _active={{
             bg: '#0005'
           }}
-          // onClick={() => dispatch(addProductCart(product))}
+          onClick={() => addProductToCart(product)}
           icon={<HiPlus fontSize="1.15rem" />}
         />
         <Text
@@ -114,7 +110,7 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
           _active={{
             bg: '#0005'
           }}
-          // onClick={() => dispatch(removeOneProductFromCart(product))}
+          onClick={() => removeProductFromCart(product)}
           icon={<HiMinus fontSize="1.15rem" />}
         />
       </Box>
@@ -179,18 +175,14 @@ const CartItem: FC<ICartItemProps> = ({ item }) => {
         _active={{
           bg: '#0005'
         }}
-        // onClick={() => dispatch(removeProductFromCart(product))}
+        onClick={() => clearProductFromCart(product)}
       />
     </Box>
   );
 };
 
 const CartProductList: FC = () => {
-  // const { cartProducts, quantityCart, amountCart } = useAppSelector(
-  //   (state) => state.products
-  // );
-  // const dispatch = useAppDispatch();
-  console.log();
+  const { cart, clearCart } = useGlobalContext();
   return (
     <Box w="100%" minH="100%" pb="60px">
       <Box
@@ -208,14 +200,16 @@ const CartProductList: FC = () => {
         borderBottom="1px solid #aaa"
         // bg={useColorModeValue('#fff', '#000')}
       >
-        {/* {quantityCart > 0 ? (
+        {cart.totalQuantity > 0 ? (
           <HiShoppingBag fontSize="1.25rem" />
         ) : (
           <HiOutlineShoppingBag fontSize="1.25rem" />
         )}
         <Text as="span" fontSize="1rem" fontWeight="500">
-          {quantityCart > 1 ? `${quantityCart} Items` : `${quantityCart} Item`}
-        </Text> */}
+          {cart.totalQuantity > 1
+            ? `${cart.totalQuantity} Items`
+            : `${cart.totalQuantity} Item`}
+        </Text>
         <IconButton
           aria-label="remove-product"
           icon={<HiOutlineTrash />}
@@ -238,20 +232,20 @@ const CartProductList: FC = () => {
           // _active={{
           //   bg: '#0005'
           // }}
-          // onClick={() => dispatch(clearCart())}
+          onClick={() => clearCart()}
         />
       </Box>
-      {/* {cartProducts.length ? (
+      {cart.products.length ? (
         <>
-          {cartProducts.map((item) => (
-            <CartItem key={item.product.productId} item={item} />
+          {cart.products.map((item) => (
+            <CartItem key={item.product.id} item={item} />
           ))}
         </>
       ) : (
         <Box p="2rem" mt="2rem" fontWeight={600} bg="green">
           Aun no agregaste ningun producto a tu carrito
         </Box>
-      )} */}
+      )}
       <Box
         w="100%"
         h="60px"
@@ -289,7 +283,7 @@ const CartProductList: FC = () => {
             p="0.65rem"
             borderRadius="full"
           >
-            {/* {`$ ${amountCart.toFixed(2)}`} */}
+            {`$ ${cart.totalAmount.toFixed(2)}`}
           </Text>
         </Button>
       </Box>

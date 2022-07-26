@@ -7,7 +7,7 @@ import {
   // useColorModeValue
 } from '@chakra-ui/react';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import {
   CustomButton,
   CustomInput,
@@ -21,6 +21,7 @@ import useCreateProductFormController from './CreateProduct.controller';
 
 /* TODO: dividir el form en steps
  * calculo del precio final de vta cuando hay dto
+ * no pemitir decimales en stock
  * arreglar msjs de error
  * refresh table cuando crea uno nuevo
  */

@@ -2,7 +2,7 @@
 /* eslint-disable no-unused-vars */
 
 import { Box, Image, useColorModeValue } from '@chakra-ui/react';
-import { FC } from 'react';
+import React, { FC } from 'react';
 import Gravatar from 'react-gravatar';
 import {
   TableButtonDelete,

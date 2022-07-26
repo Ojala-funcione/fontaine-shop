@@ -6,7 +6,7 @@ import {
   ModalCloseButton
 } from '@chakra-ui/react';
 // import { ReactJSXElement } from '@emotion/react/types/jsx-namespace';
-import { FC } from 'react';
+import React, { FC } from 'react';
 
 interface FormModalProps {
   onClose: () => void;

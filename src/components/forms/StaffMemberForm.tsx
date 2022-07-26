@@ -8,7 +8,7 @@ import {
 } from '@common/CustomInputs/CustomInputs';
 // import { collection, getDocs, query, where } from 'firebase/firestore';
 import { Formik, Form } from 'formik';
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import * as Yup from 'yup';
 
 const isValidEmail = async (value?: string) => {

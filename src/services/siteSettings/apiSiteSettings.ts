@@ -1,6 +1,5 @@
-/* eslint-disable no-unused-vars */
 /* eslint-disable no-useless-catch */
-import axios from 'axios';
+// import axios from 'axios';
 import {
   aboutUsSection,
   bannerCardSection,
@@ -26,17 +25,17 @@ import {
 
 const useAPISiteSettings = (): SiteSettingsApi => {
   const getGeneralSettings = async (): Promise<IGeneralSettings> => {
-    const data: boolean = true;
+    const response = generalSettings;
     // try {
     //   const response = await axios.get('https://url_base.com/algo');
     //   return response as unknown as IGeneralSettings;
     // } catch (error) {
     //   throw error;
     // }
-    return generalSettings;
+    return response;
   };
   const setGeneralSettings = async (): Promise<IGeneralSettings> => {
-    const data: boolean = true;
+    const response = generalSettings;
     // try {
     //   const response = await axios.post('https://url_base.com/algo', {
     //     qsy: 'algo'
@@ -45,10 +44,10 @@ const useAPISiteSettings = (): SiteSettingsApi => {
     // } catch (error) {
     //   throw error;
     // }
-    return generalSettings;
+    return response;
   };
   const getHeroSectionSettings = async (): Promise<IHeroSection> => {
-    const data: boolean = true;
+    const response = heroSection;
     // try {
     //   const isActive = await axios.get(
     //     'https://url_base.com/sitesettings/heroSection'
@@ -61,10 +60,10 @@ const useAPISiteSettings = (): SiteSettingsApi => {
     // } catch (error) {
     //   throw error;
     // }
-    return heroSection;
+    return response;
   };
   const setHeroSectionSettings = async (): Promise<IHeroSection> => {
-    const data: boolean = true;
+    const response = heroSection;
     // try {
     //   const response = await axios.get(
     //     'https://url_base.com/sitesettings/heroSection'
@@ -73,12 +72,12 @@ const useAPISiteSettings = (): SiteSettingsApi => {
     // } catch (error) {
     //   throw error;
     // }
-    return heroSection;
+    return response;
   };
 
   const getProductTabsSectionSettings =
     async (): Promise<ProductTabsSectionInterface> => {
-      const data: boolean = true;
+      const response = productTabsSection;
       // try {
       //   const isActive = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -91,11 +90,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return productTabsSection;
+      return response;
     };
   const setProductTabsSectionSettings =
     async (): Promise<ProductTabsSectionInterface> => {
-      const data: boolean = true;
+      const response = productTabsSection;
       // try {
       //   const response = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -104,11 +103,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return productTabsSection;
+      return response;
     };
   const getBrandSliderSectionSettings =
     async (): Promise<SliderSectionInterface> => {
-      const data: boolean = true;
+      const response = brandSliderSection;
       // try {
       //   const isActive = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -121,11 +120,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return brandSliderSection;
+      return response;
     };
   const setBrandSliderSectionSettings =
     async (): Promise<SliderSectionInterface> => {
-      const data: boolean = true;
+      const response = brandSliderSection;
       // try {
       //   const response = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -134,11 +133,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return brandSliderSection;
+      return response;
     };
   const getCategorySliderSectionSettings =
     async (): Promise<SliderSectionInterface> => {
-      const data: boolean = true;
+      const response = categorySliderSection;
       // try {
       //   const isActive = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -151,11 +150,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return categorySliderSection;
+      return response;
     };
   const setCategorySliderSectionSettings =
     async (): Promise<SliderSectionInterface> => {
-      const data: boolean = true;
+      const response = categorySliderSection;
       // try {
       //   const response = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -164,11 +163,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return categorySliderSection;
+      return response;
     };
   const getFeedbackSectionSettings =
     async (): Promise<FeedbackSectionInterface> => {
-      const data: boolean = true;
+      const response = feedbackSection;
       // try {
       //   const isActive = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -181,11 +180,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return feedbackSection;
+      return response;
     };
   const setFeedbackSectionSettings =
     async (): Promise<FeedbackSectionInterface> => {
-      const data: boolean = true;
+      const response = feedbackSection;
       // try {
       //   const response = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -194,11 +193,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return feedbackSection;
+      return response;
     };
   const getBannerCardSectionSettings =
     async (): Promise<BannerCardSectionInterface> => {
-      const data: boolean = true;
+      const response = bannerCardSection;
       // try {
       //   const isActive = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -211,11 +210,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return bannerCardSection;
+      return response;
     };
   const setBannerCardSectionSettings =
     async (): Promise<BannerCardSectionInterface> => {
-      const data: boolean = true;
+      const response = bannerCardSection;
       // try {
       //   const response = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -224,11 +223,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return bannerCardSection;
+      return response;
     };
   const getAboutUsSectionSettings =
     async (): Promise<AboutUsSectionInterface> => {
-      const data: boolean = true;
+      const response = aboutUsSection;
       // try {
       //   const isActive = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -241,11 +240,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return aboutUsSection;
+      return response;
     };
   const setAboutUsSectionSettings =
     async (): Promise<AboutUsSectionInterface> => {
-      const data: boolean = true;
+      const response = aboutUsSection;
       // try {
       //   const response = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -254,12 +253,12 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return aboutUsSection;
+      return response;
     };
 
   const getFeaturesSectionSettings =
     async (): Promise<FeaturesSectionInterface> => {
-      const data: boolean = true;
+      const response = featuresSection;
       // try {
       //   const isActive = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -272,11 +271,11 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return featuresSection;
+      return response;
     };
   const setFeaturesSectionSettings =
     async (): Promise<FeaturesSectionInterface> => {
-      const data: boolean = true;
+      const response = featuresSection;
       // try {
       //   const response = await axios.get(
       //     'https://url_base.com/sitesettings/heroSection'
@@ -285,7 +284,7 @@ const useAPISiteSettings = (): SiteSettingsApi => {
       // } catch (error) {
       //   throw error;
       // }
-      return featuresSection;
+      return response;
     };
 
   return {

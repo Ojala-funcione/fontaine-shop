@@ -1,16 +1,17 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/no-unstable-nested-components */
-import React, { ReactElement } from "react";
-import DashboardLayout from "@components/Layout/DashboardLayout";
-import SectionDashboard, {
-  SectionDashboardHeader,
-} from "@common/sections/SectionDashboard";
-import ProductsTable from "@components/DashboardComponents/ProductsPageComponents/ProductsTable/ProductsTable";
-import { Stack, useDisclosure } from "@chakra-ui/react";
-import ButtonAdd from "@common/Buttons/ButtonAdd";
-import CustomDrawer from "@common/CustomDrawer/CustomDrawer";
-import AddProductForm from "@components/forms/CreateProduct/CreateProductForm";
-import { NextPageWithLayout } from "../_app";
+import React, { ReactElement } from 'react';
+import DashboardLayout from '@components/_Layout/DashboardLayout';
+import {
+  SectionDashboard,
+  SectionDashboardHeader
+} from '@common/sections/SectionDashboard';
+import ProductsTable from '@components/_DashboardComponents/ProductsPageComponents/ProductsTable/ProductsTable';
+import { Stack, useDisclosure } from '@chakra-ui/react';
+import ButtonAdd from '@common/Buttons/ButtonAdd';
+import CustomDrawer from '@common/CustomDrawer/CustomDrawer';
+import AddProductForm from '@components/forms/CreateProduct/CreateProductForm';
+import { NextPageWithLayout } from '../_app';
 
 const Products: NextPageWithLayout = () => {
   const { isOpen, onOpen, onClose } = useDisclosure();
@@ -18,7 +19,7 @@ const Products: NextPageWithLayout = () => {
     <SectionDashboard>
       <SectionDashboardHeader title="Productos" />
       <Stack
-        direction={["column", "row"]}
+        direction={['column', 'row']}
         spacing="24px"
         p=".5rem"
         justifyContent="flex-end"

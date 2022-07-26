@@ -1,24 +1,18 @@
 /* eslint-disable react/no-unused-prop-types */
-/* eslint-disable no-unused-vars */
 import {
   Box,
   Heading,
   Text,
-  Stack,
+  // Stack,
   Image,
   useColorModeValue,
   Flex,
   HStack,
   IconButton
 } from '@chakra-ui/react';
-import TagCard from '@common/Tags/TagCard';
-// import { useAppDispatch, useAppSelector } from '@Redux/hooks';
-// import { IProduct } from '@Redux/Interfaces';
-// import {
-//   addProductCart,
-//   removeOneProductFromCart
-// } from '@Redux/products/productSlice';
-import { FC } from 'react';
+// import TagCard from '@common/Tags/TagCard';
+import { useGlobalContext } from '@context/globalContext/globalContext';
+import React, { FC } from 'react';
 import { HiMinus, HiPlus } from 'react-icons/hi';
 import { IProduct } from 'services/products/productsInterfaces';
 
@@ -110,12 +104,12 @@ interface IProps {
 }
 const ProductCard: FC<IProps> = ({ product }) => {
   const {
-    gallery,
+    // gallery,
     onSale,
-    onCombo,
-    isFeatured,
-    isNew,
-    discount,
+    // onCombo,
+    // isFeatured,
+    // isNew,
+    // discount,
     name,
     image,
     price,
@@ -124,11 +118,8 @@ const ProductCard: FC<IProps> = ({ product }) => {
     id
   } = product;
 
-  // const dispatch = useAppDispatch();
-  // const quantityCart = useAppSelector((state) => state.products.quantityCart);
-  // const cart = useAppSelector((state) => state.products.cartProducts);
-  // const isInCart = cart.find((item) => item.product.id === id);
-  // console.log('card', quantityCart);
+  const { cart, addProductToCart, removeProductFromCart } = useGlobalContext();
+  const isInCart = cart.products.find((item) => item.product.id === id);
   return (
     <Box
       w="100%"
@@ -170,7 +161,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
         height="100%"
         position="relative"
       >
-        <Box
+        {/* <Box
           position="absolute"
           top="5px"
           left="5px"
@@ -178,11 +169,11 @@ const ProductCard: FC<IProps> = ({ product }) => {
           flexDirection="column"
           gap="5px"
           zIndex={1}
-        >
-          {/* {isFeatured && <TagCard bg="#000">Destacado</TagCard>} */}
-          {/* {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>} */}
-          {/* {onCombo && <TagCard bg="#000">Combo</TagCard>} */}
-        </Box>
+        > */}
+        {/* {isFeatured && <TagCard bg="#000">Destacado</TagCard>} */}
+        {/* {isNew && <TagCard bg="#266bf9">Nuevo</TagCard>} */}
+        {/* {onCombo && <TagCard bg="#000">Combo</TagCard>} */}
+        {/* </Box> */}
         {/* <MiniSlider slides={gallery}></MiniSlider> */}
         <Image
           marginInline="auto"
@@ -245,7 +236,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                 </Text>
               )}
             </HStack>
-            {/* {isInCart ? (
+            {isInCart ? (
               <Box display="flex" bg="#266bf9" borderRadius="5px">
                 <IconButton
                   borderRadius="5px 0 0 5px"
@@ -266,7 +257,7 @@ const ProductCard: FC<IProps> = ({ product }) => {
                   _active={{
                     bg: '#0005'
                   }}
-                  onClick={() => dispatch(removeOneProductFromCart(product))}
+                  onClick={() => removeProductFromCart(product)}
                 />
                 <Text
                   h="36px"
@@ -300,24 +291,24 @@ const ProductCard: FC<IProps> = ({ product }) => {
                   _active={{
                     bg: '#0005'
                   }}
-                  onClick={() => dispatch(addProductCart(product))}
+                  onClick={() => addProductToCart(product)}
                 />
               </Box>
-            ) : ( */}
-            <IconButton
-              h="36px"
-              w="36px"
-              minW="36px"
-              bg="transparent"
-              border="solid 1px #e1e1e1"
-              aria-label="add-product"
-              icon={<HiPlus />}
-              _focus={{
-                outline: 'none'
-              }}
-              // onClick={() => dispatch(addProductCart(product))}
-            />
-            {/* )} */}
+            ) : (
+              <IconButton
+                h="36px"
+                w="36px"
+                minW="36px"
+                bg="transparent"
+                border="solid 1px #e1e1e1"
+                aria-label="add-product"
+                icon={<HiPlus />}
+                _focus={{
+                  outline: 'none'
+                }}
+                onClick={() => addProductToCart(product)}
+              />
+            )}
           </HStack>
         </Box>
       </Box>

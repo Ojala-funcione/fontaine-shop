@@ -7,7 +7,7 @@ import {
   useColorModeValue
 } from '@chakra-ui/react';
 // import { useAppDispatch } from '@Redux/hooks';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { HiBackspace } from 'react-icons/hi';
 // import { IoSearch } from 'react-icons/io5';
 
