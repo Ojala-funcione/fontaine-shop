@@ -67,6 +67,9 @@ export const CustomInput: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
     </FormControl>
   );
 };
+CustomInput.defaultProps = {
+  isRequired: false
+};
 
 export const CustomInputPassword: FC<
   FieldHookConfig<string> & ICustomFieldProps
@@ -121,6 +124,10 @@ export const CustomInputPassword: FC<
     </FormControl>
   );
 };
+CustomInputPassword.defaultProps = {
+  isRequired: false
+};
+
 export const CustomTextarea: FC<
   FieldHookConfig<string> & ICustomFieldProps
 > = ({ label, isRequired, ...props }) => {
@@ -159,6 +166,10 @@ export const CustomTextarea: FC<
     </FormControl>
   );
 };
+CustomTextarea.defaultProps = {
+  isRequired: false
+};
+
 export const CustomSelect: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
   label,
   children,
@@ -200,6 +211,9 @@ export const CustomSelect: FC<FieldHookConfig<string> & ICustomFieldProps> = ({
       />
     </FormControl>
   );
+};
+CustomSelect.defaultProps = {
+  isRequired: false
 };
 
 interface ICustomButtonProps {
