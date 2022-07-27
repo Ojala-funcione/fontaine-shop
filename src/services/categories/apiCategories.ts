@@ -1,6 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-useless-catch */
-// import axios from 'axios';
+import axios from 'axios';
+import { env } from 'process';
 import {
   AllCategoriesResponse,
   CategoriesApi,
@@ -10,14 +11,21 @@ import categoriesData from './data';
 
 const useAPICategories = (): CategoriesApi => {
   const getAllCategories = async (): Promise<AllCategoriesResponse> => {
-    // try {
-    //   const response = await axios.get('https://url_base.com/algo');
-    //   return response as unknown as AllCategoriesResponse;
-    // } catch (error) {
-    //   throw error;
-    // }
-    console.log('');
-    return { categories: categoriesData, total: categoriesData.length };
+    console.log('url', process.env.NEXT_PUBLIC_BASE_URL);
+    console.log('url_db', process.env.DATABASE_URL);
+    console.log('url_db', env.DATABASE_URL);
+    try {
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/categories`
+      );
+      console.log(response);
+      console.log(response.data);
+      return response.data as unknown as AllCategoriesResponse;
+    } catch (error) {
+      throw error;
+    }
+    // console.log('');
+    // return { categories: categoriesData, total: categoriesData.length };
   };
   const createCategory = async (category: ICategory): Promise<ICategory> => {
     // try {
