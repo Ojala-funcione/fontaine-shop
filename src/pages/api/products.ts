@@ -3,7 +3,6 @@
 import { Product } from '@prisma/client';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import prisma from '../../db';
-
 // export default async function handler(
 //   req: NextApiRequest,
 //   res: NextApiResponse<Product[]>
@@ -36,24 +35,6 @@ export default async function userHandler(
 ) {
   const {
     query: { id },
-    body: {
-      onSale,
-      isNew,
-      onCombo,
-      isFeatured,
-      name,
-      brand,
-      description,
-      category,
-      price,
-      discount,
-      stock,
-      minStock,
-      sku,
-      image,
-      gallery,
-      variants
-    },
     method
   } = req;
 

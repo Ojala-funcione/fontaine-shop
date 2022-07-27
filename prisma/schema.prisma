@@ -2,44 +2,45 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
 generator client {
   provider = "prisma-client-js"
 }
 
-
 model Category {
-  id        String  @id @default(uuid())
-  name      Product  @relation(fields: [id], references: [id])
+  id        String   @id @default(uuid())
+  name      String
   slug      String   @unique
-  image     String? @default("https://firebasestorage.googleapis.com/v0/b/fontaine-dev.appspot.com/o/logo-square.jpg?alt=media&token=f1b1b8d0-a08d-4f9c-9798-e4eb3b4a95d8")
+  image     String?  @default("https://firebasestorage.googleapis.com/v0/b/fontaine-dev.appspot.com/o/logo-square.jpg?alt=media&token=f1b1b8d0-a08d-4f9c-9798-e4eb3b4a95d8")
   status    Int      @default(1)
+  Product   Product? @relation(fields: [productId], references: [id])
+  productId String?
 }
-
 
 model Order {
   id               String  @id @default(uuid())
   customer_id      Int?
   ammount          Int?
-  shipping_address String? 
-  billing_address  String? 
-  order_email      String? 
-  order_date       String? 
+  shipping_address String?
+  billing_address  String?
+  order_email      String?
+  order_date       String?
   order_status     Int?
 }
 
 model Product {
-  id          String   @id @default(uuid())
-  sku         String?  
+  id          String     @id @default(uuid())
+  sku         String?
   name        String
-  brand       String  
-  description String?  
+  brand       String
+  description String?
   image       String?
   gallery     String[]
   stock       Int?
   minStock    Int?
-  dimensions  Json?   
+  dimensions  Json?
   discount    Int?
-  status      Int?     @default(1)
+  status      Int?       @default(1)
   variants    Boolean?
   price       Int
   category    Category[]
@@ -57,27 +58,27 @@ model Site_setting {
 model User {
   id               String   @id(map: "users_pkey") @default(uuid())
   email            String   @unique
-  password         String   
-  name             String   
-  last_name        String  
-  billing_address  String?  
-  shipping_address String?  
-  phone            Decimal? 
+  password         String
+  name             String
+  last_name        String
+  billing_address  String?
+  shipping_address String?
+  phone            Decimal?
   role             Role     @default(CUSTOMER)
   isVerified       Boolean
   photo_url        String?
   access_token     String?
   user_pool_id     String?
-  user_name        String?  
+  user_name        String?
   status           Int      @default(1)
 }
 
 model Variant {
   id        String  @id @default(uuid())
-  name      String? 
+  name      String?
   stock     Int?
   stock_min Int?
-  sku       String? 
+  sku       String?
 }
 
 enum Role {
