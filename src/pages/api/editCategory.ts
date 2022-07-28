@@ -7,8 +7,7 @@ export default async function handler(
   res: NextApiResponse<Category>
 ) {
   const {
-    query: { id },
-    body: { name, slug, image }
+    body: { id, name, slug, image }
   } = req;
   const updatedCategory = await prisma.category.update({
     where: {

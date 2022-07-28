@@ -5,7 +5,8 @@ import { env } from 'process';
 import {
   AllCategoriesResponse,
   CategoriesApi,
-  ICategory
+  ICategory,
+  ICreateCategory
 } from './categoriesInterfaces';
 import categoriesData from './data';
 
@@ -28,19 +29,24 @@ const useAPICategories = (): CategoriesApi => {
     // return { categories: categoriesData, total: categoriesData.length };
   };
   const createCategory = async (category: ICategory): Promise<ICategory> => {
-    // try {
-    //   const response = await axios.post('https://url_base.com/algo', {
-    //     qsy: 'algo'
-    //   });
-    //   return response as unknown as ICategory;
-    // } catch (error) {
-    //   throw error;
-    // }
-    console.log(category);
-    return category;
+    try {
+      const response = await axios.post(
+        `${process.env.NEXT_PUBLIC_BASE_URL}/categories`,
+        {
+          category
+        }
+      );
+      return response as unknown as ICategory;
+    } catch (error) {
+      throw error;
+    }
+    // console.log(category);
+    // return category;
   };
 
-  const editCategory = async (category: ICategory): Promise<ICategory> => {
+  const editCategory = async (
+    category: ICreateCategory
+  ): Promise<ICreateCategory> => {
     // try {
     //   const response = await axios.post('https://url_base.com/algo', {
     //     qsy: 'algo'
