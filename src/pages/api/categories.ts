@@ -8,7 +8,9 @@ import prisma from '../../db';
 
 export default async function categoryHandler(
   req: NextApiRequest,
-  res: NextApiResponse<Category[] | null | Category | AllCategoriesResponse>
+  res: NextApiResponse<
+    Category[] | null | Category | AllCategoriesResponse | string
+  >
 ) {
   const {
     query: { id },
@@ -37,6 +39,18 @@ export default async function categoryHandler(
       });
       // res.json(categorias);
 
+      break;
+    case 'PUT':
+      // eslint-disable-next-line no-case-declarations
+      const updatedCategory = await prisma.category.update({
+        where: {
+          id: id as string
+        },
+        data: {
+          status: 2
+        }
+      });
+      res.send('borrado exitosamente');
       break;
     default:
       break;
